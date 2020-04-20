@@ -1,0 +1,1507 @@
+{
+  "name": "서홍",
+  "genealogical name": "익호",
+  "birth": "xxxx-xx-xx",
+  "mother": "임의",
+  "generation": 26,
+  "isCenter": true,
+  "children": [
+    {
+      "name": "종백",
+      "genealogical name": "종옥",
+      "birth": "xxxx-xx-xx",
+      "mother": "임의",
+      "generation": 27,
+      "isCenter": true,
+      "children": [
+        {
+          "name": "례중",
+          "genealogical name": "한성",
+          "birth": "xxxx-xx-xx",
+          "mother": "임의",
+          "generation": 28,
+          "isCenter": true,
+          "children": [
+            {
+              "name": "훈방",
+              "genealogical name": "이묵",
+              "birth": "xxxx-xx-xx",
+              "mother": "임의",
+              "generation": 29,
+              "isCenter": true,
+              "children": [
+                {
+                  "name": "백언",
+                  "genealogical name": "형채",
+                  "birth": "xxxx-xx-xx",
+                  "mother": "임의",
+                  "generation": 30,
+                  "isCenter": false,
+                  "children": [
+                    {
+                      "name": "오현",
+                      "genealogical name": "병규",
+                      "birth": "xxxx-xx-xx",
+                      "mother": "임의",
+                      "generation": 31,
+                      "isCenter": false,
+                      "children": [
+                        {
+                          "name": "도신",
+                          "genealogical name": "학회",
+                          "birth": "xxxx-xx-xx",
+                          "mother": "임의",
+                          "generation": 32,
+                          "isCenter": false,
+                          "children": [
+                            {
+                              "name": "만유",
+                              "genealogical name": "주웅",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "후기",
+                                  "genealogical name": "후기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "남령",
+                                      "genealogical name": "남령",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "순령",
+                                      "genealogical name": "순령",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "온령",
+                                      "genealogical name": "온령",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "화영",
+                                      "genealogical name": "화영",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "형기",
+                                  "genealogical name": "형기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "건우",
+                                      "genealogical name": "건우",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "민우",
+                                      "genealogical name": "민우",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "소영",
+                                      "genealogical name": "소영",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "환기",
+                                  "genealogical name": "환기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "연철",
+                                      "genealogical name": "연철",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "진영",
+                                      "genealogical name": "진영",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "현미",
+                                  "genealogical name": "현미",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "후순",
+                                  "genealogical name": "후순",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "name": "만필",
+                              "genealogical name": "주필",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "유기",
+                                  "genealogical name": "유기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "성기",
+                                  "genealogical name": "성기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "공기",
+                                  "genealogical name": "공기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "효기",
+                                  "genealogical name": "효기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "영",
+                                      "genealogical name": "영",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "우석",
+                                      "genealogical name": "우석",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "유순",
+                                  "genealogical name": "유순",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "금자",
+                                  "genealogical name": "금자",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "애순",
+                                  "genealogical name": "애순",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "name": "만지",
+                              "genealogical name": "주영",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "종기",
+                                  "genealogical name": "종기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "정기",
+                                  "genealogical name": "정기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "정기",
+                                  "genealogical name": "정기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "name": "만옥",
+                              "genealogical name": "주목",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "선옥",
+                                  "genealogical name": "선기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "영경",
+                                      "genealogical name": "영경",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "우경",
+                                      "genealogical name": "우경",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "원경",
+                                      "genealogical name": "원경",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "인숙",
+                                  "genealogical name": "인숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "안숙",
+                                  "genealogical name": "안숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "향숙",
+                                  "genealogical name": "향숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "찬기",
+                                  "genealogical name": "찬욱",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "name": "종순",
+                              "genealogical name": "종순",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "name": "성회",
+                          "genealogical name": "성회",
+                          "birth": "xxxx-xx-xx",
+                          "mother": "임의",
+                          "generation": 32,
+                          "isCenter": false,
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "병욱",
+                      "genealogical name": "병욱",
+                      "birth": "xxxx-xx-xx",
+                      "mother": "임의",
+                      "generation": 31,
+                      "isCenter": false,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "량언",
+                  "genealogical name": "이채",
+                  "birth": "xxxx-xx-xx",
+                  "mother": "임의",
+                  "generation": 30,
+                  "isCenter": true,
+                  "children": [
+                    {
+                      "name": "경도",
+                      "genealogical name": "병욱",
+                      "birth": "xxxx-xx-xx",
+                      "mother": "임의",
+                      "generation": 31,
+                      "isCenter": true,
+                      "children": [
+                        {
+                          "name": "내선",
+                          "genealogical name": "성회",
+                          "birth": "xxxx-xx-xx",
+                          "mother": "임의",
+                          "generation": 32,
+                          "isCenter": true,
+                          "children": [
+                            {
+                              "name": "정만",
+                              "genealogical name": "주득",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": true,
+                              "children": [
+                                {
+                                  "name": "홍기",
+                                  "genealogical name": "홍기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": true,
+                                  "children": [
+                                    {
+                                      "name": "동균",
+                                      "genealogical name": "우형",
+                                      "birth": "1958-05-01",
+                                      "mother": "염덕현",
+                                      "generation": 35,
+                                      "isCenter": true,
+                                      "children": [
+                                        {
+                                          "name": "신영",
+                                          "genealogical name": "신영",
+                                          "birth": "1984-07-09",
+                                          "mother": "손윤희",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "한승",
+                                          "genealogical name": "국효",
+                                          "birth": "1986-10-28",
+                                          "mother": "손윤희",
+                                          "generation": 36,
+                                          "isCenter": true,
+                                          "children": [
+                                            {
+                                              "name": "희우",
+                                              "genealogical name": "희우",
+                                              "birth": "2019-09-24",
+                                              "mother": "이정석",
+                                              "generation": 37,
+                                              "isCenter": true,
+                                              "children": []
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "name": "회준",
+                                          "genealogical name": "인효",
+                                          "birth": "1994-10-23",
+                                          "mother": "손윤희",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "미숙",
+                                      "genealogical name": "미숙",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "태근",
+                                      "genealogical name": "우만",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "의윤",
+                                          "genealogical name": "의윤",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "용화",
+                                          "genealogical name": "종효",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+
+                                    {
+                                      "name": "수정",
+                                      "genealogical name": "수정",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "용기",
+                                  "genealogical name": "용기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "욱진",
+                                      "genealogical name": "우상",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "수현",
+                                          "genealogical name": "수현",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "현주",
+                                          "genealogical name": "현주",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "중진",
+                                      "genealogical name": "우보",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "근효",
+                                          "genealogical name": "근효",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "효정",
+                                          "genealogical name": "효정",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "복임",
+                                  "genealogical name": "복임",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "영기",
+                                  "genealogical name": "영기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "재현",
+                                      "genealogical name": "우권",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "동효",
+                                          "genealogical name": "동효",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "영호",
+                                          "genealogical name": "영호",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "백진",
+                                      "genealogical name": "우광",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "명진",
+                                      "genealogical name": "우명",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "창숙",
+                                  "genealogical name": "창숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "복숙",
+                                  "genealogical name": "복숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "남기",
+                                  "genealogical name": "남기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "효성",
+                                      "genealogical name": "우동",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "문정",
+                                      "genealogical name": "문정",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "경국",
+                                  "genealogical name": "경국",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "영진",
+                                  "genealogical name": "진기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "기수",
+                                      "genealogical name": "우용",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "지효",
+                                      "genealogical name": "지효",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "영덕",
+                                  "genealogical name": "덕기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "수안",
+                                      "genealogical name": "우안",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "성안",
+                                      "genealogical name": "우준",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "지우",
+                                      "genealogical name": "우상",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "석태",
+                              "genealogical name": "주상",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "웅기",
+                                  "genealogical name": "웅기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "미선",
+                                      "genealogical name": "미선",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "미란",
+                                      "genealogical name": "미란",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "우정",
+                                      "genealogical name": "우정",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "준효",
+                                          "genealogical name": "준효",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "우인",
+                                          "genealogical name": "우인",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "미진",
+                                      "genealogical name": "미진",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "흥기",
+                                  "genealogical name": "흥기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "선영",
+                                      "genealogical name": "선영",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "미애",
+                                      "genealogical name": "미애",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "우진",
+                                      "genealogical name": "우진",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "우중",
+                                      "genealogical name": "우중",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "영언",
+                                  "genealogical name": "정기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "우열",
+                                      "genealogical name": "우열",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "우출",
+                                      "genealogical name": "우출",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "석주",
+                              "genealogical name": "주영",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "정순",
+                                  "genealogical name": "정순",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "익성",
+                                  "genealogical name": "대기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "우영",
+                                      "genealogical name": "우영",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "지선",
+                                          "genealogical name": "지선",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "소원",
+                                          "genealogical name": "소원",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "은수",
+                                      "genealogical name": "우길",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "혜경",
+                                      "genealogical name": "혜경",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "정필",
+                                  "genealogical name": "장기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "주연",
+                                      "genealogical name": "주연",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "미연",
+                                      "genealogical name": "미연",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "태호",
+                                      "genealogical name": "우종",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "정민",
+                                          "genealogical name": "정효",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "경빈",
+                                          "genealogical name": "경빈",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "덕원",
+                                  "genealogical name": "중기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "영우",
+                                      "genealogical name": "우돈",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "영길",
+                                      "genealogical name": "우교",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "시은",
+                                          "genealogical name": "시은",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "은진",
+                                      "genealogical name": "은진",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "은경",
+                                      "genealogical name": "은경",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "영철",
+                                  "genealogical name": "문기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "성열",
+                                      "genealogical name": "우민",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "은별",
+                                      "genealogical name": "은별",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "석표",
+                              "genealogical name": "주양",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "은혜",
+                                  "genealogical name": "은혜",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "수자",
+                                  "genealogical name": "수자",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "옥자",
+                                  "genealogical name": "옥자",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "덕님",
+                                  "genealogical name": "덕님",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "수철",
+                                  "genealogical name": "옥기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "우창",
+                                      "genealogical name": "우창",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "가림",
+                                      "genealogical name": "가림",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "병기",
+                                  "genealogical name": "석기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "희숙",
+                                  "genealogical name": "희숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "name": "석준",
+                              "genealogical name": "주홍",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "춘자",
+                                  "genealogical name": "춘자",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "남기",
+                                  "genealogical name": "남기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "효성",
+                                      "genealogical name": "우동",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "문정",
+                                      "genealogical name": "문정",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "대지",
+              "genealogical name": "이렬",
+              "birth": "xxxx-xx-xx",
+              "mother": "임의",
+              "generation": 29,
+              "isCenter": false,
+              "children": [
+                {
+                  "name": "신신",
+                  "genealogical name": "윤채",
+                  "birth": "xxxx-xx-xx",
+                  "mother": "임의",
+                  "generation": 30,
+                  "isCenter": false,
+                  "children": [
+                    {
+                      "name": "덕삼",
+                      "genealogical name": "병국",
+                      "birth": "xxxx-xx-xx",
+                      "mother": "임의",
+                      "generation": 31,
+                      "isCenter": false,
+                      "children": [
+                        {
+                          "name": "성규",
+                          "genealogical name": "인회",
+                          "birth": "xxxx-xx-xx",
+                          "mother": "임의",
+                          "generation": 32,
+                          "isCenter": false,
+                          "children": [
+                            {
+                              "name": "석두",
+                              "genealogical name": "주칠",
+                              "birth": "xxxx-xx-xx",
+                              "mother": "임의",
+                              "generation": 33,
+                              "isCenter": false,
+                              "children": [
+                                {
+                                  "name": "상욱",
+                                  "genealogical name": "복기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "수택",
+                                      "genealogical name": "수택",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    },
+                                    {
+                                      "name": "수빈",
+                                      "genealogical name": "수빈",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "상철",
+                                  "genealogical name": "순기",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": [
+                                    {
+                                      "name": "우선",
+                                      "genealogical name": "우선",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": [
+                                        {
+                                          "name": "정곤",
+                                          "genealogical name": "정곤",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        },
+                                        {
+                                          "name": "형근",
+                                          "genealogical name": "형근",
+                                          "birth": "xxxx-xx-xx",
+                                          "mother": "임의",
+                                          "generation": 36,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "우혁",
+                                      "genealogical name": "우혁",
+                                      "birth": "xxxx-xx-xx",
+                                      "mother": "임의",
+                                      "generation": 35,
+                                      "isCenter": false,
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "name": "종순",
+                                  "genealogical name": "종순",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "종임",
+                                  "genealogical name": "종임",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "점숙",
+                                  "genealogical name": "점숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                },
+                                {
+                                  "name": "정숙",
+                                  "genealogical name": "정숙",
+                                  "birth": "xxxx-xx-xx",
+                                  "mother": "임의",
+                                  "generation": 34,
+                                  "isCenter": false,
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
