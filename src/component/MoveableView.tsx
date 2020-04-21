@@ -7,6 +7,7 @@ const MoveableView: React.FC<MoveableViewProps> = ({
   children,
   position,
   move,
+  style,
 }) => (
   <TouchableHighlight
     onPress={() => {
@@ -14,7 +15,7 @@ const MoveableView: React.FC<MoveableViewProps> = ({
         position: position,
       });
     }}>
-    <View>{children}</View>
+    <View style={style}>{children}</View>
   </TouchableHighlight>
 );
 

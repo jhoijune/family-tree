@@ -8,9 +8,9 @@ import MovableView from './MoveableView';
 const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
   const convertValue = (
     value: Info['value']
-  ): JSX.Element | JSX.Element[] | string => {
+  ): JSX.Element | JSX.Element[] | null => {
     if (value === null) {
-      return '';
+      return null;
     } else if (typeof value === 'string' || typeof value === 'number') {
       return <HighlightalbeText keyword={keyword}>{value}</HighlightalbeText>;
     } else if (value instanceof Array) {

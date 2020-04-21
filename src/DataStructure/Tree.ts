@@ -100,7 +100,7 @@ abstract class Tree<T> {
   }
 
   /**
-   * Return the height of the subtree rooted at Position p. If p is None, return the height of the entire tree.
+   * Return the height of the subtree rooted at Position p. If p is null, return the height of the entire tree.
    * @param p
    * @throws {Error} if The tree is empty
    */

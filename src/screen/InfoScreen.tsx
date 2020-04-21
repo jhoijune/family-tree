@@ -1,26 +1,72 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 
-import { TreeUtilContext } from '../../App';
 import { removeProp, mapPropName } from '../util';
 import { InfoHeader, InfoList } from '../component';
 import {
+  Position,
   InfoScreenProps,
   InfoNode,
   Infos,
   Info,
   PositionAndName,
+  FamilyNode,
 } from '../type';
+import { FamilyTree } from '../DataStructure';
+
+/**
+ * 현재 포지션의 parent의 이름과 포지션을 반환함
+ * @param position
+ */
+const returnParentNamePosition = (
+  tree: FamilyTree<FamilyNode>,
+  position: Position<FamilyNode>
+): PositionAndName | null => {
+  const parent: Position<FamilyNode> | null = tree.parent(position);
+  if (parent === null) {
+    return null;
+  }
+  const { element } = parent;
+  if (element === null) {
+    return null;
+  }
+  return {
+    name: element.name,
+    position: parent,
+  };
+};
+
+/**
+ * 현재 포지션의 children의 이름과 position을 배열로 반환함
+ * @param position
+ */
+const returnChildrenNamePosition = (
+  tree: FamilyTree<FamilyNode>,
+  position: Position<FamilyNode>
+): PositionAndName[] | null => {
+  const arr: PositionAndName[] = [];
+  for (const children of tree.children(position)) {
+    const { element } = children;
+    if (element !== null) {
+      arr.push({
+        name: element.name,
+        position: children,
+      });
+    }
+  }
+  if (arr.length === 0) {
+    return null;
+  }
+  return arr;
+};
 
 const InfoScreen: React.FC<InfoScreenProps> = ({
-  navigation: { push, navigate, popToTop },
+  tree,
+  navigation: { push },
   route: {
     params: { keyword, position },
   },
 }) => {
-  const { returnParentNamePosition, returnChildrenNamePosition } = useContext(
-    TreeUtilContext
-  );
   const { element } = position;
   let name: string = '';
   let infos: Infos = [];
@@ -31,8 +77,8 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
     } else {
       name = `${filtered.name} (${filtered['genealogical name']})`;
     }
-    const father = returnParentNamePosition(position);
-    const children = returnChildrenNamePosition(position);
+    const father = returnParentNamePosition(tree, position);
+    const children = returnChildrenNamePosition(tree, position);
     const combined: {
       name: string;
       father: PositionAndName | null;

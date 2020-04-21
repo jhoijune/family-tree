@@ -1,25 +1,12 @@
 import Position from './Position';
 import GeneralTree, { Node } from './GeneralTree';
-import { SearchResult, SearchResultItem } from '../type';
+import { SearchResult, SearchResultItem, FamilyNode } from '../type';
 
 class FamilyTree<
   T extends { isCenter: boolean; [key: string]: unknown }
 > extends GeneralTree<T> {
-  static DEFAULT_NODE_INTERVAL: number = 10;
-
-  static DEFAULT_NODE_WIDTH = 100;
-
-  private _interval: number;
-
-  private _width: number;
-
-  constructor(
-    interval: number = FamilyTree.DEFAULT_NODE_INTERVAL,
-    width: number = FamilyTree.DEFAULT_NODE_WIDTH
-  ) {
+  constructor() {
     super();
-    this._interval = interval;
-    this._width = width;
   }
 
   /**
@@ -90,41 +77,57 @@ class FamilyTree<
 
   /**
    * root node의 x축 margin 계산
-   * @param margin
+   * @param width 노드의 너비
+   * @param interval  노드의 수평선상의 간격
+   * @param margin  SVG의 마진
    */
-  calculateRootX(margin: number = 0): number {
+  calculateRootX(width: number, interval: number, margin: number = 0): number {
     const count: number = this.locateExternalCenter();
-    return margin + (count - 1) * (this._width + this._interval);
+    return margin + (count - 1) * (width + interval);
   }
 
   /**
    * position의 하위 서브트리의 너비 계산
-   * @param position
+   * @param position 노드의 포지션
+   * @param width 노드의 너비
+   * @param interval  노드의 수평선상의 간격
    */
-  calculateSubtreeWidth(position: Position<T>): number {
+  calculateSubtreeWidth(
+    position: Position<T>,
+    width: number,
+    interval: number
+  ): number {
     const externalNodeCount: number = this.sumExternalNode(position);
-    let result: number = externalNodeCount * this._width;
+    let result: number = externalNodeCount * width;
     if (externalNodeCount > 1) {
-      result += (externalNodeCount - 1) * this._interval;
+      result += (externalNodeCount - 1) * interval;
     }
     return result;
   }
 
   /**
    * 노드의 중심으로부터 계산한 서브트리 좌우의 너비
-   * @param position
+   * @param position 노드의 포지션
+   * @param width 노드의 너비
+   * @param interval  노드의 수평선상의 간격
    */
   private _calculatePartOfSubtreeWidth(
-    position: Position<T>
+    position: Position<T>,
+    width: number,
+    interval: number
   ): { left: number; right: number } {
     const externalNodeCount: number = this.sumExternalNode(position);
     if (externalNodeCount <= 1) {
-      return { left: this._width / 2, right: this._width / 2 };
+      return { left: width / 2, right: width / 2 };
     }
     const node: Node<T> = this._validate(position);
     if (!node.element!.isCenter) {
-      const width: number = this.calculateSubtreeWidth(position);
-      return { left: width / 2, right: width / 2 };
+      const wholeWidth: number = this.calculateSubtreeWidth(
+        position,
+        width,
+        interval
+      );
+      return { left: wholeWidth / 2, right: wholeWidth / 2 };
     } else {
       const len: number = node.children.length;
       let centerIndex: number;
@@ -135,40 +138,69 @@ class FamilyTree<
         }
       }
       const left: number =
-        (this._width + this._interval) * centerIndex - this._correctX();
+        (width + interval) * centerIndex - this._correctX(width);
       const right: number =
-        (this._width + this._interval) * (externalNodeCount - centerIndex - 1) +
-        this._correctX();
+        (width + interval) * (externalNodeCount - centerIndex - 1) +
+        this._correctX(width);
       return { left, right };
     }
   }
 
   /**
    * position 하위의 가지 너비 계산
-   * @param position
+   * @param position 노드의 포지션
+   * @param width 노드의 너비
+   * @param interval  노드의 수평선상의 간격
    */
-  calculateBreanchWidth(position: Position<T>) {
-    return this.calculateSubtreeWidth(position) - this._width;
+  calculateBranchWidth(position: Position<T>, width: number, interval: number) {
+    return this.calculateSubtreeWidth(position, width, interval) - width;
   }
 
   /**
-   *  같은 깊이의 좌우 노드에서  오른쪽 노드가 왼쪽 노드보다 x축에 얼마나 떨어져야 하는지 계산
+   * 같은 깊이의 좌우 노드에서  오른쪽 노드가 왼쪽 노드보다 x축에 얼마나 떨어져야 하는지 계산
+   * @param leftPosition 노드 왼쪽 포지션
+   * @param rightPosition 노드 오른쪽 포지션
+   * @param width 노드의 너비
+   * @param interval  노드의 수평선상의 간격
    */
   calculateNodeInterval(
     leftPosition: Position<T>,
-    rightPosition: Position<T>
+    rightPosition: Position<T>,
+    width: number,
+    interval: number
   ): number {
-    const { left } = this._calculatePartOfSubtreeWidth(leftPosition);
-    const { right } = this._calculatePartOfSubtreeWidth(rightPosition);
-    return this._interval + left + right;
+    const { right } = this._calculatePartOfSubtreeWidth(
+      leftPosition,
+      width,
+      interval
+    );
+    const { left } = this._calculatePartOfSubtreeWidth(
+      rightPosition,
+      width,
+      interval
+    );
+    return right + interval + left;
   }
 
   /**
-   *  서브트리의 루트다음의 노드의 x축 계산
+   * 서브트리의 루트다음의 노드의 x좌표 계산
+   * @param position 루트 다음의 노드의 포지션
+   * @param rootX 서브트리의 루트 노드의 x좌표
+   * @param width 노드의 너비
+   * @param interval 노드의 수평선상의 간격
    */
-  calculateFirstNodeX(position: Position<T>, rootX: number): number {
-    const subtreeWidth: number = this.calculateSubtreeWidth(position);
-    if (subtreeWidth === this._width) {
+  calculateFirstNodeX(
+    position: Position<T>,
+    rootX: number,
+    width: number,
+    interval: number
+  ): number {
+    const subtreeWidth: number = this.calculateSubtreeWidth(
+      position,
+      width,
+      interval
+    );
+    if (subtreeWidth === width) {
       return rootX;
     }
     const node: Node<T> = this._validate(position);
@@ -181,22 +213,19 @@ class FamilyTree<
           break;
         }
       }
-      return rootX - (this._width + this._interval) * centerIndex;
+      return rootX - (width + interval) * centerIndex;
     } else {
       // 이등변 삼각형
-      return rootX - subtreeWidth / 2 + this._correctX();
+      return rootX - subtreeWidth / 2 + this._correctX(width);
     }
-  }
-
-  calculateBranchFirstX() {
-    //  return this.calculateFirstNodeX() + this._correctX();
   }
 
   /**
    * 노드의 중심 위치로 계산한 뒤 보정할 때 사용하는 메소드
+   * @param width 노드의 너비
    */
-  private _correctX() {
-    return this._width / 2;
+  private _correctX(width: number) {
+    return width / 2;
   }
 }
 

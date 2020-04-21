@@ -1,21 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { FamilyTree } from './DataStructure';
 
 interface Position<T> {
   element: T | null;
 }
-
-type SearchResultItem<T> = {
-  properties: string[];
-  position: Position<T>;
-};
-
-type SearchResult<T> = {
-  keyword: string;
-  results: SearchResultItem<T>[];
-};
-
-type PositionAndName = { name: string; position: Position<FamilyNode> };
 
 type BasisObj = {
   name: string;
@@ -37,6 +26,18 @@ type NodeFeature = {
 
 type FamilyNode = NodeFeature & InfoNode;
 
+type SearchResultItem<T> = {
+  properties: string[];
+  position: Position<T>;
+};
+
+type SearchResult<T> = {
+  keyword: string;
+  results: SearchResultItem<T>[];
+};
+
+type PositionAndName = { name: string; position: Position<FamilyNode> };
+
 type Info = {
   header: string;
   value: string | number | PositionAndName | PositionAndName[] | null;
@@ -44,28 +45,24 @@ type Info = {
 
 type Infos = Info[];
 
-type StackParamList<T> = {
+type StackParamList = {
   Home: undefined;
-  Info: { position: Position<T>; keyword?: string };
+  Info: { position: Position<FamilyNode>; keyword?: string };
 };
 
-type HomeScreenNavigationProp = StackNavigationProp<
-  StackParamList<FamilyNode>,
-  'Home'
->;
+type HomeScreenNavigationProp = StackNavigationProp<StackParamList, 'Home'>;
 
-type InfoScreenNavigationProp = StackNavigationProp<
-  StackParamList<FamilyNode>,
-  'Info'
->;
+type InfoScreenNavigationProp = StackNavigationProp<StackParamList, 'Info'>;
 
-type InfoScreenRouteProp = RouteProp<StackParamList<FamilyNode>, 'Info'>;
+type InfoScreenRouteProp = RouteProp<StackParamList, 'Info'>;
 
 type HomeScreenProps = {
+  tree: FamilyTree<FamilyNode>;
   navigation: HomeScreenNavigationProp;
 };
 
 type InfoScreenProps = {
+  tree: FamilyTree<FamilyNode>;
   navigation: InfoScreenNavigationProp;
   route: InfoScreenRouteProp;
 };
@@ -93,19 +90,57 @@ type MoveableViewProps = {
   children: React.ReactNode;
   position: Position<FamilyNode>;
   move: Function;
+  style?: {};
 };
 
 type SearchboxProps = {
+  tree: FamilyTree<FamilyNode>;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   move: Function;
 };
 
-type SearchResultProps<T> = {
-  position: Position<T>;
+type SearchResultProps = {
+  position: Position<FamilyNode>;
   property: string;
   move: Function;
   keyword: string;
+};
+
+type TreeProps = {
+  tree: FamilyTree<FamilyNode>;
+  move: Function;
+};
+
+type SubtreeProps = {
+  tree: FamilyTree<FamilyNode>;
+  position: Position<FamilyNode>;
+  move: Function;
+  x: number;
+  y: number;
+  nodeWidth: number;
+  nodeHeight: number;
+  verticalInterval: number;
+  horizontalInterval: number;
+  colors: readonly string[];
+};
+
+type NodeProps = {
+  position: Position<FamilyNode>;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  color: string;
+  move: Function;
+};
+
+type BranchProps = {
+  x: number;
+  y: number;
+  branchHeight: number;
+  branchWidth: number;
+  branchXs: number[];
 };
 
 export {
@@ -128,4 +163,8 @@ export {
   MoveableViewProps,
   SearchboxProps,
   SearchResultProps,
+  TreeProps,
+  SubtreeProps,
+  NodeProps,
+  BranchProps,
 };

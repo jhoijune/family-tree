@@ -1,25 +1,43 @@
-import React, { useState, useEffect, useContext } from 'react';
+// TODO: 유튜브 뮤직 검색처럼 디자인하자
+
+import React, { useState, useEffect } from 'react';
 import {
   View,
-  Text,
   TextInput,
   Modal,
-  StyleSheet,
   TouchableHighlight,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { TreeUtilContext } from '../../App';
 import { SearchboxProps, FamilyNode, SearchResultItem } from '../type';
-import { createTree } from '../util';
 import SearchResult from './SearchResult';
 
-const Searchbox: React.FC<SearchboxProps> = ({ visible, setVisible, move }) => {
+const Searchbox: React.FC<SearchboxProps> = ({
+  tree,
+  visible,
+  setVisible,
+  move,
+}) => {
   const [value, setValue] = useState('');
   const [resultItems, setResultItems] = useState<
     SearchResultItem<FamilyNode>[]
   >([]);
-  const { searchKeyword } = useContext(TreeUtilContext);
+
+  const { width, height } = Dimensions.get('window');
+
+  /**
+   *  info screen으로 이동할 때 modal안 보이게 하기 위해 변형함
+   * @param text
+   * @param obj
+   */
+  const modifiedMove = (text: string, obj: {}): void => {
+    // TODO: text,obj 타입 세밀하게 설정해야 함
+    setVisible(false);
+    move(text, obj);
+  };
 
   /**
    * node의 하이라이트를 없앰
@@ -37,13 +55,15 @@ const Searchbox: React.FC<SearchboxProps> = ({ visible, setVisible, move }) => {
    */
   const returnSearchResults = (): JSX.Element[] => {
     const results: JSX.Element[] = [];
+    let key = 0;
     resultItems.forEach(({ properties, position }) => {
       for (const property of properties) {
         results.push(
           <SearchResult
+            key={key++}
             position={position}
             property={property}
-            move={move}
+            move={modifiedMove}
             keyword={value}
           />
         );
@@ -54,13 +74,15 @@ const Searchbox: React.FC<SearchboxProps> = ({ visible, setVisible, move }) => {
 
   useEffect(() => {
     if (value.length !== 0) {
-      const { results } = searchKeyword(value);
+      const { results } = tree.searchKeyword(value);
       results.forEach(({ position }) => {
         if (position.element !== null) {
           position.element.isHighlight = true;
         }
       });
       setResultItems(results);
+    } else {
+      setResultItems([]);
     }
     return clearHighlight;
   }, [value]);
@@ -73,71 +95,84 @@ const Searchbox: React.FC<SearchboxProps> = ({ visible, setVisible, move }) => {
       onRequestClose={() => {
         setVisible(false);
       }}>
-      <View>
-        <View>
-          <Ionicons name="magnify" size={32} color="grey" />
-          <TextInput
-            onChangeText={(text) => {
-              setValue(text);
-            }}
-            value={value}
-          />
-          {value.length === 0 ? (
-            ''
-          ) : (
-            <Ionicons name="cancel" size={32} color="red" />
-          )}
+      <View style={[styles.screen, { width, height }]}>
+        <View
+          style={[
+            styles.contentContainer,
+            { width: width - 75, height: height - 100 },
+          ]}>
+          <View style={styles.searchContainer}>
+            <TouchableHighlight
+              onPress={() => {
+                setVisible(false);
+              }}
+              style={styles.backwardButton}>
+              <Ionicons name="ios-arrow-back" size={40} color="grey" />
+            </TouchableHighlight>
+            <TextInput
+              onChangeText={(text) => {
+                setValue(text);
+              }}
+              value={value}
+              style={styles.input}
+              placeholder="검색..."
+            />
+            {value.length === 0 ? null : (
+              <TouchableHighlight
+                onPress={() => {
+                  setValue('');
+                  setResultItems([]);
+                  clearHighlight();
+                }}
+                style={styles.cancelButton}>
+                <Ionicons name="ios-close" size={40} color="grey" />
+              </TouchableHighlight>
+            )}
+          </View>
+          <ScrollView
+            style={[
+              styles.resultContainer,
+              { borderTopWidth: resultItems.length === 0 ? 0 : 1 },
+            ]}>
+            {returnSearchResults()}
+          </ScrollView>
         </View>
-        {returnSearchResults()}
-        <TouchableHighlight
-          onPress={() => {
-            setValue('');
-            setResultItems([]);
-            clearHighlight();
-          }}>
-          <Text>Clear</Text>
-        </TouchableHighlight>
       </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
+  screen: {
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+  contentContainer: {
+    backgroundColor: 'transparent',
+  },
+  searchContainer: {
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    borderWidth: 1,
+    height: 50,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    borderRadius: 25,
   },
-  openButton: {
-    backgroundColor: '#F194FF',
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+  backwardButton: {
+    margin: 10,
+    marginRight: 15,
   },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+  input: {
+    width: '100%',
+    fontSize: 20,
   },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
+  cancelButton: {
+    position: 'absolute',
+    right: 10,
+  },
+  resultContainer: {
+    marginTop: 20,
   },
 });
 
