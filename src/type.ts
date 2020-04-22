@@ -117,10 +117,31 @@ type SearchResultProps = {
   keyword: string;
 };
 
-type TreeProps = {
+type TreeContainerProps = {
   tree: FamilyTree<FamilyNode>;
   move: Function;
   selectedPositions: Position<FamilyNode>[];
+};
+
+type TreeViewProps = {
+  tree: JSX.Element;
+  svgWidth: number;
+  svgHeight: number;
+};
+
+type TreeProps = {
+  tree: FamilyTree<FamilyNode>;
+  setTree: React.Dispatch<React.SetStateAction<JSX.Element>>;
+  selectedPositions: Position<FamilyNode>[];
+  root: Position<FamilyNode>;
+  rootX: number;
+  padding: number;
+  nodeWidth: number;
+  nodeHeight: number;
+  colors: readonly string[];
+  move: Function;
+  verticalInterval: number;
+  horizontalInterval: number;
 };
 
 type SubtreeProps = {
@@ -176,6 +197,8 @@ export {
   SearchContainerProps,
   SearchboxProps,
   SearchResultProps,
+  TreeContainerProps,
+  TreeViewProps,
   TreeProps,
   SubtreeProps,
   NodeProps,

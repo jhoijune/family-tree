@@ -6,6 +6,7 @@ import Searchbox from './Searchbox';
 import SearchContainer from './SearchContainer';
 import Subtree from './Subtree';
 import Tree from './Tree';
+import TreeContainer from './TreeContainer';
 
 const bind = {
   HighlightableText,
@@ -16,6 +17,7 @@ const bind = {
   SearchContainer,
   Subtree,
   Tree,
+  TreeContainer,
 };
 
 export default bind;
@@ -28,4 +30,5 @@ export {
   SearchContainer,
   Subtree,
   Tree,
+  TreeContainer,
 };

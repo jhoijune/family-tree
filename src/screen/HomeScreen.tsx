@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import { HomeScreenProps, FamilyNode, Position } from '../type';
-import { SearchContainer, Tree } from '../component';
+import { SearchContainer, TreeContainer } from '../component';
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
   tree,
@@ -13,7 +13,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   >([]);
   return (
     <View>
-      <Tree tree={tree} move={navigate} selectedPositions={selectedPositions} />
+      <TreeContainer
+        tree={tree}
+        move={navigate}
+        selectedPositions={selectedPositions}
+      />
       <SearchContainer
         tree={tree}
         move={navigate}
