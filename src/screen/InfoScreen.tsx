@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { removeProp, mapPropName } from '../util';
 import { InfoHeader, InfoList } from '../component';
@@ -102,11 +102,19 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <InfoHeader keyword={keyword}>{name}</InfoHeader>
       <InfoList infos={infos} keyword={keyword} push={push} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#fff',
+  },
+});
 
 export default InfoScreen;

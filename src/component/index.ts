@@ -3,6 +3,7 @@ import MoveableView from './MoveableView';
 import InfoHeader from './InfoHeader';
 import InfoList from './InfoList';
 import Searchbox from './Searchbox';
+import SearchContainer from './SearchContainer';
 import Subtree from './Subtree';
 import Tree from './Tree';
 
@@ -12,6 +13,7 @@ const bind = {
   InfoHeader,
   InfoList,
   Searchbox,
+  SearchContainer,
   Subtree,
   Tree,
 };
@@ -23,6 +25,7 @@ export {
   InfoHeader,
   InfoList,
   Searchbox,
+  SearchContainer,
   Subtree,
   Tree,
 };

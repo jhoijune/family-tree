@@ -13,7 +13,11 @@ const SearchResult: React.FC<SearchResultProps> = ({
   keyword,
 }) => {
   return (
-    <MoveableView position={position} move={move} style={styles.container}>
+    <MoveableView
+      position={position}
+      move={move}
+      keyword={keyword}
+      style={styles.container}>
       <Text style={styles.propertyText}>{mapPropName(property)}</Text>
       <HighlightableText keyword={keyword} style={styles.resultText}>
         {position.element !== null ? position.element[property] : ''}

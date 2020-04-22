@@ -1,5 +1,3 @@
-// TODO: 유튜브 뮤직 검색처럼 디자인하자
-
 import React, { useState, useEffect } from 'react';
 import {
   View,
@@ -12,7 +10,12 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { SearchboxProps, FamilyNode, SearchResultItem } from '../type';
+import {
+  SearchboxProps,
+  FamilyNode,
+  SearchResultItem,
+  Position,
+} from '../type';
 import SearchResult from './SearchResult';
 
 const Searchbox: React.FC<SearchboxProps> = ({
@@ -20,6 +23,7 @@ const Searchbox: React.FC<SearchboxProps> = ({
   visible,
   setVisible,
   move,
+  setSelectedPositions,
 }) => {
   const [value, setValue] = useState('');
   const [resultItems, setResultItems] = useState<
@@ -37,17 +41,6 @@ const Searchbox: React.FC<SearchboxProps> = ({
     // TODO: text,obj 타입 세밀하게 설정해야 함
     setVisible(false);
     move(text, obj);
-  };
-
-  /**
-   * node의 하이라이트를 없앰
-   */
-  const clearHighlight = () => {
-    resultItems.forEach(({ position }) => {
-      if (position.element !== null) {
-        position.element.isHighlight = false;
-      }
-    });
   };
 
   /**
@@ -75,21 +68,18 @@ const Searchbox: React.FC<SearchboxProps> = ({
   useEffect(() => {
     if (value.length !== 0) {
       const { results } = tree.searchKeyword(value);
-      results.forEach(({ position }) => {
-        if (position.element !== null) {
-          position.element.isHighlight = true;
-        }
-      });
+      const positions = results.map(({ position }) => position);
       setResultItems(results);
+      setSelectedPositions(positions);
     } else {
       setResultItems([]);
+      setSelectedPositions([]);
     }
-    return clearHighlight;
   }, [value]);
 
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={visible}
       onRequestClose={() => {
@@ -122,7 +112,7 @@ const Searchbox: React.FC<SearchboxProps> = ({
                 onPress={() => {
                   setValue('');
                   setResultItems([]);
-                  clearHighlight();
+                  setSelectedPositions([]);
                 }}
                 style={styles.cancelButton}>
                 <Ionicons name="ios-close" size={40} color="grey" />

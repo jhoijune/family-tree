@@ -36,11 +36,15 @@ const HighlightableText: React.FC<HighlightableTextProps> = ({
     return (
       <>
         <Text style={[styles.default, style]}>
-          {splitText.map(({ isHighlight, text }) => {
+          {splitText.map(({ isHighlight, text }, index) => {
             if (isHighlight) {
-              return <Text style={styles.highlight}>{text}</Text>;
+              return (
+                <Text key={index} style={styles.highlight}>
+                  {text}
+                </Text>
+              );
             }
-            return <>{text}</>;
+            return <React.Fragment key={index}>{text}</React.Fragment>;
           })}
         </Text>
       </>

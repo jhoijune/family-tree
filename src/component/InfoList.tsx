@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, StyleSheet } from 'react-native';
 
 import { InfoListProps, Info, FamilyNode, Position } from '../type';
 import HighlightalbeText from './HighlightableText';
-import MovableView from './MoveableView';
+import MoveableView from './MoveableView';
 
 const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
   const convertValue = (
@@ -12,39 +12,59 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
     if (value === null) {
       return null;
     } else if (typeof value === 'string' || typeof value === 'number') {
-      return <HighlightalbeText keyword={keyword}>{value}</HighlightalbeText>;
+      return (
+        <HighlightalbeText keyword={keyword} style={styles.defaultFont}>
+          {value}
+        </HighlightalbeText>
+      );
     } else if (value instanceof Array) {
-      return value.map((children) => (
-        <MovableView position={children.position} move={push}>
-          <HighlightalbeText keyword={keyword} style={{ color: 'blue' }}>
+      return value.map((children, index) => (
+        <MoveableView key={index} position={children.position} move={push}>
+          <HighlightalbeText
+            keyword={keyword}
+            style={[{ color: 'blue' }, styles.defaultFont]}>
             {children.name}
           </HighlightalbeText>
-        </MovableView>
+        </MoveableView>
       ));
     }
     return (
-      <MovableView position={value.position} move={push}>
-        <HighlightalbeText keyword={keyword} style={{ color: 'blue' }}>
+      <MoveableView position={value.position} move={push}>
+        <HighlightalbeText
+          keyword={keyword}
+          style={[{ color: 'blue' }, styles.defaultFont]}>
           {value.name}
         </HighlightalbeText>
-      </MovableView>
+      </MoveableView>
     );
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       {infos.map((info, index) => {
         return (
-          <React.Fragment key={index}>
+          <View key={index} style={styles.itemContainer}>
             <View style={{ flex: 2 }}>
-              <Text>{info.header}</Text>
+              <Text style={styles.defaultFont}>{info.header}</Text>
             </View>
             <View style={{ flex: 3 }}>{convertValue(info.value)}</View>
-          </React.Fragment>
+          </View>
         );
       })}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+  },
+  itemContainer: {
+    flexDirection: 'row',
+  },
+  defaultFont: {
+    fontSize: 20,
+  },
+});
 
 export default InfoList;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { TouchableHighlight } from 'react-native';
 import { G, Text, Rect } from 'react-native-svg';
 
@@ -15,32 +15,48 @@ const Node: React.FC<NodeProps> = ({
   height,
   color,
   move,
+  selectedPositions,
 }) => {
-  const { element } = position;
-  let text;
-  if (element !== null) {
-    if (typeof element['genealogy name'] !== 'undefined') {
-      if (element.name === element['genealogy name']) {
-        text = element.name;
-      } else {
-        text = `${element.name} (${element['genealogy name']})`;
+  const text = useMemo(() => {
+    const { element } = position;
+    if (element !== null) {
+      if (typeof element['genealogical name'] !== 'undefined') {
+        if (element.name === element['genealogical name']) {
+          return element.name;
+        } else {
+          return `${element.name} (${element['genealogical name']})`;
+        }
       }
     }
-  }
+    return '';
+  }, []);
+  const isHighlight = selectedPositions.includes(position);
+  const modifiedColor = isHighlight ? 'red' : color;
+
   return (
-    <TouchableHighlight
-      onPress={() => {
-        move('Info', {
-          position: position,
-        });
-      }}>
-      <G>
-        <Text fontSize="8" x={x} y={y} textAnchor="start">
-          {text}
-        </Text>
-        <Rect x={x} y={y} width={width} height={height} fill={color}></Rect>
-      </G>
-    </TouchableHighlight>
+    <G>
+      <Rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill={modifiedColor}
+        onPress={() => {
+          move('Info', {
+            position: position,
+          });
+        }}
+      />
+      <Text
+        x={x}
+        y={y + 20}
+        fill="black"
+        fontSize="12"
+        fontWeight="bold"
+        textAnchor="start">
+        {text}
+      </Text>
+    </G>
   );
 };
 

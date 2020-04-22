@@ -1,10 +1,6 @@
 import { NodeFeature } from './type';
 
-const featureProps: (keyof NodeFeature)[] = [
-  'isCenter',
-  'isHighlight',
-  'color',
-];
+const featureProps: (keyof NodeFeature)[] = ['isCenter'];
 
 const infoProps: { [key: string]: string } = {
   name: '이름',

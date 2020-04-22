@@ -5,11 +5,9 @@ import { BasisObj, FamilyNode } from '../type';
  * @param obj
  */
 const createElement = (obj: BasisObj): FamilyNode => {
-  const objBasis = { isHighlight: false, color: null };
   const { children, isCenter, ...rest } = obj;
   return {
     isCenter: typeof isCenter !== 'undefined' ? isCenter : false,
-    ...objBasis,
     ...rest,
   } as FamilyNode;
 };

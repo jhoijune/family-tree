@@ -20,8 +20,6 @@ type InfoNode = {
 
 type NodeFeature = {
   isCenter: boolean;
-  isHighlight: boolean;
-  color: string | null;
 };
 
 type FamilyNode = NodeFeature & InfoNode;
@@ -90,7 +88,16 @@ type MoveableViewProps = {
   children: React.ReactNode;
   position: Position<FamilyNode>;
   move: Function;
+  keyword?: string;
   style?: {};
+};
+
+type SearchContainerProps = {
+  tree: FamilyTree<FamilyNode>;
+  move: Function;
+  setSelectedPositions: React.Dispatch<
+    React.SetStateAction<Position<FamilyNode>[]>
+  >;
 };
 
 type SearchboxProps = {
@@ -98,6 +105,9 @@ type SearchboxProps = {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   move: Function;
+  setSelectedPositions: React.Dispatch<
+    React.SetStateAction<Position<FamilyNode>[]>
+  >;
 };
 
 type SearchResultProps = {
@@ -110,6 +120,7 @@ type SearchResultProps = {
 type TreeProps = {
   tree: FamilyTree<FamilyNode>;
   move: Function;
+  selectedPositions: Position<FamilyNode>[];
 };
 
 type SubtreeProps = {
@@ -123,6 +134,7 @@ type SubtreeProps = {
   verticalInterval: number;
   horizontalInterval: number;
   colors: readonly string[];
+  selectedPositions: Position<FamilyNode>[];
 };
 
 type NodeProps = {
@@ -133,13 +145,13 @@ type NodeProps = {
   height: number;
   color: string;
   move: Function;
+  selectedPositions: Position<FamilyNode>[];
 };
 
 type BranchProps = {
   x: number;
   y: number;
   branchHeight: number;
-  branchWidth: number;
   branchXs: number[];
 };
 
@@ -161,6 +173,7 @@ export {
   InfoListProps,
   HighlightableTextProps,
   MoveableViewProps,
+  SearchContainerProps,
   SearchboxProps,
   SearchResultProps,
   TreeProps,

@@ -147,16 +147,6 @@ class FamilyTree<
   }
 
   /**
-   * position 하위의 가지 너비 계산
-   * @param position 노드의 포지션
-   * @param width 노드의 너비
-   * @param interval  노드의 수평선상의 간격
-   */
-  calculateBranchWidth(position: Position<T>, width: number, interval: number) {
-    return this.calculateSubtreeWidth(position, width, interval) - width;
-  }
-
-  /**
    * 같은 깊이의 좌우 노드에서  오른쪽 노드가 왼쪽 노드보다 x축에 얼마나 떨어져야 하는지 계산
    * @param leftPosition 노드 왼쪽 포지션
    * @param rightPosition 노드 오른쪽 포지션
@@ -205,15 +195,26 @@ class FamilyTree<
     }
     const node: Node<T> = this._validate(position);
     if (node.element!.isCenter) {
-      const len: number = node.children.length;
+      const { children } = node;
+      const len: number = children.length;
       let centerIndex: number;
       for (centerIndex = 0; centerIndex < len; centerIndex++) {
-        const tempNode = node.children[centerIndex];
+        const tempNode = children[centerIndex];
         if (tempNode.element!.isCenter) {
           break;
         }
       }
-      return rootX - (width + interval) * centerIndex;
+      let result = rootX;
+      while (centerIndex !== 0) {
+        result -= this.calculateNodeInterval(
+          children[centerIndex - 1],
+          children[centerIndex],
+          width,
+          interval
+        );
+        centerIndex -= 1;
+      }
+      return result;
     } else {
       // 이등변 삼각형
       return rootX - subtreeWidth / 2 + this._correctX(width);
