@@ -38,8 +38,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
     );
     return { root, svgHeight, svgWidth, rootX };
   }, []);
-  console.log(`svg width: ${svgWidth} device Width:${width}`);
-  console.log(`svg height : ${svgHeight} device height: ${height}`);
+
   return (
     <>
       <TreeView

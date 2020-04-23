@@ -129,18 +129,20 @@ class FamilyTree<
       );
       return { left: wholeWidth / 2, right: wholeWidth / 2 };
     } else {
-      const len: number = node.children.length;
-      let centerIndex: number;
-      for (centerIndex = 0; centerIndex < len; centerIndex++) {
-        const tempNode = node.children[centerIndex];
-        if (tempNode.element!.isCenter) {
-          break;
+      // FIXME:
+      let centerIndex = 0;
+      for (const children of this._subtreePreorder(position)) {
+        if (this.isExternal(children)) {
+          centerIndex += 1;
+          if (children.element!.isCenter) {
+            break;
+          }
         }
       }
       const left: number =
-        (width + interval) * centerIndex - this._correctX(width);
+        (width + interval) * (centerIndex - 1) + this._correctX(width);
       const right: number =
-        (width + interval) * (externalNodeCount - centerIndex - 1) +
+        (width + interval) * (externalNodeCount - centerIndex) +
         this._correctX(width);
       return { left, right };
     }
@@ -174,7 +176,7 @@ class FamilyTree<
 
   /**
    * 서브트리의 루트다음의 노드의 x좌표 계산
-   * @param position 루트 다음의 노드의 포지션
+   * @param position 루트 노드의 포지션
    * @param rootX 서브트리의 루트 노드의 x좌표
    * @param width 노드의 너비
    * @param interval 노드의 수평선상의 간격
@@ -185,40 +187,49 @@ class FamilyTree<
     width: number,
     interval: number
   ): number {
-    const subtreeWidth: number = this.calculateSubtreeWidth(
-      position,
-      width,
-      interval
-    );
-    if (subtreeWidth === width) {
-      return rootX;
-    }
-    const node: Node<T> = this._validate(position);
-    if (node.element!.isCenter) {
-      const { children } = node;
-      const len: number = children.length;
-      let centerIndex: number;
-      for (centerIndex = 0; centerIndex < len; centerIndex++) {
-        const tempNode = children[centerIndex];
-        if (tempNode.element!.isCenter) {
-          break;
+    if (this.numChildren(position) > 1) {
+      const subtreeWidth: number = this.calculateSubtreeWidth(
+        position,
+        width,
+        interval
+      );
+      const node: Node<T> = this._validate(position);
+      if (node.element!.isCenter) {
+        const { children } = node;
+        const len: number = children.length;
+        let centerIndex: number;
+        for (centerIndex = 0; centerIndex < len; centerIndex++) {
+          const tempNode = children[centerIndex];
+          if (tempNode.element!.isCenter) {
+            break;
+          }
+        }
+        let result = rootX;
+        while (centerIndex !== 0) {
+          result -= this.calculateNodeInterval(
+            children[centerIndex - 1],
+            children[centerIndex],
+            width,
+            interval
+          );
+          centerIndex -= 1;
+        }
+        return result;
+      } else {
+        const [firstChild] = node.children;
+        if (this.numChildren(firstChild) > 1) {
+          const childSubtreeWidth = this.calculateSubtreeWidth(
+            firstChild,
+            width,
+            interval
+          );
+          return rootX + (childSubtreeWidth - subtreeWidth) / 2;
+        } else {
+          return rootX - subtreeWidth / 2 + this._correctX(width);
         }
       }
-      let result = rootX;
-      while (centerIndex !== 0) {
-        result -= this.calculateNodeInterval(
-          children[centerIndex - 1],
-          children[centerIndex],
-          width,
-          interval
-        );
-        centerIndex -= 1;
-      }
-      return result;
-    } else {
-      // 이등변 삼각형
-      return rootX - subtreeWidth / 2 + this._correctX(width);
     }
+    return rootX;
   }
 
   /**

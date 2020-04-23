@@ -57,6 +57,7 @@ const TreeView: React.FC<TreeViewProps> = ({
     x: number;
     y: number;
     length: number;
+    scale: number;
   }>(null);
   const [scale, setScale] = useState(1);
 
@@ -83,24 +84,25 @@ const TreeView: React.FC<TreeViewProps> = ({
           if (initialTouchStateRef.current === null) {
             const initialLength = getDiagonalLength(touches);
             const { x, y } = getCenterCoordinates(touches);
-            setInitialTouchState({ x, y, length: initialLength });
+            setInitialTouchState({
+              x,
+              y,
+              length: initialLength,
+              scale: scaleRef.current,
+            });
           } else {
-            /*
-            const currentLength = getDiagonalLength(touches)
-            const newScale = getScale(currentLength, initialTouchStateRef.current.length);
-            setScale(newScale);
-            */
             const {
               x: initialX,
               y: initialY,
               length: initialLength,
+              scale: initialScale,
             } = initialTouchStateRef.current!;
             const currentLength = getDiagonalLength(touches);
             const { x, y } = getCenterCoordinates(touches);
             const touchZoom = currentLength / initialLength;
             const dx = x - initialX;
             const dy = y - initialY;
-            setScale(touchZoom);
+            setScale(touchZoom * initialScale);
             setPosition({
               x: (oPositionRef.current.x + dx - x) * touchZoom + x,
               y: (oPositionRef.current.y + dy - y) * touchZoom + y,

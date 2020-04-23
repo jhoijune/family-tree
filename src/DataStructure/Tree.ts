@@ -133,7 +133,7 @@ abstract class Tree<T> {
    * Generate a preorder iteration of positions in subtree rooted at p.
    * @param p
    */
-  private *_subtreePreorder(p: Position<T>): IterableIterator<Position<T>> {
+  protected *_subtreePreorder(p: Position<T>): IterableIterator<Position<T>> {
     yield p;
     for (const children of this.children(p)) {
       for (const descendant of this._subtreePreorder(children)) {
