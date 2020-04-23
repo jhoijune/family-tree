@@ -127,6 +127,7 @@ type TreeViewProps = {
   tree: JSX.Element;
   svgWidth: number;
   svgHeight: number;
+  rootX: number;
 };
 
 type TreeProps = {

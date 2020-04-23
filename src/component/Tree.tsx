@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
 import { G } from 'react-native-svg';
+
 import Subtree from './Subtree';
 import Node from './Node';
 import { TreeProps } from '../type';
@@ -49,7 +49,7 @@ const Tree: React.FC<TreeProps> = ({
     );
   }, [selectedPositions]);
 
-  return <View />;
+  return null;
 };
 
 export default Tree;

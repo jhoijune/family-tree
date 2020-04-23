@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 
 import Tree from './Tree';
 import TreeView from './TreeView';
@@ -8,7 +8,7 @@ import { TreeContainerProps, Position, FamilyNode } from '../type';
 const PADDING = 20;
 const NODE_WIDTH = 50;
 const NODE_HEIGHT = 30;
-const VERTICAL_INTERVAL = 10;
+const VERTICAL_INTERVAL = 13;
 const HORIZONTAL_INTERVAL = 10;
 const COLORS: readonly string[] = ['#4FC3F7', '#F7F895'];
 
@@ -18,6 +18,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
   selectedPositions,
 }) => {
   const [tree, setTree] = useState(<View />);
+  const { width, height } = Dimensions.get('window');
 
   const { root, svgHeight, svgWidth, rootX } = useMemo(() => {
     const root: Position<FamilyNode> = treeObj.root()!;
@@ -37,10 +38,16 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
     );
     return { root, svgHeight, svgWidth, rootX };
   }, []);
-
+  console.log(`svg width: ${svgWidth} device Width:${width}`);
+  console.log(`svg height : ${svgHeight} device height: ${height}`);
   return (
     <>
-      <TreeView tree={tree} svgHeight={svgHeight} svgWidth={svgWidth} />
+      <TreeView
+        tree={tree}
+        svgHeight={svgHeight}
+        svgWidth={svgWidth}
+        rootX={rootX}
+      />
       <Tree
         tree={treeObj}
         setTree={setTree}
