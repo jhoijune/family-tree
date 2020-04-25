@@ -6,6 +6,7 @@ import {
   Dimensions,
   NativeTouchEvent,
   StyleSheet,
+  View,
 } from 'react-native';
 import { Svg } from 'react-native-svg';
 import _ from 'lodash';
@@ -38,7 +39,12 @@ const getCenterCoordinates = (
 
 const { width, height } = Dimensions.get('window');
 
-const TreeView: React.FC<TreeViewProps> = ({ tree, rootX }) => {
+const TreeView: React.FC<TreeViewProps> = ({
+  tree,
+  rootX,
+  generationNodes,
+  generationDottedLines,
+}) => {
   const [isInit, setIsInit] = useState(true);
   const [oPosition, setOPosition] = useState({
     x: -2161,
@@ -132,30 +138,44 @@ const TreeView: React.FC<TreeViewProps> = ({ tree, rootX }) => {
   });
 
   return (
-    <Svg
-      width={width}
-      height={height}
-      transform={
-        isInit
-          ? undefined
-          : {
-              translateX: position.x,
-              translateY: position.y,
-              scale: scale,
-            }
-      }
-      {...panResponder.panHandlers}>
-      {tree}
-    </Svg>
+    <View style={styles.container}>
+      <Svg
+        width={30}
+        height={height}
+        transform={
+          isInit
+            ? undefined
+            : {
+                translateY: position.y,
+                scale: scale,
+              }
+        }>
+        {generationNodes}
+        {generationDottedLines(30)}
+      </Svg>
+      <Svg
+        width={width - 30}
+        height={height}
+        transform={
+          isInit
+            ? undefined
+            : {
+                translateX: position.x,
+                translateY: position.y,
+                scale: scale,
+              }
+        }
+        {...panResponder.panHandlers}>
+        {tree}
+        {generationDottedLines()}
+      </Svg>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
+    flexDirection: 'row',
   },
 });
 

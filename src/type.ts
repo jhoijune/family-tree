@@ -87,7 +87,7 @@ type HighlightableTextProps = {
 };
 
 type MoveableViewProps = {
-  children: React.ReactNode;
+  children: React.ReactChild;
   position: Position<FamilyNode>;
   move: InfoScreenNavigationProp['push'];
   keyword?: string;
@@ -128,6 +128,8 @@ type TreeContainerProps = {
 type TreeViewProps = {
   tree: JSX.Element;
   rootX: number;
+  generationNodes: JSX.Element;
+  generationDottedLines: (width?: number) => JSX.Element;
 };
 
 type TreeProps = {
@@ -177,6 +179,13 @@ type BranchProps = {
   branchXs: number[];
 };
 
+type GenerationNodeProps = {
+  children: React.ReactChild;
+  y: number;
+  width: number;
+  height: number;
+};
+
 export {
   Position,
   PositionAndName,
@@ -205,4 +214,5 @@ export {
   SubtreeProps,
   NodeProps,
   BranchProps,
+  GenerationNodeProps,
 };

@@ -1,4 +1,5 @@
 import Branch from './Branch';
+import GenerationNode from './GenerationNode';
 import HighlightableText from './HighlightableText';
 import InfoList from './InfoList';
 import MoveableView from './MoveableView';
@@ -12,6 +13,7 @@ import TreeView from './TreeView';
 
 const bind = {
   Branch,
+  GenerationNode,
   HighlightableText,
   InfoList,
   MoveableView,
