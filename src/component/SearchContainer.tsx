@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableHighlight, Dimensions } from 'react-native';
+import { StyleSheet, TouchableHighlight, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { SearchContainerProps } from '../type';
 import Searchbox from './Searchbox';
+
+const { height } = Dimensions.get('window');
 
 const SearchContainer: React.FC<SearchContainerProps> = ({
   tree,
@@ -11,7 +13,6 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
   setSelectedPositions,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { height } = Dimensions.get('window');
   return (
     <>
       <Searchbox
@@ -22,7 +23,7 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
         setSelectedPositions={setSelectedPositions}
       />
       <TouchableHighlight
-        style={[styles.magnify, { top: height - 150 }]}
+        style={styles.magnify}
         onPress={() => {
           setModalVisible(true);
         }}>
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#919191',
+    top: height - 150,
   },
 });
 

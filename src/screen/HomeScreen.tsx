@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 
 import { HomeScreenProps, FamilyNode, Position } from '../type';
 import { SearchContainer, TreeContainer } from '../component';
+
+const { width, height } = Dimensions.get('window');
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
   tree,
@@ -12,7 +14,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     Position<FamilyNode>[]
   >([]);
   return (
-    <View>
+    <View style={styles.container}>
       <TreeContainer
         tree={tree}
         move={navigate}
@@ -26,5 +28,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width,
+    height,
+    justifyContent: 'center',
+  },
+});
 
 export default HomeScreen;

@@ -5,12 +5,12 @@ import Tree from './Tree';
 import TreeView from './TreeView';
 import { TreeContainerProps, Position, FamilyNode } from '../type';
 
-const PADDING = 20;
-const NODE_WIDTH = 50;
-const NODE_HEIGHT = 30;
-const VERTICAL_INTERVAL = 13;
-const HORIZONTAL_INTERVAL = 10;
-const COLORS: readonly string[] = ['#4FC3F7', '#F7F895'];
+const PADDING = 10;
+const NODE_WIDTH = 30;
+const NODE_HEIGHT = 15;
+const VERTICAL_INTERVAL = 10;
+const HORIZONTAL_INTERVAL = 5;
+const COLORS: readonly string[] = ['#99CDFF', '#99FFCD', '#CCFF9A', '#FEFF99'];
 
 const TreeContainer: React.FC<TreeContainerProps> = ({
   tree: treeObj,
@@ -18,35 +18,19 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
   selectedPositions,
 }) => {
   const [tree, setTree] = useState(<View />);
-  const { width, height } = Dimensions.get('window');
-
-  const { root, svgHeight, svgWidth, rootX } = useMemo(() => {
+  const { root, rootX } = useMemo(() => {
     const root: Position<FamilyNode> = treeObj.root()!;
-    const svgHeight =
-      treeObj.height() * (VERTICAL_INTERVAL + NODE_HEIGHT) +
-      PADDING * 2 +
-      NODE_HEIGHT;
-    const svgWidth = treeObj.calculateSubtreeWidth(
-      root,
-      NODE_WIDTH,
-      HORIZONTAL_INTERVAL
-    );
     const rootX = treeObj.calculateRootX(
       NODE_WIDTH,
       HORIZONTAL_INTERVAL,
       PADDING
     );
-    return { root, svgHeight, svgWidth, rootX };
+    return { root, rootX };
   }, []);
 
   return (
     <>
-      <TreeView
-        tree={tree}
-        svgHeight={svgHeight}
-        svgWidth={svgWidth}
-        rootX={rootX}
-      />
+      <TreeView tree={tree} rootX={rootX} />
       <Tree
         tree={treeObj}
         setTree={setTree}

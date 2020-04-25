@@ -12,11 +12,26 @@ const tree: FamilyTree<FamilyNode> = createTree(data);
 
 const Stack = createStackNavigator<StackParamList>();
 
+const screenOptions = {
+  headerStyle: {
+    backgroundColor: '#40B0F8',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
+
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" options={{ title: '족보' }}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+        <Stack.Screen
+          name="Home"
+          options={{
+            headerTitle: '가계도',
+            headerTitleAlign: 'center',
+          }}>
           {(props) => <HomeScreen {...props} tree={tree} />}
         </Stack.Screen>
         <Stack.Screen name="Info">

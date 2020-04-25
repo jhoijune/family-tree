@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
 import MoveableView from './MoveableView';
 import HighlightableText from './HighlightableText';
@@ -8,7 +8,7 @@ import { mapPropName } from '../util';
 
 const SearchResult: React.FC<SearchResultProps> = ({
   position,
-  property,
+  properties,
   move,
   keyword,
 }) => {
@@ -18,10 +18,23 @@ const SearchResult: React.FC<SearchResultProps> = ({
       move={move}
       keyword={keyword}
       style={styles.container}>
-      <Text style={styles.propertyText}>{mapPropName(property)}</Text>
-      <HighlightableText keyword={keyword} style={styles.resultText}>
-        {position.element !== null ? position.element[property] : ''}
-      </HighlightableText>
+      {properties.map((property, index) => {
+        return (
+          <View
+            key={index}
+            style={[
+              styles.itemContainer,
+              {
+                borderBottomWidth: properties.length - 1 !== index ? 1 : 0,
+              },
+            ]}>
+            <Text style={styles.propertyText}>{mapPropName(property)}</Text>
+            <HighlightableText keyword={keyword} style={styles.resultText}>
+              {position.element !== null ? position.element[property] : ''}
+            </HighlightableText>
+          </View>
+        );
+      })}
     </MoveableView>
   );
 };
@@ -29,11 +42,14 @@ const SearchResult: React.FC<SearchResultProps> = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 50,
     borderWidth: 1,
     borderTopWidth: 0,
+    borderColor: '#919191',
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#DADADA',
   },
   propertyText: {
     margin: 10,

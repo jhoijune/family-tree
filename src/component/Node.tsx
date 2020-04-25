@@ -1,11 +1,7 @@
 import React, { useMemo } from 'react';
-import { TouchableHighlight } from 'react-native';
 import { G, Text, Rect } from 'react-native-svg';
 
 import { NodeProps } from '../type';
-
-// TODO: color 먹이고
-// TODO: highlighting
 
 const Node: React.FC<NodeProps> = ({
   position,
@@ -27,11 +23,12 @@ const Node: React.FC<NodeProps> = ({
           return `${element.name} (${element['genealogical name']})`;
         }
       }
+      return element.name;
     }
     return '';
   }, []);
   const isHighlight = selectedPositions.includes(position);
-  const modifiedColor = isHighlight ? 'red' : color;
+  const modifiedColor = isHighlight ? '#FF4C4F' : color;
 
   return (
     <G>
@@ -49,12 +46,12 @@ const Node: React.FC<NodeProps> = ({
       />
       <Text
         x={x}
-        y={y + 20}
-        fill="black"
-        fontSize="12"
+        y={y + height / 2 + 2}
+        fill={isHighlight ? '#fff' : '#000'}
+        fontSize={6}
         fontWeight="bold"
         textAnchor="start">
-        {text}
+        {text.padStart(8)}
       </Text>
     </G>
   );

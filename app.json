@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "family-tree",
+    "name": "인동장씨무안파통덕랑익호(서홍)제가계도",
     "slug": "family-tree",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
@@ -21,6 +21,10 @@
     "packagerOpts": {
       "sourceExts": ["ts", "tsx", "js"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
+    },
+    "android": {
+      "package": "com.jang.familytree",
+      "versionCode": 1
     }
   }
 }

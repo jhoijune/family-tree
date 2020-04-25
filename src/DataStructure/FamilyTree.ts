@@ -58,15 +58,15 @@ class FamilyTree<
   }
 
   /**
-   * external node중에 center:true인 것이 왼쪽에서 몇번째에 있는지 파악
+   * position을 subtree로 갖는 external node중에 center:true인 것이 왼쪽에서 몇번째에 있는지 파악
    * @throws {Error} if there is no center in external node.
    */
-  locateExternalCenter(): number {
+  locateExternalCenter(position: Position<T>): number {
     let result: number = 0;
-    for (const position of this.preorder()) {
-      if (this.isExternal(position)) {
+    for (const children of this._subtreePreorder(position)) {
+      if (this.isExternal(children)) {
         result += 1;
-        const { element } = position;
+        const { element } = children;
         if (element!.isCenter) {
           return result;
         }
@@ -82,7 +82,7 @@ class FamilyTree<
    * @param margin  SVG의 마진
    */
   calculateRootX(width: number, interval: number, margin: number = 0): number {
-    const count: number = this.locateExternalCenter();
+    const count: number = this.locateExternalCenter(this.root()!);
     return margin + (count - 1) * (width + interval);
   }
 
@@ -129,16 +129,7 @@ class FamilyTree<
       );
       return { left: wholeWidth / 2, right: wholeWidth / 2 };
     } else {
-      // FIXME:
-      let centerIndex = 0;
-      for (const children of this._subtreePreorder(position)) {
-        if (this.isExternal(children)) {
-          centerIndex += 1;
-          if (children.element!.isCenter) {
-            break;
-          }
-        }
-      }
+      const centerIndex = this.locateExternalCenter(position);
       const left: number =
         (width + interval) * (centerIndex - 1) + this._correctX(width);
       const right: number =

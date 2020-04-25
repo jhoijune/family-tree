@@ -1,30 +1,33 @@
+import Branch from './Branch';
 import HighlightableText from './HighlightableText';
-import MoveableView from './MoveableView';
-import InfoHeader from './InfoHeader';
 import InfoList from './InfoList';
+import MoveableView from './MoveableView';
+import Node from './Node';
 import Searchbox from './Searchbox';
 import SearchContainer from './SearchContainer';
 import Subtree from './Subtree';
 import Tree from './Tree';
 import TreeContainer from './TreeContainer';
+import TreeView from './TreeView';
 
 const bind = {
+  Branch,
   HighlightableText,
-  MoveableView,
-  InfoHeader,
   InfoList,
+  MoveableView,
+  Node,
   Searchbox,
   SearchContainer,
   Subtree,
   Tree,
   TreeContainer,
+  TreeView,
 };
 
 export default bind;
 export {
   HighlightableText,
   MoveableView,
-  InfoHeader,
   InfoList,
   Searchbox,
   SearchContainer,

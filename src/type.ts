@@ -54,6 +54,10 @@ type InfoScreenNavigationProp = StackNavigationProp<StackParamList, 'Info'>;
 
 type InfoScreenRouteProp = RouteProp<StackParamList, 'Info'>;
 
+type HomeScreenNavigationParameter = Parameters<
+  HomeScreenNavigationProp['navigate']
+>;
+
 type HomeScreenProps = {
   tree: FamilyTree<FamilyNode>;
   navigation: HomeScreenNavigationProp;
@@ -65,15 +69,15 @@ type InfoScreenProps = {
   route: InfoScreenRouteProp;
 };
 
-type InfoHeaderProps = {
+type HeaderProps = {
   children: string;
-  keyword: string | undefined;
+  keyword?: string;
 };
 
 type InfoListProps = {
   infos: Infos;
   keyword: string | undefined;
-  push: Function;
+  push: InfoScreenNavigationProp['push'];
 };
 
 type HighlightableTextProps = {
@@ -82,19 +86,17 @@ type HighlightableTextProps = {
   style?: {};
 };
 
-// TODO: move 파라미터 지정
-
 type MoveableViewProps = {
   children: React.ReactNode;
   position: Position<FamilyNode>;
-  move: Function;
+  move: InfoScreenNavigationProp['push'];
   keyword?: string;
   style?: {};
 };
 
 type SearchContainerProps = {
   tree: FamilyTree<FamilyNode>;
-  move: Function;
+  move: HomeScreenNavigationProp['navigate'];
   setSelectedPositions: React.Dispatch<
     React.SetStateAction<Position<FamilyNode>[]>
   >;
@@ -104,7 +106,7 @@ type SearchboxProps = {
   tree: FamilyTree<FamilyNode>;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  move: Function;
+  move: HomeScreenNavigationProp['navigate'];
   setSelectedPositions: React.Dispatch<
     React.SetStateAction<Position<FamilyNode>[]>
   >;
@@ -112,21 +114,19 @@ type SearchboxProps = {
 
 type SearchResultProps = {
   position: Position<FamilyNode>;
-  property: string;
-  move: Function;
+  properties: string[];
+  move: HomeScreenNavigationProp['navigate'];
   keyword: string;
 };
 
 type TreeContainerProps = {
   tree: FamilyTree<FamilyNode>;
-  move: Function;
+  move: HomeScreenNavigationProp['navigate'];
   selectedPositions: Position<FamilyNode>[];
 };
 
 type TreeViewProps = {
   tree: JSX.Element;
-  svgWidth: number;
-  svgHeight: number;
   rootX: number;
 };
 
@@ -140,7 +140,7 @@ type TreeProps = {
   nodeWidth: number;
   nodeHeight: number;
   colors: readonly string[];
-  move: Function;
+  move: HomeScreenNavigationProp['navigate'];
   verticalInterval: number;
   horizontalInterval: number;
 };
@@ -148,7 +148,7 @@ type TreeProps = {
 type SubtreeProps = {
   tree: FamilyTree<FamilyNode>;
   position: Position<FamilyNode>;
-  move: Function;
+  move: HomeScreenNavigationProp['navigate'];
   x: number;
   y: number;
   nodeWidth: number;
@@ -166,7 +166,7 @@ type NodeProps = {
   width: number;
   height: number;
   color: string;
-  move: Function;
+  move: HomeScreenNavigationProp['navigate'];
   selectedPositions: Position<FamilyNode>[];
 };
 
@@ -189,9 +189,10 @@ export {
   Info,
   Infos,
   StackParamList,
+  HomeScreenNavigationParameter,
   HomeScreenProps,
   InfoScreenProps,
-  InfoHeaderProps,
+  HeaderProps,
   InfoListProps,
   HighlightableTextProps,
   MoveableViewProps,

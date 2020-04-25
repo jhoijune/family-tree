@@ -1,14 +1,13 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import { removeProp, mapPropName } from '../util';
-import { InfoHeader, InfoList } from '../component';
+import { InfoList, HighlightableText } from '../component';
 import {
   Position,
   InfoScreenProps,
   InfoNode,
   Infos,
-  Info,
   PositionAndName,
   FamilyNode,
 } from '../type';
@@ -62,7 +61,7 @@ const returnChildrenNamePosition = (
 
 const InfoScreen: React.FC<InfoScreenProps> = ({
   tree,
-  navigation: { push },
+  navigation: { push, setOptions },
   route: {
     params: { keyword, position },
   },
@@ -72,10 +71,14 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
   let infos: Infos = [];
   if (element) {
     const filtered: InfoNode = removeProp(element);
-    if (filtered.name === filtered['genealogical name']) {
-      name = filtered.name;
+    if (typeof filtered['genealogical name'] !== 'undefined') {
+      if (filtered.name === filtered['genealogical name']) {
+        name = filtered.name;
+      } else {
+        name = `${filtered.name} (${filtered['genealogical name']})`;
+      }
     } else {
-      name = `${filtered.name} (${filtered['genealogical name']})`;
+      name = filtered.name;
     }
     const father = returnParentNamePosition(tree, position);
     const children = returnChildrenNamePosition(tree, position);
@@ -101,11 +104,21 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
     }
   }
 
+  useLayoutEffect(() => {
+    setOptions({
+      headerTitle: () => (
+        <HighlightableText keyword={keyword} style={styles.header}>
+          {name}
+        </HighlightableText>
+      ),
+      headerTitleAlign: 'center',
+    });
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <InfoHeader keyword={keyword}>{name}</InfoHeader>
+    <ScrollView style={styles.container}>
       <InfoList infos={infos} keyword={keyword} push={push} />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -113,7 +126,12 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: '#EEF2F5',
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#fff',
   },
 });
 

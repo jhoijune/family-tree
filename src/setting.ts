@@ -8,8 +8,8 @@ const infoProps: { [key: string]: string } = {
   father: '부',
   mother: '모',
   birth: '생년월일',
-  generation: '세대',
-  children: '자식',
+  generation: '항렬',
+  children: '자녀',
 };
 
 export default { featureProps, infoProps };

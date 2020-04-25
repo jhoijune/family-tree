@@ -87,7 +87,7 @@ const Subtree: React.FC<SubtreeProps> = ({
         />
         <G>
           {nodes!.map(({ position, x }) => (
-            <G>
+            <G key={x}>
               <Node
                 position={position}
                 x={x}

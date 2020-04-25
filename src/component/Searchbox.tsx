@@ -14,9 +14,11 @@ import {
   SearchboxProps,
   FamilyNode,
   SearchResultItem,
-  Position,
+  HomeScreenNavigationParameter,
 } from '../type';
 import SearchResult from './SearchResult';
+
+const { width, height } = Dimensions.get('window');
 
 const Searchbox: React.FC<SearchboxProps> = ({
   tree,
@@ -30,39 +32,14 @@ const Searchbox: React.FC<SearchboxProps> = ({
     SearchResultItem<FamilyNode>[]
   >([]);
 
-  const { width, height } = Dimensions.get('window');
-
   /**
    *  info screen으로 이동할 때 modal안 보이게 하기 위해 변형함
    * @param text
    * @param obj
    */
-  const modifiedMove = (text: string, obj: {}): void => {
-    // TODO: text,obj 타입 세밀하게 설정해야 함
+  const modifiedMove = (...args: HomeScreenNavigationParameter): void => {
     setVisible(false);
-    move(text, obj);
-  };
-
-  /**
-   * 검색 결과를 SearchResults 배열로 리턴함
-   */
-  const returnSearchResults = (): JSX.Element[] => {
-    const results: JSX.Element[] = [];
-    let key = 0;
-    resultItems.forEach(({ properties, position }) => {
-      for (const property of properties) {
-        results.push(
-          <SearchResult
-            key={key++}
-            position={position}
-            property={property}
-            move={modifiedMove}
-            keyword={value}
-          />
-        );
-      }
-    });
-    return results;
+    move(...args);
   };
 
   useEffect(() => {
@@ -85,12 +62,8 @@ const Searchbox: React.FC<SearchboxProps> = ({
       onRequestClose={() => {
         setVisible(false);
       }}>
-      <View style={[styles.screen, { width, height }]}>
-        <View
-          style={[
-            styles.contentContainer,
-            { width: width - 75, height: height - 100 },
-          ]}>
+      <View style={styles.screen}>
+        <View style={styles.contentContainer}>
           <View style={styles.searchContainer}>
             <TouchableHighlight
               onPress={() => {
@@ -124,7 +97,15 @@ const Searchbox: React.FC<SearchboxProps> = ({
               styles.resultContainer,
               { borderTopWidth: resultItems.length === 0 ? 0 : 1 },
             ]}>
-            {returnSearchResults()}
+            {resultItems.map(({ properties, position }, index) => (
+              <SearchResult
+                key={index}
+                position={position}
+                properties={properties}
+                move={modifiedMove}
+                keyword={value}
+              />
+            ))}
           </ScrollView>
         </View>
       </View>
@@ -134,17 +115,22 @@ const Searchbox: React.FC<SearchboxProps> = ({
 
 const styles = StyleSheet.create({
   screen: {
+    width,
+    height,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   contentContainer: {
     backgroundColor: 'transparent',
+    width: width - 75,
+    height: height - 100,
   },
   searchContainer: {
     backgroundColor: '#fff',
     flexDirection: 'row',
     borderWidth: 1,
+    borderColor: '#919191',
     height: 50,
     alignItems: 'center',
     borderRadius: 25,
@@ -163,6 +149,7 @@ const styles = StyleSheet.create({
   },
   resultContainer: {
     marginTop: 20,
+    borderColor: '#919191',
   },
 });
 

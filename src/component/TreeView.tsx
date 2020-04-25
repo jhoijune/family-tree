@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
-  View,
   PanResponder,
   GestureResponderEvent,
   PanResponderGestureState,
@@ -8,12 +7,10 @@ import {
   NativeTouchEvent,
   StyleSheet,
 } from 'react-native';
-import { Svg, G } from 'react-native-svg';
+import { Svg } from 'react-native-svg';
 import _ from 'lodash';
 
 import { TreeViewProps } from '../type';
-
-const SCALE_SENSITIVITY = 1.01;
 
 const getDiagonalLength = (touches: NativeTouchEvent[]): number => {
   const [touch1, touch2] = touches;
@@ -22,10 +19,6 @@ const getDiagonalLength = (touches: NativeTouchEvent[]): number => {
       Math.pow(touch2.locationY - touch1.locationY, 2)
   );
   return diagonalLength;
-};
-
-const getScale = (currentLength: number, initialLength: number): number => {
-  return (currentLength / initialLength) * SCALE_SENSITIVITY;
 };
 
 const getCenterCoordinates = (
@@ -43,23 +36,25 @@ const getCenterCoordinates = (
   };
 };
 
-const TreeView: React.FC<TreeViewProps> = ({
-  tree,
-  svgWidth,
-  svgHeight,
-  rootX,
-}) => {
-  const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
+
+const TreeView: React.FC<TreeViewProps> = ({ tree, rootX }) => {
   const [isInit, setIsInit] = useState(true);
-  const [oPosition, setOPosition] = useState({ x: -rootX + width / 2, y: 0 });
-  const [position, setPosition] = useState({ x: -rootX + width / 2, y: 0 });
+  const [oPosition, setOPosition] = useState({
+    x: -2161,
+    y: 15,
+  });
+  const [position, setPosition] = useState({
+    x: -2161,
+    y: 15,
+  });
   const [initialTouchState, setInitialTouchState] = useState<null | {
     x: number;
     y: number;
     length: number;
     scale: number;
   }>(null);
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(2);
 
   const oPositionRef = useRef(oPosition);
   const positionRef = useRef(position);
@@ -96,19 +91,27 @@ const TreeView: React.FC<TreeViewProps> = ({
               y: initialY,
               length: initialLength,
               scale: initialScale,
-            } = initialTouchStateRef.current!;
+            } = initialTouchStateRef.current;
             const currentLength = getDiagonalLength(touches);
-            const { x, y } = getCenterCoordinates(touches);
-            const touchZoom = currentLength / initialLength;
-            const dx = x - initialX;
-            const dy = y - initialY;
-            setScale(touchZoom * initialScale);
+            const velocity = 0.002;
+            const newScale =
+              initialScale + (currentLength - initialLength) * velocity;
+            const scaleChange = scaleRef.current - newScale;
+            setScale(newScale);
+            // FIXME: 좀더 세밀하게
             setPosition({
-              x: (oPositionRef.current.x + dx - x) * touchZoom + x,
-              y: (oPositionRef.current.y + dy - y) * touchZoom + y,
+              x:
+                positionRef.current.x +
+                scaleChange * (initialX - positionRef.current.x),
+              y:
+                positionRef.current.y +
+                scaleChange * (initialY - positionRef.current.y),
             });
           }
-        } else {
+        } else if (
+          initialTouchStateRef.current === null &&
+          touches.length === 1
+        ) {
           const xdiff = gestureState.x0 - gestureState.moveX;
           const ydiff = gestureState.y0 - gestureState.moveY;
           setPosition({
@@ -129,17 +132,21 @@ const TreeView: React.FC<TreeViewProps> = ({
   });
 
   return (
-    <View {...panResponder.panHandlers} style={[styles.container]}>
-      <Svg
-        width={svgWidth}
-        height={svgHeight}
-        translateX={position.x}
-        translateY={position.y}
-        style={{ width: '100%', height: '100%' }}
-        transform={isInit ? undefined : { scale }}>
-        {tree}
-      </Svg>
-    </View>
+    <Svg
+      width={width}
+      height={height}
+      transform={
+        isInit
+          ? undefined
+          : {
+              translateX: position.x,
+              translateY: position.y,
+              scale: scale,
+            }
+      }
+      {...panResponder.panHandlers}>
+      {tree}
+    </Svg>
   );
 };
 
