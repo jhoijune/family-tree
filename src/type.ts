@@ -2,91 +2,97 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FamilyTree } from './DataStructure';
 
-interface Position<T> {
+export interface Position<T> {
   element: T | null;
 }
 
-type BasisObj = {
+export type BasisObj = {
   name: string;
   children: BasisObj[];
   isCenter?: boolean;
   [key: string]: unknown;
 };
 
-type InfoNode = {
+export type InfoNode = {
   name: string;
   [key: string]: string | number;
 };
 
-type NodeFeature = {
+export type NodeFeature = {
   isCenter: boolean;
 };
 
-type FamilyNode = NodeFeature & InfoNode;
+export type FamilyNode = NodeFeature & InfoNode;
 
-type SearchResultItem<T> = {
+export type SearchResultItem<T> = {
   properties: string[];
   position: Position<T>;
 };
 
-type SearchResult<T> = {
+export type SearchResult<T> = {
   keyword: string;
   results: SearchResultItem<T>[];
 };
 
-type PositionAndName = { name: string; position: Position<FamilyNode> };
+export type PositionAndName = { name: string; position: Position<FamilyNode> };
 
-type Info = {
+export type Info = {
   header: string;
   value: string | number | PositionAndName | PositionAndName[] | null;
 };
 
-type Infos = Info[];
+export type Infos = Info[];
 
-type StackParamList = {
+export type StackParamList = {
   Home: undefined;
   Info: { position: Position<FamilyNode>; keyword?: string };
 };
 
-type HomeScreenNavigationProp = StackNavigationProp<StackParamList, 'Home'>;
+export type HomeScreenNavigationProp = StackNavigationProp<
+  StackParamList,
+  'Home'
+>;
 
-type InfoScreenNavigationProp = StackNavigationProp<StackParamList, 'Info'>;
+export type InfoScreenNavigationProp = StackNavigationProp<
+  StackParamList,
+  'Info'
+>;
 
-type InfoScreenRouteProp = RouteProp<StackParamList, 'Info'>;
+export type InfoScreenRouteProp = RouteProp<StackParamList, 'Info'>;
 
-type HomeScreenNavigationParameter = Parameters<
+export type HomeScreenNavigationParameter = Parameters<
   HomeScreenNavigationProp['navigate']
 >;
 
-type HomeScreenProps = {
+export type HomeScreenProps = {
   tree: FamilyTree<FamilyNode>;
   navigation: HomeScreenNavigationProp;
 };
 
-type InfoScreenProps = {
+export type InfoScreenProps = {
   tree: FamilyTree<FamilyNode>;
   navigation: InfoScreenNavigationProp;
   route: InfoScreenRouteProp;
 };
 
-type HeaderProps = {
+export type HeaderProps = {
   children: string;
   keyword?: string;
 };
 
-type InfoListProps = {
+export type InfoListProps = {
   infos: Infos;
   keyword: string | undefined;
   push: InfoScreenNavigationProp['push'];
 };
 
-type HighlightableTextProps = {
+export type HighlightableTextProps = {
   children: string | number;
   keyword: string | undefined;
   style?: {};
 };
 
-type MoveableViewProps = {
+export type MoveableViewProps = {
   children: React.ReactChild;
   position: Position<FamilyNode>;
   move: InfoScreenNavigationProp['push'];
@@ -94,7 +100,7 @@ type MoveableViewProps = {
   style?: {};
 };
 
-type SearchContainerProps = {
+export type SearchContainerProps = {
   tree: FamilyTree<FamilyNode>;
   move: HomeScreenNavigationProp['navigate'];
   setSelectedPositions: React.Dispatch<
@@ -102,7 +108,7 @@ type SearchContainerProps = {
   >;
 };
 
-type SearchboxProps = {
+export type SearchboxProps = {
   tree: FamilyTree<FamilyNode>;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -112,29 +118,29 @@ type SearchboxProps = {
   >;
 };
 
-type SearchResultProps = {
+export type SearchResultProps = {
   position: Position<FamilyNode>;
   properties: string[];
   move: HomeScreenNavigationProp['navigate'];
   keyword: string;
 };
 
-type TreeContainerProps = {
+export type TreeContainerProps = {
   tree: FamilyTree<FamilyNode>;
   move: HomeScreenNavigationProp['navigate'];
   selectedPositions: Position<FamilyNode>[];
 };
 
-type TreeViewProps = {
-  tree: JSX.Element;
+export type TreeViewProps = {
+  tree: JSX.Element | null;
   rootX: number;
   generationNodes: JSX.Element;
   generationDottedLines: (width?: number) => JSX.Element;
 };
 
-type TreeProps = {
+export type TreeProps = {
   tree: FamilyTree<FamilyNode>;
-  setTree: React.Dispatch<React.SetStateAction<JSX.Element>>;
+  setTree: React.Dispatch<React.SetStateAction<JSX.Element | null>>;
   selectedPositions: Position<FamilyNode>[];
   root: Position<FamilyNode>;
   rootX: number;
@@ -147,7 +153,7 @@ type TreeProps = {
   horizontalInterval: number;
 };
 
-type SubtreeProps = {
+export type SubtreeProps = {
   tree: FamilyTree<FamilyNode>;
   position: Position<FamilyNode>;
   move: HomeScreenNavigationProp['navigate'];
@@ -161,7 +167,7 @@ type SubtreeProps = {
   selectedPositions: Position<FamilyNode>[];
 };
 
-type NodeProps = {
+export type NodeProps = {
   position: Position<FamilyNode>;
   x: number;
   y: number;
@@ -172,47 +178,16 @@ type NodeProps = {
   selectedPositions: Position<FamilyNode>[];
 };
 
-type BranchProps = {
+export type BranchProps = {
   x: number;
   y: number;
   branchHeight: number;
   branchXs: number[];
 };
 
-type GenerationNodeProps = {
+export type GenerationNodeProps = {
   children: React.ReactChild;
   y: number;
   width: number;
   height: number;
-};
-
-export {
-  Position,
-  PositionAndName,
-  SearchResult,
-  SearchResultItem,
-  BasisObj,
-  NodeFeature,
-  InfoNode,
-  FamilyNode,
-  Info,
-  Infos,
-  StackParamList,
-  HomeScreenNavigationParameter,
-  HomeScreenProps,
-  InfoScreenProps,
-  HeaderProps,
-  InfoListProps,
-  HighlightableTextProps,
-  MoveableViewProps,
-  SearchContainerProps,
-  SearchboxProps,
-  SearchResultProps,
-  TreeContainerProps,
-  TreeViewProps,
-  TreeProps,
-  SubtreeProps,
-  NodeProps,
-  BranchProps,
-  GenerationNodeProps,
 };

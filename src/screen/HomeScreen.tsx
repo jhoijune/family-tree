@@ -13,6 +13,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [selectedPositions, setSelectedPositions] = useState<
     Position<FamilyNode>[]
   >([]);
+
   return (
     <View style={styles.container}>
       <TreeContainer

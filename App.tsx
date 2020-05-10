@@ -1,5 +1,10 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useRef, useEffect, MutableRefObject } from 'react';
+import { ToastAndroid, BackHandler } from 'react-native';
+import {
+  NavigationContainer,
+  NavigationState,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { createTree } from './src/util';
@@ -14,7 +19,7 @@ const Stack = createStackNavigator<StackParamList>();
 
 const screenOptions = {
   headerStyle: {
-    backgroundColor: '#40B0F8',
+    backgroundColor: '#008ff8',
   },
   headerTintColor: '#fff',
   headerTitleStyle: {
@@ -22,9 +27,55 @@ const screenOptions = {
   },
 };
 
+const getActiveRouteIndex = (state: NavigationState): number => state.index;
+
 const App: React.FC = () => {
+  const isExitRef = useRef(false);
+  const timeOutIdRef = useRef(0);
+  const routeIndexRef: MutableRefObject<number> = useRef(0);
+  const navigationRef: MutableRefObject<NavigationContainerRef | null> = useRef(
+    null
+  );
+
+  const handleBackButton = () => {
+    if (routeIndexRef.current === 0) {
+      if (!isExitRef.current) {
+        ToastAndroid.show('한번 더 누르시면 종료됩니다.', ToastAndroid.SHORT);
+        isExitRef.current = true;
+        const id = setTimeout(() => {
+          isExitRef.current = false;
+        }, 2000);
+        timeOutIdRef.current = id;
+      } else {
+        clearTimeout(timeOutIdRef.current);
+        isExitRef.current = false;
+        BackHandler.exitApp();
+      }
+    } else {
+      navigationRef.current!.goBack();
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    const state = navigationRef.current!.getRootState();
+    routeIndexRef.current = getActiveRouteIndex(state);
+  }, []);
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      isExitRef.current = false;
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    };
+  }, []);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+      onStateChange={(state) => {
+        routeIndexRef.current = getActiveRouteIndex(state!);
+      }}>
       <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
         <Stack.Screen
           name="Home"

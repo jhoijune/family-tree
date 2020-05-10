@@ -35,6 +35,8 @@ const Node: React.FC<NodeProps> = ({
       <Rect
         x={x}
         y={y}
+        rx={width / 6}
+        ry={width / 6}
         width={width}
         height={height}
         fill={modifiedColor}

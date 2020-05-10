@@ -7,6 +7,7 @@ import {
   NativeTouchEvent,
   StyleSheet,
   View,
+  ActivityIndicator,
 } from 'react-native';
 import { Svg } from 'react-native-svg';
 import _ from 'lodash';
@@ -45,6 +46,7 @@ const TreeView: React.FC<TreeViewProps> = ({
   generationNodes,
   generationDottedLines,
 }) => {
+  // TODO: rootX좌표로 처음 position 위치 로직 작성
   const [isInit, setIsInit] = useState(true);
   const [oPosition, setOPosition] = useState({
     x: -2161,
@@ -134,41 +136,49 @@ const TreeView: React.FC<TreeViewProps> = ({
   }, []);
 
   useEffect(() => {
-    setIsInit(false);
+    if (tree) {
+      setIsInit(false);
+    }
   });
 
   return (
     <View style={styles.container}>
-      <Svg
-        width={30}
-        height={height}
-        transform={
-          isInit
-            ? undefined
-            : {
-                translateY: position.y,
-                scale: scale,
-              }
-        }>
-        {generationNodes}
-        {generationDottedLines(30)}
-      </Svg>
-      <Svg
-        width={width - 30}
-        height={height}
-        transform={
-          isInit
-            ? undefined
-            : {
-                translateX: position.x,
-                translateY: position.y,
-                scale: scale,
-              }
-        }
-        {...panResponder.panHandlers}>
-        {tree}
-        {generationDottedLines()}
-      </Svg>
+      {tree ? (
+        <>
+          <Svg
+            width={30}
+            height={height}
+            transform={
+              isInit
+                ? undefined
+                : {
+                    translateY: position.y,
+                    scale: scale,
+                  }
+            }>
+            {generationNodes}
+            {generationDottedLines(30)}
+          </Svg>
+          <Svg
+            width={width - 30}
+            height={height}
+            transform={
+              isInit
+                ? undefined
+                : {
+                    translateX: position.x,
+                    translateY: position.y,
+                    scale: scale,
+                  }
+            }
+            {...panResponder.panHandlers}>
+            {tree}
+            {generationDottedLines()}
+          </Svg>
+        </>
+      ) : (
+        <ActivityIndicator size="large" color="#008ff8" />
+      )}
     </View>
   );
 };
@@ -176,6 +186,7 @@ const TreeView: React.FC<TreeViewProps> = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
 

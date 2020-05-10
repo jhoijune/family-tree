@@ -2,14 +2,14 @@
   "expo": {
     "name": "인동장씨무안파통덕랑익호(서홍)제가계도",
     "slug": "family-tree",
-    "platforms": ["ios", "android", "web"],
+    "icon": "./assets/icon.png",
+    "platforms": ["android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#008ff8"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,7 +24,11 @@
     },
     "android": {
       "package": "com.jang.familytree",
-      "versionCode": 1
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/foreground.png",
+        "backgroundColor": "#008ff8"
+      }
     }
   }
 }

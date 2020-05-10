@@ -20,7 +20,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
   move,
   selectedPositions,
 }) => {
-  const [tree, setTree] = useState(<View />);
+  const [tree, setTree] = useState<JSX.Element | null>(null);
   const {
     root,
     rootX,
