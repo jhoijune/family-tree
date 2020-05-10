@@ -81,35 +81,52 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
       name = filtered.name;
     }
     const father = returnParentNamePosition(tree, position);
-    const children = returnChildrenNamePosition(tree, position);
+    let children: string[] | PositionAndName[] | null;
+    if (element.children) {
+      children = element.children as string[];
+    } else {
+      children = returnChildrenNamePosition(tree, position);
+    }
     const combined: {
       name: string;
       father: PositionAndName | null;
-      children: PositionAndName[] | null;
+      children: string[] | PositionAndName[] | null;
       [key: string]:
         | string
+        | string[]
         | number
         | PositionAndName
         | PositionAndName[]
-        | null;
+        | null
+        | undefined;
     } = {
       ...filtered,
       father,
       children,
     };
-    const propOrder = ['father', 'mother', 'birth', 'generation', 'children'];
+    const propOrder = [
+      'birth',
+      'deathday',
+      'father',
+      'mother',
+      'spouse',
+      'generation',
+      'children',
+    ];
     for (const prop of propOrder) {
       const mappedName = mapPropName(prop);
-      infos.push({ header: mappedName!, value: combined[prop] });
+      infos.push({ header: mappedName, value: combined[prop] });
     }
   }
 
   useLayoutEffect(() => {
     setOptions({
       headerTitle: () => (
-        <HighlightableText keyword={keyword} style={styles.header}>
-          {name}
-        </HighlightableText>
+        <HighlightableText
+          text={name}
+          keyword={keyword}
+          style={styles.header}
+        />
       ),
       headerTitleAlign: 'center',
     });

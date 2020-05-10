@@ -2,7 +2,7 @@ import { createTree } from './util';
 import data from '../data.json';
 import { FamilyNode, Position } from './type';
 
-const tree = createTree(data);
+const tree = createTree(data, '장');
 
 let l: Position<FamilyNode>;
 let r: Position<FamilyNode>;

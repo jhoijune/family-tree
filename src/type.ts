@@ -8,14 +8,14 @@ export interface Position<T> {
 
 export type BasisObj = {
   name: string;
-  children: BasisObj[];
+  children: BasisObj[] | string[];
   isCenter?: boolean;
   [key: string]: unknown;
 };
 
 export type InfoNode = {
   name: string;
-  [key: string]: string | number;
+  [key: string]: unknown;
 };
 
 export type NodeFeature = {
@@ -38,7 +38,14 @@ export type PositionAndName = { name: string; position: Position<FamilyNode> };
 
 export type Info = {
   header: string;
-  value: string | number | PositionAndName | PositionAndName[] | null;
+  value:
+    | string
+    | string[]
+    | number
+    | PositionAndName
+    | PositionAndName[]
+    | null
+    | undefined;
 };
 
 export type Infos = Info[];
@@ -87,13 +94,13 @@ export type InfoListProps = {
 };
 
 export type HighlightableTextProps = {
-  children: string | number;
+  text: string | string[] | number;
   keyword: string | undefined;
   style?: {};
 };
 
 export type MoveableViewProps = {
-  children: React.ReactChild;
+  children: React.ReactNode;
   position: Position<FamilyNode>;
   move: InfoScreenNavigationProp['push'];
   keyword?: string;

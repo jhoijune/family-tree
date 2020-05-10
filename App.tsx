@@ -13,7 +13,7 @@ import { FamilyTree } from './src/DataStructure';
 import { StackParamList, FamilyNode } from './src/type';
 import data from './data.json';
 
-const tree: FamilyTree<FamilyNode> = createTree(data);
+const tree: FamilyTree<FamilyNode> = createTree(data, '장');
 
 const Stack = createStackNavigator<StackParamList>();
 

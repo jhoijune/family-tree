@@ -5,8 +5,10 @@ import { SearchResult, SearchResultItem, FamilyNode } from '../type';
 class FamilyTree<
   T extends { isCenter: boolean; [key: string]: unknown }
 > extends GeneralTree<T> {
-  constructor() {
+  public familyName: string;
+  constructor(familyName: string) {
     super();
+    this.familyName = familyName;
   }
 
   /**
@@ -22,20 +24,37 @@ class FamilyTree<
       const filteredProps: string[] = [];
       props.forEach((prop) => {
         const value: unknown = object![prop];
-        let modified: string | null;
-        if (typeof value === 'number') {
-          modified = value.toString();
-        } else if (typeof value === 'string') {
-          modified = value;
-        } else {
-          modified = null;
-        }
-        if (modified !== null && modified.includes(keyword)) {
-          filteredProps.push(prop);
+        if (
+          typeof value === 'number' ||
+          typeof value === 'string' ||
+          value instanceof Array
+        ) {
+          if (prop === 'name') {
+            const modified = value as string;
+            const familyNameIncluded = this.familyName + modified;
+            if (
+              modified.includes(keyword) ||
+              familyNameIncluded.includes(keyword)
+            ) {
+              filteredProps.push(prop);
+            }
+          } else if (value instanceof Array) {
+            for (const str of value) {
+              if (typeof str === 'string' && str.includes(keyword)) {
+                filteredProps.push(prop);
+                break;
+              }
+            }
+          } else {
+            const modified = value.toString();
+            if (modified.includes(keyword)) {
+              filteredProps.push(prop);
+            }
+          }
         }
       });
       if (filteredProps.length !== 0) {
-        results.push({ properties: filteredProps, position });
+        results.push({ position, properties: filteredProps });
       }
     }
     return { keyword, results };

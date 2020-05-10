@@ -8,8 +8,8 @@ import { infoProps } from '../setting';
 const mapPropName = (
   prop: string,
   propNames: { [key: string]: string } = infoProps
-): string | undefined => {
-  return propNames[prop];
+): string => {
+  return propNames[prop] as string;
 };
 
 export default mapPropName;

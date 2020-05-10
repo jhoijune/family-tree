@@ -10,6 +10,8 @@ const infoProps: { [key: string]: string } = {
   birth: '생년월일',
   generation: '항렬',
   children: '자녀',
+  spouse: '배우자',
+  deathday: '기일',
 };
 
 export default { featureProps, infoProps };

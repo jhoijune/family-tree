@@ -4,12 +4,12 @@ import { Text, StyleSheet } from 'react-native';
 import { HighlightableTextProps } from '../type';
 
 const HighlightableText: React.FC<HighlightableTextProps> = ({
-  children,
+  text,
   keyword,
   style,
 }) => {
-  if (keyword) {
-    let modified: string = children.toString();
+  const createHighlightText = (text: string, keyword: string): JSX.Element => {
+    let modified: string = text;
     const splitText: { isHighlight: boolean; text: string }[] = [];
     const regExp: RegExp = new RegExp(keyword, 'g');
     const keywordLen: number = keyword.length;
@@ -32,7 +32,6 @@ const HighlightableText: React.FC<HighlightableTextProps> = ({
         modified = modified.slice(index + keywordLen);
       }
     }
-
     return (
       <>
         <Text style={[styles.default, style]}>
@@ -49,8 +48,38 @@ const HighlightableText: React.FC<HighlightableTextProps> = ({
         </Text>
       </>
     );
+  };
+  if (keyword) {
+    if (text instanceof Array) {
+      const [toShowText] = text;
+      if (toShowText.includes(keyword)) {
+        return createHighlightText(toShowText, keyword);
+      } else {
+        let len: number = keyword.length - 1;
+        while (len > 0) {
+          let startIndex: number = 0;
+          while (startIndex + len <= keyword.length) {
+            const slicedKeyword = keyword.slice(
+              startIndex,
+              startIndex + len + 1
+            );
+            if (toShowText.includes(slicedKeyword)) {
+              return createHighlightText(toShowText, slicedKeyword);
+            }
+            startIndex += 1;
+          }
+          len -= 1;
+        }
+      }
+    } else {
+      const stringifyText: string = text.toString();
+      return createHighlightText(stringifyText, keyword);
+    }
   }
-  return <Text style={[styles.default, style]}>{children}</Text>;
+  if (text instanceof Array) {
+    return <Text style={[styles.default, style]}>{text[0]}</Text>;
+  }
+  return <Text style={[styles.default, style]}>{text}</Text>;
 };
 
 const styles = StyleSheet.create({

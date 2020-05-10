@@ -6,9 +6,17 @@ import { BasisObj, FamilyNode } from '../type';
  */
 const createElement = (obj: BasisObj): FamilyNode => {
   const { children, isCenter, ...rest } = obj;
+  if (children.length && typeof children[0] === 'string') {
+    let modifiedChild = children as string[];
+    return {
+      ...rest,
+      isCenter: typeof isCenter !== 'undefined' ? isCenter : false,
+      children: modifiedChild,
+    } as FamilyNode;
+  }
   return {
-    isCenter: typeof isCenter !== 'undefined' ? isCenter : false,
     ...rest,
+    isCenter: typeof isCenter !== 'undefined' ? isCenter : false,
   } as FamilyNode;
 };
 
