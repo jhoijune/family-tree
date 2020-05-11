@@ -1,9 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { View, Dimensions } from 'react-native';
 import _ from 'lodash';
 import { Line, G } from 'react-native-svg';
 
-import Tree from './Tree';
+import TreeComponent from './TreeComponent';
 import TreeView from './TreeView';
 import GenerationNode from './GenerationNode';
 import { TreeContainerProps, Position, FamilyNode } from '../type';
@@ -16,11 +15,11 @@ const HORIZONTAL_INTERVAL = 5;
 const COLORS: readonly string[] = ['#99CDFF', '#CCFF9A', '#FEFF99', '#99FFCD'];
 
 const TreeContainer: React.FC<TreeContainerProps> = ({
-  tree: treeObj,
+  treeObj,
   move,
   selectedPositions,
 }) => {
-  const [tree, setTree] = useState<JSX.Element | null>(null);
+  const [treeElement, setTreeElement] = useState<JSX.Element | null>(null);
   const {
     root,
     rootX,
@@ -38,7 +37,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
       NODE_WIDTH,
       HORIZONTAL_INTERVAL
     );
-    const firstGeneartion: number = root.element!.generation as number;
+    const firstGeneartion: number = root.element!.generation;
     const treeHeight = treeObj.height();
     const generations = _.range(
       firstGeneartion,
@@ -89,14 +88,14 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
   return (
     <>
       <TreeView
-        tree={tree}
+        treeElement={treeElement}
         rootX={rootX}
         generationNodes={generationNodes}
         generationDottedLines={generationDottedLines}
       />
-      <Tree
-        tree={treeObj}
-        setTree={setTree}
+      <TreeComponent
+        treeObj={treeObj}
+        setTreeElement={setTreeElement}
         selectedPositions={selectedPositions}
         root={root}
         rootX={rootX}

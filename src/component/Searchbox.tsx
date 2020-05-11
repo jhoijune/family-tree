@@ -21,7 +21,7 @@ import SearchResult from './SearchResult';
 const { width, height } = Dimensions.get('window');
 
 const Searchbox: React.FC<SearchboxProps> = ({
-  tree,
+  treeObj,
   visible,
   setVisible,
   move,
@@ -31,7 +31,6 @@ const Searchbox: React.FC<SearchboxProps> = ({
   const [resultItems, setResultItems] = useState<
     SearchResultItem<FamilyNode>[]
   >([]);
-
   /**
    *  info screen으로 이동할 때 modal안 보이게 하기 위해 변형함
    * @param text
@@ -44,7 +43,7 @@ const Searchbox: React.FC<SearchboxProps> = ({
 
   useEffect(() => {
     if (value.length !== 0) {
-      const { results } = tree.searchKeyword(value);
+      const { results } = treeObj.searchKeyword(value);
       const positions = results.map(({ position }) => position);
       setResultItems(results);
       setSelectedPositions(positions);
@@ -104,6 +103,7 @@ const Searchbox: React.FC<SearchboxProps> = ({
                 properties={properties}
                 move={modifiedMove}
                 keyword={value}
+                lastName={treeObj.lastName}
               />
             ))}
           </ScrollView>

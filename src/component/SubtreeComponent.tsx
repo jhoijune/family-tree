@@ -3,10 +3,10 @@ import { G } from 'react-native-svg';
 
 import Node from './Node';
 import Branch from './Branch';
-import { Position, SubtreeProps, FamilyNode } from '../type';
+import { Position, SubtreeComponentProps, FamilyNode } from '../type';
 
-const Subtree: React.FC<SubtreeProps> = ({
-  tree,
+const Subtree: React.FC<SubtreeComponentProps> = ({
+  treeObj,
   position,
   move,
   x,
@@ -28,22 +28,22 @@ const Subtree: React.FC<SubtreeProps> = ({
     nodes,
     branchXs,
   } = useMemo(() => {
-    const childrenLen = tree.numChildren(position);
+    const childrenLen = treeObj.numChildren(position);
     if (childrenLen !== 0) {
       const childrens = [];
-      for (const children of tree.children(position)) {
+      for (const children of treeObj.children(position)) {
         childrens.push(children);
       }
       const branchX = x + nodeWidth / 2;
       const branchY = y + nodeHeight;
       const branchHeight = verticalInterval;
-      const firstX = tree.calculateFirstNodeX(
+      const firstX = treeObj.calculateFirstNodeX(
         position,
         x,
         nodeWidth,
         horizontalInterval
       );
-      const depth = tree.depth(position) + 1;
+      const depth = treeObj.depth(position) + 1;
       const colorInd = depth % colors.length;
       const color = colors[colorInd];
       const nodeY = y + nodeHeight + verticalInterval;
@@ -53,7 +53,7 @@ const Subtree: React.FC<SubtreeProps> = ({
       const branchXs: number[] = [firstX + nodeWidth / 2];
       let cacheX = firstX;
       for (let index = 1; index < childrenLen; index++) {
-        const interval = tree.calculateNodeInterval(
+        const interval = treeObj.calculateNodeInterval(
           childrens[index - 1],
           childrens[index],
           nodeWidth,
@@ -99,7 +99,7 @@ const Subtree: React.FC<SubtreeProps> = ({
                 selectedPositions={selectedPositions}
               />
               <Subtree
-                tree={tree}
+                treeObj={treeObj}
                 position={position}
                 move={move}
                 x={x}

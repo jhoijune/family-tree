@@ -8,7 +8,8 @@ import Searchbox from './Searchbox';
 const { height } = Dimensions.get('window');
 
 const SearchContainer: React.FC<SearchContainerProps> = ({
-  tree,
+  treeObj,
+  isLoading,
   move,
   setSelectedPositions,
 }) => {
@@ -16,19 +17,21 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
   return (
     <>
       <Searchbox
-        tree={tree}
+        treeObj={treeObj}
         visible={modalVisible}
         setVisible={setModalVisible}
         move={move}
         setSelectedPositions={setSelectedPositions}
       />
-      <TouchableHighlight
-        style={styles.magnify}
-        onPress={() => {
-          setModalVisible(true);
-        }}>
-        <Ionicons name="ios-search" size={50} color="#919191" />
-      </TouchableHighlight>
+      {isLoading ? null : (
+        <TouchableHighlight
+          style={styles.magnify}
+          onPress={() => {
+            setModalVisible(true);
+          }}>
+          <Ionicons name="ios-search" size={50} color="#919191" />
+        </TouchableHighlight>
+      )}
     </>
   );
 };

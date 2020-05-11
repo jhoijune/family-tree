@@ -13,7 +13,7 @@ import { FamilyTree } from './src/DataStructure';
 import { StackParamList, FamilyNode } from './src/type';
 import data from './data.json';
 
-const tree: FamilyTree<FamilyNode> = createTree(data, '장');
+const treeObj: FamilyTree<FamilyNode> = createTree(data, '장');
 
 const Stack = createStackNavigator<StackParamList>();
 
@@ -83,10 +83,10 @@ const App: React.FC = () => {
             headerTitle: '가계도',
             headerTitleAlign: 'center',
           }}>
-          {(props) => <HomeScreen {...props} tree={tree} />}
+          {(props) => <HomeScreen {...props} treeObj={treeObj} />}
         </Stack.Screen>
         <Stack.Screen name="Info">
-          {(props) => <InfoScreen {...props} tree={tree} />}
+          {(props) => <InfoScreen {...props} treeObj={treeObj} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

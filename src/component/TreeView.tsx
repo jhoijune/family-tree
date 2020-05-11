@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useContext } from 'react';
 import {
   PanResponder,
   GestureResponderEvent,
@@ -13,6 +13,7 @@ import { Svg } from 'react-native-svg';
 import _ from 'lodash';
 
 import { TreeViewProps } from '../type';
+import { LoadingContext } from '../screen/HomeScreen';
 
 const getDiagonalLength = (touches: NativeTouchEvent[]): number => {
   const [touch1, touch2] = touches;
@@ -41,12 +42,13 @@ const getCenterCoordinates = (
 const { width, height } = Dimensions.get('window');
 
 const TreeView: React.FC<TreeViewProps> = ({
-  tree,
+  treeElement,
   rootX,
   generationNodes,
   generationDottedLines,
 }) => {
   // TODO: rootX좌표로 처음 position 위치 로직 작성
+  const { toggle } = useContext(LoadingContext);
   const [isInit, setIsInit] = useState(true);
   const [oPosition, setOPosition] = useState({
     x: -2161,
@@ -136,14 +138,15 @@ const TreeView: React.FC<TreeViewProps> = ({
   }, []);
 
   useEffect(() => {
-    if (tree) {
+    if (treeElement) {
       setIsInit(false);
+      toggle();
     }
-  });
+  }, [treeElement]);
 
   return (
     <View style={styles.container}>
-      {tree ? (
+      {treeElement ? (
         <>
           <Svg
             width={30}
@@ -172,12 +175,12 @@ const TreeView: React.FC<TreeViewProps> = ({
                   }
             }
             {...panResponder.panHandlers}>
-            {tree}
+            {treeElement}
             {generationDottedLines()}
           </Svg>
         </>
       ) : (
-        <ActivityIndicator size="large" color="#008ff8" />
+        <ActivityIndicator size={72} color="#008ff8" />
       )}
     </View>
   );

@@ -1,14 +1,15 @@
 import Position from './Position';
 import GeneralTree, { Node } from './GeneralTree';
-import { SearchResult, SearchResultItem, FamilyNode } from '../type';
+import { SearchResult, SearchResultItem, NodeFeature } from '../type';
+import { featureProps } from '../setting';
 
 class FamilyTree<
-  T extends { isCenter: boolean; [key: string]: unknown }
+  T extends NodeFeature & { [key: string]: unknown }
 > extends GeneralTree<T> {
-  public familyName: string;
-  constructor(familyName: string) {
+  public lastName: string;
+  constructor(lastName: string) {
     super();
-    this.familyName = familyName;
+    this.lastName = lastName;
   }
 
   /**
@@ -19,10 +20,14 @@ class FamilyTree<
   searchKeyword(keyword: string): SearchResult<T> {
     const results: SearchResultItem<T>[] = [];
     for (const position of this.positions()) {
+      type NodeInfo = Exclude<keyof T, keyof NodeFeature>;
       const { element: object } = position;
       const props: string[] = Object.keys(object!);
-      const filteredProps: string[] = [];
-      props.forEach((prop) => {
+      const deletedProps = props.filter(
+        (prop) => !featureProps.includes(prop as any)
+      ) as NodeInfo[];
+      const filteredProps: NodeInfo[] = [];
+      deletedProps.forEach((prop) => {
         const value: unknown = object![prop];
         if (
           typeof value === 'number' ||
@@ -31,10 +36,10 @@ class FamilyTree<
         ) {
           if (prop === 'name') {
             const modified = value as string;
-            const familyNameIncluded = this.familyName + modified;
+            const lastNameIncluded = this.lastName + modified;
             if (
               modified.includes(keyword) ||
-              familyNameIncluded.includes(keyword)
+              lastNameIncluded.includes(keyword)
             ) {
               filteredProps.push(prop);
             }

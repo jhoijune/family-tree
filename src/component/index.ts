@@ -6,8 +6,8 @@ import MoveableView from './MoveableView';
 import Node from './Node';
 import Searchbox from './Searchbox';
 import SearchContainer from './SearchContainer';
-import Subtree from './Subtree';
-import Tree from './Tree';
+import SubtreeComponent from './SubtreeComponent';
+import TreeComponent from './TreeComponent';
 import TreeContainer from './TreeContainer';
 import TreeView from './TreeView';
 
@@ -20,8 +20,8 @@ const bind = {
   Node,
   Searchbox,
   SearchContainer,
-  Subtree,
-  Tree,
+  SubtreeComponent,
+  TreeComponent,
   TreeContainer,
   TreeView,
 };
@@ -33,7 +33,7 @@ export {
   InfoList,
   Searchbox,
   SearchContainer,
-  Subtree,
-  Tree,
+  SubtreeComponent,
+  TreeComponent,
   TreeContainer,
 };

@@ -5,14 +5,14 @@ import createElement from './createElement';
 /**
  * 가계도를 생성하고 초기화 함
  * @param obj
- * @param familyName 가족의 성
+ * @param lastName 가족의 성
  */
 
 const createTree = (
   obj: BasisObj,
-  familyName: string
+  lastName: string
 ): FamilyTree<FamilyNode> => {
-  const tree: FamilyTree<FamilyNode> = new FamilyTree(familyName);
+  const tree: FamilyTree<FamilyNode> = new FamilyTree(lastName);
   const element: FamilyNode = createElement(obj);
   const root: Position<FamilyNode> = tree.addRoot(element);
   /**

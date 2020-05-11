@@ -1,15 +1,14 @@
 import { infoProps } from '../setting';
+import { Properties } from '../type';
 
 /**
  * prop을 실제로 쓸 이름으로 mapping함
+ * 모든 이름이 매핑되서 unknown이 나오면 안됨
  * @param prop
  * @param propNames
  */
-const mapPropName = (
-  prop: string,
-  propNames: { [key: string]: string } = infoProps
-): string => {
-  return propNames[prop] as string;
+const mapPropName = (prop: Properties): string => {
+  return infoProps[prop];
 };
 
 export default mapPropName;

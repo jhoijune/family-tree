@@ -7,7 +7,7 @@ import MoveableView from './MoveableView';
 
 const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
   const convertValue = (
-    value: Info['value'],
+    value: Exclude<Info['value'], null | undefined>,
     header: string
   ): JSX.Element | JSX.Element[] => {
     if (typeof value === 'string' || typeof value === 'number') {
@@ -21,8 +21,8 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
     } else if (value instanceof Array) {
       if (typeof value[0] === 'string') {
         const modified = value as string[];
-        // FIXME: 하드코딩 제거
         if (header === '자녀') {
+          // special case: string[] 각각의 entity가 의미가 있을 때
           return modified.map((childrenName, index) => (
             <View
               key={index}
@@ -35,9 +35,10 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
             </View>
           ));
         } else {
+          // string[]에서 1번째 원소 외에는 alias인 경우
           return (
             <HighlightalbeText
-              text={modified[0]}
+              text={modified}
               keyword={keyword}
               style={styles.defaultFont}
             />
@@ -60,9 +61,9 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
       ));
     }
     return (
-      <MoveableView position={value!.position} move={push}>
+      <MoveableView position={value.position} move={push}>
         <HighlightalbeText
-          text={value!.name}
+          text={value.name}
           keyword={keyword}
           style={[{ color: '#40B0F8' }, styles.defaultFont]}
         />

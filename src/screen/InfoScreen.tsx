@@ -10,6 +10,8 @@ import {
   Infos,
   PositionAndName,
   FamilyNode,
+  Info,
+  Properties,
 } from '../type';
 import { FamilyTree } from '../DataStructure';
 
@@ -60,7 +62,7 @@ const returnChildrenNamePosition = (
 };
 
 const InfoScreen: React.FC<InfoScreenProps> = ({
-  tree,
+  treeObj,
   navigation: { push, setOptions },
   route: {
     params: { keyword, position },
@@ -80,31 +82,24 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
     } else {
       name = filtered.name;
     }
-    const father = returnParentNamePosition(tree, position);
+    const father = returnParentNamePosition(treeObj, position);
     let children: string[] | PositionAndName[] | null;
     if (element.children) {
       children = element.children as string[];
     } else {
-      children = returnChildrenNamePosition(tree, position);
+      children = returnChildrenNamePosition(treeObj, position);
     }
     const combined: {
       name: string;
       father: PositionAndName | null;
       children: string[] | PositionAndName[] | null;
-      [key: string]:
-        | string
-        | string[]
-        | number
-        | PositionAndName
-        | PositionAndName[]
-        | null
-        | undefined;
+      [key: string]: Info['value'];
     } = {
       ...filtered,
       father,
       children,
     };
-    const propOrder = [
+    const propOrder: Properties[] = [
       'birth',
       'deathday',
       'father',

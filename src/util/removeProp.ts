@@ -1,5 +1,5 @@
 import { featureProps } from '../setting';
-import { InfoNode, FamilyNode } from '../type';
+import { InfoNode, FamilyNode, Properties } from '../type';
 
 /**
  * 정보를 기술하는데는 필요없는 노드의 특징들과 그 외 필요없는 다른 prop 제거
@@ -8,7 +8,7 @@ import { InfoNode, FamilyNode } from '../type';
  */
 const removeProp = (
   obj: FamilyNode,
-  additionalDeleteProps?: string[]
+  additionalDeleteProps?: Properties[]
 ): InfoNode => {
   const copied = { ...obj };
   for (const props of featureProps) {

@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 
 import MoveableView from './MoveableView';
 import HighlightableText from './HighlightableText';
-import { SearchResultProps, FamilyNode } from '../type';
+import { SearchResultProps, FamilyNode, Properties } from '../type';
 import { mapPropName } from '../util';
 
 const SearchResult: React.FC<SearchResultProps> = ({
@@ -11,22 +11,21 @@ const SearchResult: React.FC<SearchResultProps> = ({
   properties,
   move,
   keyword,
+  lastName,
 }) => {
-  const filter = (element: FamilyNode | null, property: string) => {
+  const filter = (element: FamilyNode | null, property: Properties) => {
     if (element === null) {
       return '';
     }
     const value = element[property];
-
     if (typeof value === 'string' || typeof value === 'number') {
       if (property === 'name') {
-        const modified = value as string;
         //FIXME: 성 부분 하드코딩하지 말아야함
-        return [modified, `장${modified}`];
+        return [value.toString(), `${lastName}${value}`];
       }
       return value;
     } else if (value instanceof Array) {
-      return value as string[];
+      return value;
     } else {
       return '';
     }

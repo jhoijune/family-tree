@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { G } from 'react-native-svg';
 
-import Subtree from './Subtree';
+import SubtreeComponent from './SubtreeComponent';
 import Node from './Node';
-import { TreeProps } from '../type';
+import { TreeComponentProps } from '../type';
 
-const Tree: React.FC<TreeProps> = ({
-  tree,
-  setTree,
+const TreeComponent: React.FC<TreeComponentProps> = ({
+  treeObj,
+  setTreeElement,
   selectedPositions,
   root,
   rootX,
@@ -20,7 +20,7 @@ const Tree: React.FC<TreeProps> = ({
   horizontalInterval,
 }) => {
   useEffect(() => {
-    setTree(
+    setTreeElement(
       <G>
         <Node
           position={root}
@@ -32,8 +32,8 @@ const Tree: React.FC<TreeProps> = ({
           move={move}
           selectedPositions={selectedPositions}
         />
-        <Subtree
-          tree={tree}
+        <SubtreeComponent
+          treeObj={treeObj}
           position={root}
           move={move}
           x={rootX}
@@ -52,4 +52,4 @@ const Tree: React.FC<TreeProps> = ({
   return null;
 };
 
-export default Tree;
+export default TreeComponent;

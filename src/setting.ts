@@ -2,7 +2,7 @@ import { NodeFeature } from './type';
 
 const featureProps: (keyof NodeFeature)[] = ['isCenter'];
 
-const infoProps: { [key: string]: string } = {
+const infoProps = {
   name: '이름',
   'genealogical name': '족보상 이름',
   father: '부',
