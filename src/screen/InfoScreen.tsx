@@ -1,7 +1,21 @@
-import React, { useLayoutEffect } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import React, {
+  useLayoutEffect,
+  useContext,
+  useState,
+  useMemo,
+  useEffect,
+} from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableNativeFeedback,
+  Animated,
+  ToastAndroid,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-import { removeProp, mapPropName } from '../util';
+import { removeProp, mapPropName, convertName } from '../util';
+import { TreeContext, StoreContext } from '../context';
 import { InfoList, HighlightableText } from '../component';
 import {
   Position,
@@ -12,6 +26,7 @@ import {
   FamilyNode,
   Info,
   Properties,
+  ID,
 } from '../type';
 import { FamilyTree } from '../DataStructure';
 
@@ -62,30 +77,25 @@ const returnChildrenNamePosition = (
 };
 
 const InfoScreen: React.FC<InfoScreenProps> = ({
-  treeObj,
   navigation: { push, setOptions },
   route: {
     params: { keyword, position },
   },
 }) => {
-  const { element } = position;
-  let name: string = '';
-  let infos: Infos = [];
-  if (element) {
-    const filtered: InfoNode = removeProp(element);
-    if (typeof filtered['genealogical name'] !== 'undefined') {
-      if (filtered.name === filtered['genealogical name']) {
-        name = filtered.name;
-      } else {
-        name = `${filtered.name} (${filtered['genealogical name']})`;
-      }
-    } else {
-      name = filtered.name;
-    }
+  const [isFavorties, setIsFavorites] = useState(false);
+  const scale = new Animated.Value(1);
+  const { treeObj } = useContext(TreeContext);
+  const { isIDIncluded, storeID, deleteID } = useContext(StoreContext);
+  const { name, id, infos } = useMemo(() => {
+    const { element } = position;
+    const id: ID = element!.id;
+    const infos: Infos = [];
+    const filtered: InfoNode = removeProp(element!);
+    const name = convertName(filtered);
     const father = returnParentNamePosition(treeObj, position);
     let children: string[] | PositionAndName[] | null;
-    if (element.children) {
-      children = element.children as string[];
+    if (element!.children) {
+      children = element!.children as string[];
     } else {
       children = returnChildrenNamePosition(treeObj, position);
     }
@@ -112,7 +122,28 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
       const mappedName = mapPropName(prop);
       infos.push({ header: mappedName, value: combined[prop] });
     }
-  }
+    return { name, id, infos };
+  }, []);
+
+  const handleStarPress = () => {
+    setIsFavorites((value) => !value);
+    Animated.timing(scale, { toValue: 1.5, duration: 250 }).start();
+    if (isFavorties) {
+      ToastAndroid.showWithGravity(
+        '즐겨찾기에 제거되었습니다',
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM
+      );
+      deleteID(id);
+    } else {
+      ToastAndroid.showWithGravity(
+        '즐겨찾기에 추가되었습니다',
+        ToastAndroid.SHORT,
+        ToastAndroid.BOTTOM
+      );
+      storeID(id);
+    }
+  };
 
   useLayoutEffect(() => {
     setOptions({
@@ -124,7 +155,25 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
         />
       ),
       headerTitleAlign: 'center',
+      headerRight: () => (
+        <TouchableNativeFeedback
+          onPress={handleStarPress}
+          background={TouchableNativeFeedback.Ripple('#000', true)}>
+          <Animated.View style={{ transform: [{ scale }] }}>
+            {isFavorties ? (
+              <Ionicons name="ios-star" size={30} color="#F8CC02" />
+            ) : (
+              <Ionicons name="ios-star" size={30} color="#fff" />
+            )}
+          </Animated.View>
+        </TouchableNativeFeedback>
+      ),
+      headerRightContainerStyle: { marginRight: 15 },
     });
+  }, [isFavorties]);
+
+  useEffect(() => {
+    setIsFavorites(isIDIncluded(id));
   }, []);
 
   return (

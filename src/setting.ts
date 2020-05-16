@@ -1,8 +1,15 @@
-import { NodeFeature } from './type';
+import { NodeFeature, EssentialObj } from './type';
 
-const featureProps: (keyof NodeFeature)[] = ['isCenter'];
+export const featureProps: (keyof NodeFeature)[] = ['isCenter'];
 
-const infoProps = {
+export const essentialProps: (keyof EssentialObj)[] = [
+  'name',
+  'mother',
+  'birth',
+  'generation',
+];
+
+export const propsMappedName = {
   name: '이름',
   'genealogical name': '족보상 이름',
   father: '부',
@@ -14,5 +21,13 @@ const infoProps = {
   deathday: '기일',
 };
 
-export default { featureProps, infoProps };
-export { featureProps, infoProps };
+export const lastName = '장';
+
+export const treeSetting = {
+  padding: 10,
+  nodeWidth: 30,
+  nodeHeight: 15,
+  verticalInterval: 10,
+  horizontalInterval: 5,
+  colors: ['#99CDFF', '#CCFF9A', '#FEFF99', '#99FFCD'],
+};

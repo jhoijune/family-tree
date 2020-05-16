@@ -1,23 +1,27 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext, useRef } from 'react';
 import { G } from 'react-native-svg';
 
 import Node from './Node';
 import Branch from './Branch';
 import { Position, SubtreeComponentProps, FamilyNode } from '../type';
+import { TreeContext } from '../context';
 
 const Subtree: React.FC<SubtreeComponentProps> = ({
-  treeObj,
   position,
-  move,
+  navigation,
   x,
   y,
-  nodeWidth,
-  nodeHeight,
-  verticalInterval,
-  horizontalInterval,
-  colors,
-  selectedPositions,
+  searchedPositions,
+  pressedPosition,
 }) => {
+  const {
+    treeObj,
+    nodeWidth,
+    nodeHeight,
+    verticalInterval,
+    horizontalInterval,
+    colors,
+  } = useContext(TreeContext);
   const {
     childrenLen,
     branchX,
@@ -84,6 +88,7 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
           y={branchY!}
           branchHeight={branchHeight!}
           branchXs={branchXs!}
+          isBlur={!!pressedPosition && pressedPosition !== position}
         />
         <G>
           {nodes!.map(({ position, x }) => (
@@ -92,24 +97,22 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
                 position={position}
                 x={x}
                 y={nodeY!}
-                width={nodeWidth}
-                height={nodeHeight}
                 color={color!}
-                move={move}
-                selectedPositions={selectedPositions}
+                navigation={navigation}
+                searchedPositions={searchedPositions}
+                isBlur={!!pressedPosition && pressedPosition !== position}
               />
               <Subtree
-                treeObj={treeObj}
                 position={position}
-                move={move}
+                navigation={navigation}
                 x={x}
                 y={nodeY!}
-                nodeWidth={nodeWidth}
-                nodeHeight={nodeHeight}
-                verticalInterval={verticalInterval}
-                horizontalInterval={horizontalInterval}
-                colors={colors}
-                selectedPositions={selectedPositions}
+                searchedPositions={searchedPositions}
+                pressedPosition={
+                  pressedPosition && pressedPosition === position
+                    ? null
+                    : pressedPosition
+                }
               />
             </G>
           ))}

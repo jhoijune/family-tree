@@ -1,53 +1,54 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { G } from 'react-native-svg';
 
 import SubtreeComponent from './SubtreeComponent';
 import Node from './Node';
-import { TreeComponentProps } from '../type';
+import { TreeContext, PressedContext } from '../context';
+import { TreeComponentProps, Position, FamilyNode } from '../type';
 
 const TreeComponent: React.FC<TreeComponentProps> = ({
-  treeObj,
   setTreeElement,
-  selectedPositions,
-  root,
+  searchedPositions,
+  presentRoot,
   rootX,
-  padding,
-  nodeWidth,
-  nodeHeight,
-  colors,
-  move,
-  verticalInterval,
-  horizontalInterval,
+  navigation,
 }) => {
+  const [pressedPosition, setPressedPosition] = useState<Position<
+    FamilyNode
+  > | null>(null);
+  const { treeObj, padding, colors } = useContext(TreeContext);
+  const depth = treeObj.depth(presentRoot);
+  const colorInd = depth % colors.length;
+
   useEffect(() => {
     setTreeElement(
-      <G>
-        <Node
-          position={root}
-          x={rootX}
-          y={padding}
-          width={nodeWidth}
-          height={nodeHeight}
-          color={colors[0]}
-          move={move}
-          selectedPositions={selectedPositions}
-        />
-        <SubtreeComponent
-          treeObj={treeObj}
-          position={root}
-          move={move}
-          x={rootX}
-          y={padding}
-          nodeWidth={nodeWidth}
-          nodeHeight={nodeHeight}
-          verticalInterval={verticalInterval}
-          horizontalInterval={horizontalInterval}
-          colors={colors}
-          selectedPositions={selectedPositions}
-        />
-      </G>
+      <PressedContext.Provider value={{ setPressedPosition }}>
+        <G>
+          <Node
+            position={presentRoot}
+            x={rootX}
+            y={padding}
+            color={colors[colorInd]}
+            navigation={navigation}
+            searchedPositions={searchedPositions}
+            isBlur={!!pressedPosition && pressedPosition !== presentRoot}
+          />
+          <SubtreeComponent
+            position={presentRoot}
+            navigation={navigation}
+            x={rootX}
+            y={padding}
+            searchedPositions={searchedPositions}
+            pressedPosition={
+              pressedPosition && pressedPosition === presentRoot
+                ? null
+                : pressedPosition
+            }
+          />
+        </G>
+      </PressedContext.Provider>
     );
-  }, [selectedPositions]);
+  }, [searchedPositions, pressedPosition]);
 
   return null;
 };

@@ -3,7 +3,6 @@ import {
   PanResponder,
   GestureResponderEvent,
   PanResponderGestureState,
-  Dimensions,
   NativeTouchEvent,
   StyleSheet,
   View,
@@ -13,7 +12,7 @@ import { Svg } from 'react-native-svg';
 import _ from 'lodash';
 
 import { TreeViewProps } from '../type';
-import { LoadingContext } from '../screen/HomeScreen';
+import { LoadingContext, TreeContext, DimensionsContext } from '../context';
 
 const getDiagonalLength = (touches: NativeTouchEvent[]): number => {
   const [touch1, touch2] = touches;
@@ -39,24 +38,24 @@ const getCenterCoordinates = (
   };
 };
 
-const { width, height } = Dimensions.get('window');
-
 const TreeView: React.FC<TreeViewProps> = ({
   treeElement,
   rootX,
   generationNodes,
   generationDottedLines,
 }) => {
-  // TODO: rootX좌표로 처음 position 위치 로직 작성
-  const { toggle } = useContext(LoadingContext);
+  const { setIsLoading } = useContext(LoadingContext);
+  const { padding } = useContext(TreeContext);
+  const { width, height } = useContext(DimensionsContext);
   const [isInit, setIsInit] = useState(true);
+  const [scale, setScale] = useState(2);
   const [oPosition, setOPosition] = useState({
-    x: -2161,
-    y: 15,
+    x: -(rootX - 75) * scale,
+    y: 30,
   });
   const [position, setPosition] = useState({
-    x: -2161,
-    y: 15,
+    x: -(rootX - 75) * scale,
+    y: 30,
   });
   const [initialTouchState, setInitialTouchState] = useState<null | {
     x: number;
@@ -64,7 +63,6 @@ const TreeView: React.FC<TreeViewProps> = ({
     length: number;
     scale: number;
   }>(null);
-  const [scale, setScale] = useState(2);
 
   const oPositionRef = useRef(oPosition);
   const positionRef = useRef(position);
@@ -140,7 +138,7 @@ const TreeView: React.FC<TreeViewProps> = ({
   useEffect(() => {
     if (treeElement) {
       setIsInit(false);
-      toggle();
+      setIsLoading(false);
     }
   }, [treeElement]);
 
@@ -180,7 +178,11 @@ const TreeView: React.FC<TreeViewProps> = ({
           </Svg>
         </>
       ) : (
-        <ActivityIndicator size={72} color="#008ff8" />
+        <ActivityIndicator
+          size={72}
+          color="#008ff8"
+          style={{ elevation: 15 }}
+        />
       )}
     </View>
   );

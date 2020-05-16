@@ -226,7 +226,7 @@ class GeneralTree<T> extends Tree<T> {
   }
 
   *positions(): IterableIterator<Position<T>> {
-    for (const position of this.breadthfirst()) {
+    for (const position of this.breadthFirst()) {
       yield position;
     }
   }

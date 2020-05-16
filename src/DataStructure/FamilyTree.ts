@@ -3,9 +3,7 @@ import GeneralTree, { Node } from './GeneralTree';
 import { SearchResult, SearchResultItem, NodeFeature } from '../type';
 import { featureProps } from '../setting';
 
-class FamilyTree<
-  T extends NodeFeature & { [key: string]: unknown }
-> extends GeneralTree<T> {
+class FamilyTree<T extends { [key: string]: unknown }> extends GeneralTree<T> {
   public lastName: string;
   constructor(lastName: string) {
     super();
@@ -16,11 +14,12 @@ class FamilyTree<
    * 특정 키워드로 검색했을 때 만족하는 위치들과 프로퍼티를 반환함
    * 키워드는  불리언 속성을 제외한 숫자,문자열만 가능함
    * @param keyword
+   * @param root
    */
-  searchKeyword(keyword: string): SearchResult<T> {
+  searchKeyword(keyword: string, root: Position<T>): SearchResult<T> {
     const results: SearchResultItem<T>[] = [];
-    for (const position of this.positions()) {
-      type NodeInfo = Exclude<keyof T, keyof NodeFeature>;
+    type NodeInfo = Exclude<keyof T, keyof NodeFeature>;
+    for (const position of this._subtreeBreadthFirst(root)) {
       const { element: object } = position;
       const props: string[] = Object.keys(object!);
       const deletedProps = props.filter(
@@ -100,14 +99,25 @@ class FamilyTree<
   }
 
   /**
-   * root node의 x축 margin 계산
+   * position을 root로 갖는 서브트리의 x축 margin 계산
+   *
+   * @param position
    * @param width 노드의 너비
-   * @param interval  노드의 수평선상의 간격
-   * @param margin  SVG의 마진
+   * @param interval 노드의 수평선상의 간격
+   * @param margin SVG의 마진
    */
-  calculateRootX(width: number, interval: number, margin: number = 0): number {
-    const count: number = this.locateExternalCenter(this.root()!);
-    return margin + (count - 1) * (width + interval);
+  calculateRootX(
+    position: Position<T>,
+    width: number,
+    interval: number,
+    margin: number = 0
+  ): number {
+    const { left: leftWidth } = this._calculatePartOfSubtreeWidth(
+      position,
+      width,
+      interval
+    );
+    return margin + leftWidth - this._correctX(width);
   }
 
   /**

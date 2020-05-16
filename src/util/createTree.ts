@@ -22,9 +22,9 @@ const createTree = (
    */
   const initTree = (
     parentPosition: Position<FamilyNode>,
-    children: BasisObj[] | string[]
+    children: BasisObj[] | string[] | undefined
   ) => {
-    if (children.length && typeof children[0] !== 'string') {
+    if (children && children.length && typeof children[0] !== 'string') {
       const modifiedChild = children as BasisObj[];
       modifiedChild.forEach((obj) => {
         const element: FamilyNode = createElement(obj);

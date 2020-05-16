@@ -151,7 +151,7 @@ abstract class Tree<T> {
     }
   }
 
-  private *_subtreePostorder(p: Position<T>): IterableIterator<Position<T>> {
+  protected *_subtreePostorder(p: Position<T>): IterableIterator<Position<T>> {
     for (const children of this.children(p)) {
       for (const descendant of this._subtreePostorder(children)) {
         yield descendant;
@@ -160,16 +160,25 @@ abstract class Tree<T> {
     yield p;
   }
 
-  *breadthfirst(): IterableIterator<Position<T>> {
-    if (!this.isEmpty()) {
-      const queue: ArrayQueue<Position<T>> = new ArrayQueue();
-      queue.enqueue(this.root()!);
-      while (!queue.isEmpty()) {
-        const position: Position<T> = queue.dequeue()!;
+  *breadthFirst(): IterableIterator<Position<T>> {
+    const root: Position<T> | null = this.root();
+    if (root !== null) {
+      for (const position of this._subtreeBreadthFirst(root)) {
         yield position;
-        for (const children of this.children(position)) {
-          queue.enqueue(children);
-        }
+      }
+    }
+  }
+
+  protected *_subtreeBreadthFirst(
+    p: Position<T>
+  ): IterableIterator<Position<T>> {
+    const queue: ArrayQueue<Position<T>> = new ArrayQueue();
+    queue.enqueue(p);
+    while (!queue.isEmpty()) {
+      const position: Position<T> = queue.dequeue()!;
+      yield position;
+      for (const children of this.children(position)) {
+        queue.enqueue(children);
       }
     }
   }

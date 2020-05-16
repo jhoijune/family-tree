@@ -1,54 +1,70 @@
-import React, { useState, createContext } from 'react';
-import { View, Dimensions, StyleSheet } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, StyleSheet, DrawerLayoutAndroid } from 'react-native';
 
-import { HomeScreenProps, FamilyNode, Position } from '../type';
-import { SearchContainer, TreeContainer } from '../component';
-
-const { width, height } = Dimensions.get('window');
-
-const LoadingContext = createContext({
-  toggle: () => {},
-});
+import { HomeScreenProps, FamilyNode, Position, PopupInfo } from '../type';
+import { SearchContainer, TreeContainer, Popup, Drawer } from '../component';
+import { LoadingContext, PopupContext, DimensionsContext } from '../context';
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
-  treeObj,
-  navigation: { navigate },
+  navigation: { navigate, push, setOptions },
+  route: {
+    params: { presentRoot },
+  },
 }) => {
-  const [selectedPositions, setSelectedPositions] = useState<
+  const [searchedPositions, setSearchedPositions] = useState<
     Position<FamilyNode>[]
   >([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const toggle = () => {
-    setIsLoading(false);
-  };
+  const [popupInfo, setPopupInfo] = useState<PopupInfo>({
+    visible: false,
+    x: 0,
+    y: 0,
+    items: [],
+    cleanup: () => {},
+  });
+  const { width, height } = useContext(DimensionsContext);
 
   return (
-    <LoadingContext.Provider value={{ toggle }}>
-      <View style={styles.container}>
-        <TreeContainer
-          treeObj={treeObj}
-          move={navigate}
-          selectedPositions={selectedPositions}
+    <LoadingContext.Provider value={{ setIsLoading }}>
+      <PopupContext.Provider
+        value={{
+          setInfo: setPopupInfo,
+        }}>
+        <View style={[styles.container, { width, height }]}>
+          <TreeContainer
+            navigation={{ navigate, push }}
+            searchedPositions={searchedPositions}
+            presentRoot={presentRoot}
+          />
+          <SearchContainer
+            isLoading={isLoading}
+            move={navigate}
+            setSearchedPositions={setSearchedPositions}
+            presentRoot={presentRoot}
+          />
+        </View>
+        <Popup
+          visible={popupInfo.visible}
+          setInfo={setPopupInfo}
+          x={popupInfo.x}
+          y={popupInfo.y}
+          items={popupInfo.items}
+          cleanup={popupInfo.cleanup}
         />
-        <SearchContainer
-          treeObj={treeObj}
-          isLoading={isLoading}
-          move={navigate}
-          setSelectedPositions={setSelectedPositions}
-        />
-      </View>
+      </PopupContext.Provider>
     </LoadingContext.Provider>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width,
-    height,
     justifyContent: 'center',
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#fff',
   },
 });
 
 export default HomeScreen;
-export { LoadingContext };

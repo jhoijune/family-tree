@@ -1,32 +1,43 @@
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, NavigationContainerRef } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FamilyTree } from './DataStructure';
-import { infoProps } from './setting';
+import { propsMappedName } from './setting';
+import { Dispatch, SetStateAction, MutableRefObject } from 'react';
+import { DrawerLayoutAndroid } from 'react-native';
 
 export interface Position<T> {
   element: T | null;
 }
 
-export type BasisObj = {
+export type EssentialObj = {
   name: string;
-  children: BasisObj[] | string[];
+  mother: string | string[];
+  birth: string;
+  generation: number;
+};
+
+// data.json의 형태
+export type BasisObj = EssentialObj & {
+  children?: BasisObj[] | string[];
   isCenter?: boolean;
   [key: string]: unknown;
 };
 
-export type Properties = keyof typeof infoProps;
+export type Properties = keyof typeof propsMappedName;
 
-export type EssensitalObj = { name: string; generation: number };
-
-export type OptionalProp = Exclude<Properties, keyof EssensitalObj>;
-
-export type InfoNode = EssensitalObj &
+export type OptionalProp = Exclude<Properties, keyof EssentialObj>;
+// 노드에서 갖는 기술적 정보
+export type InfoNode = EssentialObj &
   { [key in OptionalProp]?: string | string[] | number };
 
+export type ID = string & { readonly brand: unique symbol };
+
+// 노드에서 갖는 특징적 정보
 export type NodeFeature = {
+  id: ID;
   isCenter: boolean;
 };
-
+// 노드가 갖는 전체 정보
 export type FamilyNode = NodeFeature & InfoNode;
 
 export type SearchResultItem<T extends {}> = {
@@ -56,7 +67,7 @@ export type Info = {
 export type Infos = Info[];
 
 export type StackParamList = {
-  Home: undefined;
+  Home: { presentRoot: Position<FamilyNode> };
   Info: { position: Position<FamilyNode>; keyword?: string };
 };
 
@@ -70,6 +81,8 @@ export type InfoScreenNavigationProp = StackNavigationProp<
   'Info'
 >;
 
+export type HomeScreenRouteProp = RouteProp<StackParamList, 'Home'>;
+
 export type InfoScreenRouteProp = RouteProp<StackParamList, 'Info'>;
 
 export type HomeScreenNavigationParameter = Parameters<
@@ -77,12 +90,11 @@ export type HomeScreenNavigationParameter = Parameters<
 >;
 
 export type HomeScreenProps = {
-  treeObj: FamilyTree<FamilyNode>;
   navigation: HomeScreenNavigationProp;
+  route: HomeScreenRouteProp;
 };
 
 export type InfoScreenProps = {
-  treeObj: FamilyTree<FamilyNode>;
   navigation: InfoScreenNavigationProp;
   route: InfoScreenRouteProp;
 };
@@ -112,23 +124,25 @@ export type MoveableViewProps = {
   style?: {};
 };
 
+type foo = Parameters<HomeScreenNavigationProp['navigate']>;
+
 export type SearchContainerProps = {
-  treeObj: FamilyTree<FamilyNode>;
   isLoading: boolean;
   move: HomeScreenNavigationProp['navigate'];
-  setSelectedPositions: React.Dispatch<
+  setSearchedPositions: React.Dispatch<
     React.SetStateAction<Position<FamilyNode>[]>
   >;
+  presentRoot: Position<FamilyNode>;
 };
 
 export type SearchboxProps = {
-  treeObj: FamilyTree<FamilyNode>;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   move: HomeScreenNavigationProp['navigate'];
-  setSelectedPositions: React.Dispatch<
+  setSearchedPositions: React.Dispatch<
     React.SetStateAction<Position<FamilyNode>[]>
   >;
+  presentRoot: Position<FamilyNode>;
 };
 
 export type SearchResultProps = {
@@ -140,9 +154,12 @@ export type SearchResultProps = {
 };
 
 export type TreeContainerProps = {
-  treeObj: FamilyTree<FamilyNode>;
-  move: HomeScreenNavigationProp['navigate'];
-  selectedPositions: Position<FamilyNode>[];
+  navigation: {
+    navigate: HomeScreenNavigationProp['navigate'];
+    push: HomeScreenNavigationProp['push'];
+  };
+  searchedPositions: Position<FamilyNode>[];
+  presentRoot: Position<FamilyNode>;
 };
 
 export type TreeViewProps = {
@@ -153,43 +170,39 @@ export type TreeViewProps = {
 };
 
 export type TreeComponentProps = {
-  treeObj: FamilyTree<FamilyNode>;
   setTreeElement: React.Dispatch<React.SetStateAction<JSX.Element | null>>;
-  selectedPositions: Position<FamilyNode>[];
-  root: Position<FamilyNode>;
+  searchedPositions: Position<FamilyNode>[];
+  presentRoot: Position<FamilyNode>;
   rootX: number;
-  padding: number;
-  nodeWidth: number;
-  nodeHeight: number;
-  colors: readonly string[];
-  move: HomeScreenNavigationProp['navigate'];
-  verticalInterval: number;
-  horizontalInterval: number;
+  navigation: {
+    navigate: HomeScreenNavigationProp['navigate'];
+    push: HomeScreenNavigationProp['push'];
+  };
 };
 
 export type SubtreeComponentProps = {
-  treeObj: FamilyTree<FamilyNode>;
   position: Position<FamilyNode>;
-  move: HomeScreenNavigationProp['navigate'];
+  navigation: {
+    navigate: HomeScreenNavigationProp['navigate'];
+    push: HomeScreenNavigationProp['push'];
+  };
   x: number;
   y: number;
-  nodeWidth: number;
-  nodeHeight: number;
-  verticalInterval: number;
-  horizontalInterval: number;
-  colors: readonly string[];
-  selectedPositions: Position<FamilyNode>[];
+  searchedPositions: Position<FamilyNode>[];
+  pressedPosition: Position<FamilyNode> | null;
 };
 
 export type NodeProps = {
   position: Position<FamilyNode>;
   x: number;
   y: number;
-  width: number;
-  height: number;
   color: string;
-  move: HomeScreenNavigationProp['navigate'];
-  selectedPositions: Position<FamilyNode>[];
+  navigation: {
+    navigate: HomeScreenNavigationProp['navigate'];
+    push: HomeScreenNavigationProp['push'];
+  };
+  searchedPositions: Position<FamilyNode>[];
+  isBlur: boolean;
 };
 
 export type BranchProps = {
@@ -197,11 +210,35 @@ export type BranchProps = {
   y: number;
   branchHeight: number;
   branchXs: number[];
+  isBlur: boolean;
 };
 
 export type GenerationNodeProps = {
   children: React.ReactChild;
   y: number;
-  width: number;
-  height: number;
+};
+
+export type PopupItems = { text: string; action: Function }[];
+
+export type PopupProps = {
+  visible: boolean;
+  setInfo: React.Dispatch<React.SetStateAction<PopupInfo>>;
+  x: number;
+  y: number;
+  items: PopupItems;
+  cleanup: () => void;
+};
+
+export type PopupInfo = {
+  visible: boolean;
+  x: number;
+  y: number;
+  items: PopupItems;
+  cleanup: () => void;
+};
+
+export type DrawerProps = {
+  navigationRef: NavigationContainerRef | null;
+  drawerRef: DrawerLayoutAndroid | null;
+  positions: Position<FamilyNode>[];
 };

@@ -1,18 +1,22 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
+import { TouchableNativeFeedback } from 'react-native';
 import { G, Text, Rect } from 'react-native-svg';
 
+import { PopupContext, TreeContext, PressedContext } from '../context';
 import { NodeProps } from '../type';
 
 const Node: React.FC<NodeProps> = ({
   position,
   x,
   y,
-  width,
-  height,
   color,
-  move,
-  selectedPositions,
+  searchedPositions,
+  navigation: { navigate, push },
+  isBlur,
 }) => {
+  const { setInfo } = useContext(PopupContext);
+  const { nodeWidth, nodeHeight } = useContext(TreeContext);
+  const { setPressedPosition } = useContext(PressedContext);
   const text = useMemo(() => {
     const { element } = position;
     if (element !== null) {
@@ -27,28 +31,54 @@ const Node: React.FC<NodeProps> = ({
     }
     return '';
   }, []);
-  const isHighlight = selectedPositions.includes(position);
+  const isHighlight = searchedPositions.includes(position);
   const modifiedColor = isHighlight ? '#FF4C4F' : color;
 
   return (
-    <G>
+    <G opacity={isBlur ? 0.4 : 1}>
       <Rect
         x={x}
         y={y}
-        rx={width / 6}
-        ry={width / 6}
-        width={width}
-        height={height}
+        rx={nodeWidth / 6}
+        ry={nodeWidth / 6}
+        width={nodeWidth}
+        height={nodeHeight}
         fill={modifiedColor}
         onPress={() => {
-          move('Info', {
-            position: position,
+          navigate('Info', {
+            position,
+          });
+        }}
+        onLongPress={(evt) => {
+          const {
+            nativeEvent: { locationX: x, locationY: y },
+          } = evt;
+          setPressedPosition(position);
+          setInfo({
+            x,
+            y,
+            visible: true,
+            items: [
+              {
+                text: '재구성',
+                action: () => {
+                  push('Home', {
+                    presentRoot: position,
+                  });
+                  setPressedPosition(null);
+                  setInfo((value) => ({ ...value, visible: false }));
+                },
+              },
+            ],
+            cleanup: () => {
+              setPressedPosition(null);
+            },
           });
         }}
       />
       <Text
         x={x}
-        y={y + height / 2 + 2}
+        y={y + nodeHeight / 2 + 2}
         fill={isHighlight ? '#fff' : '#000'}
         fontSize={6}
         fontWeight="bold"

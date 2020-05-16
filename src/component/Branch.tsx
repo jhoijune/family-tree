@@ -3,10 +3,16 @@ import { G, Line } from 'react-native-svg';
 
 import { BranchProps } from '../type';
 
-const stroke = 'black';
+const stroke = '#000';
 const strokeWidth = 0.5;
 
-const Branch: React.FC<BranchProps> = ({ x, y, branchHeight, branchXs }) => {
+const Branch: React.FC<BranchProps> = ({
+  x,
+  y,
+  branchHeight,
+  branchXs,
+  isBlur,
+}) => {
   if (branchXs.length > 1) {
     const [firstX] = branchXs;
     const branchWidth = branchXs[branchXs.length - 1] - firstX;
@@ -14,7 +20,7 @@ const Branch: React.FC<BranchProps> = ({ x, y, branchHeight, branchXs }) => {
     const secondY = y + branchHeight / 2;
     const thirdY = y + branchHeight;
     return (
-      <G>
+      <G opacity={isBlur ? 0.4 : 1}>
         <Line
           x1={x}
           x2={x}
@@ -46,7 +52,7 @@ const Branch: React.FC<BranchProps> = ({ x, y, branchHeight, branchXs }) => {
     );
   }
   return (
-    <G>
+    <G opacity={isBlur ? 0.4 : 1}>
       <Line
         x1={x}
         x2={x}

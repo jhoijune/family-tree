@@ -1,44 +1,41 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useContext } from 'react';
 import _ from 'lodash';
 import { Line, G } from 'react-native-svg';
 
 import TreeComponent from './TreeComponent';
 import TreeView from './TreeView';
 import GenerationNode from './GenerationNode';
-import { TreeContainerProps, Position, FamilyNode } from '../type';
-
-const PADDING = 10;
-const NODE_WIDTH = 30;
-const NODE_HEIGHT = 15;
-const VERTICAL_INTERVAL = 10;
-const HORIZONTAL_INTERVAL = 5;
-const COLORS: readonly string[] = ['#99CDFF', '#CCFF9A', '#FEFF99', '#99FFCD'];
+import { TreeContext } from '../context';
+import { TreeContainerProps } from '../type';
 
 const TreeContainer: React.FC<TreeContainerProps> = ({
-  treeObj,
-  move,
-  selectedPositions,
+  navigation,
+  searchedPositions,
+  presentRoot,
 }) => {
   const [treeElement, setTreeElement] = useState<JSX.Element | null>(null);
   const {
-    root,
-    rootX,
-    generationNodes,
-    generationDottedLines,
-  } = useMemo(() => {
-    const root: Position<FamilyNode> = treeObj.root()!;
+    treeObj,
+    nodeWidth,
+    nodeHeight,
+    horizontalInterval,
+    verticalInterval,
+    padding,
+  } = useContext(TreeContext);
+  const { rootX, generationNodes, generationDottedLines } = useMemo(() => {
     const rootX = treeObj.calculateRootX(
-      NODE_WIDTH,
-      HORIZONTAL_INTERVAL,
-      PADDING
+      presentRoot,
+      nodeWidth,
+      horizontalInterval,
+      padding
     );
     const svgWidth = treeObj.calculateSubtreeWidth(
-      root,
-      NODE_WIDTH,
-      HORIZONTAL_INTERVAL
+      presentRoot,
+      nodeWidth,
+      horizontalInterval
     );
-    const firstGeneartion: number = root.element!.generation;
-    const treeHeight = treeObj.height();
+    const firstGeneartion = presentRoot.element!.generation;
+    const treeHeight = treeObj.height(presentRoot);
     const generations = _.range(
       firstGeneartion,
       firstGeneartion + treeHeight + 1
@@ -48,16 +45,14 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
         {generations.map((generation, index) => (
           <GenerationNode
             key={index}
-            y={PADDING + (VERTICAL_INTERVAL + NODE_HEIGHT) * index}
-            width={NODE_WIDTH}
-            height={NODE_HEIGHT}>
+            y={padding + (verticalInterval + nodeHeight) * index}>
             {generation}
           </GenerationNode>
         ))}
       </G>
     );
     const generationDottedLines = (
-      width: number = svgWidth + PADDING * 2
+      width: number = svgWidth + padding * 2
     ): JSX.Element => (
       <G>
         {_.range(generations.length * 2).map((value) => (
@@ -66,14 +61,14 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
             x1={0}
             x2={width}
             y1={
-              PADDING +
-              NODE_HEIGHT * Math.round(value / 2) +
-              VERTICAL_INTERVAL * (value / 2 - (value % 2) / 2)
+              padding +
+              nodeHeight * Math.round(value / 2) +
+              verticalInterval * (value / 2 - (value % 2) / 2)
             }
             y2={
-              PADDING +
-              NODE_HEIGHT * Math.round(value / 2) +
-              VERTICAL_INTERVAL * (value / 2 - (value % 2) / 2)
+              padding +
+              nodeHeight * Math.round(value / 2) +
+              verticalInterval * (value / 2 - (value % 2) / 2)
             }
             stroke={'#bbb'}
             strokeWidth={0.5}
@@ -82,7 +77,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
         ))}
       </G>
     );
-    return { root, rootX, generationNodes, generationDottedLines };
+    return { rootX, generationNodes, generationDottedLines };
   }, []);
 
   return (
@@ -94,18 +89,11 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
         generationDottedLines={generationDottedLines}
       />
       <TreeComponent
-        treeObj={treeObj}
         setTreeElement={setTreeElement}
-        selectedPositions={selectedPositions}
-        root={root}
+        searchedPositions={searchedPositions}
+        presentRoot={presentRoot}
         rootX={rootX}
-        padding={PADDING}
-        nodeWidth={NODE_WIDTH}
-        nodeHeight={NODE_HEIGHT}
-        colors={COLORS}
-        move={move}
-        verticalInterval={VERTICAL_INTERVAL}
-        horizontalInterval={HORIZONTAL_INTERVAL}
+        navigation={navigation}
       />
     </>
   );

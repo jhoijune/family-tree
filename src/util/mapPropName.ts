@@ -1,4 +1,4 @@
-import { infoProps } from '../setting';
+import { propsMappedName } from '../setting';
 import { Properties } from '../type';
 
 /**
@@ -8,7 +8,7 @@ import { Properties } from '../type';
  * @param propNames
  */
 const mapPropName = (prop: Properties): string => {
-  return infoProps[prop];
+  return propsMappedName[prop];
 };
 
 export default mapPropName;

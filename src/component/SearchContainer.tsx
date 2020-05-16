@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableHighlight, Dimensions } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StyleSheet, View, TouchableNativeFeedback } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { SearchContainerProps } from '../type';
+import { DimensionsContext } from '../context';
 import Searchbox from './Searchbox';
 
-const { height } = Dimensions.get('window');
-
 const SearchContainer: React.FC<SearchContainerProps> = ({
-  treeObj,
   isLoading,
   move,
-  setSelectedPositions,
+  setSearchedPositions,
+  presentRoot,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const { width, height } = useContext(DimensionsContext);
+  const bottom = width > height ? 100 : 75;
   return (
     <>
       <Searchbox
-        treeObj={treeObj}
         visible={modalVisible}
         setVisible={setModalVisible}
         move={move}
-        setSelectedPositions={setSelectedPositions}
+        setSearchedPositions={setSearchedPositions}
+        presentRoot={presentRoot}
       />
       {isLoading ? null : (
-        <TouchableHighlight
-          style={styles.magnify}
+        <TouchableNativeFeedback
           onPress={() => {
             setModalVisible(true);
-          }}>
-          <Ionicons name="ios-search" size={50} color="#919191" />
-        </TouchableHighlight>
+          }}
+          background={TouchableNativeFeedback.Ripple('#000', true)}>
+          <View style={[styles.magnify, { bottom }]}>
+            <Ionicons name="ios-search" size={50} color="#919191" />
+          </View>
+        </TouchableNativeFeedback>
       )}
     </>
   );
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#919191',
-    top: height - 150,
   },
 });
 

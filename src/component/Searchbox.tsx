@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   TextInput,
   Modal,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
+  TouchableNativeFeedback,
   StyleSheet,
-  Dimensions,
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,21 +16,23 @@ import {
   SearchResultItem,
   HomeScreenNavigationParameter,
 } from '../type';
+import { TreeContext, DimensionsContext } from '../context';
 import SearchResult from './SearchResult';
 
-const { width, height } = Dimensions.get('window');
-
 const Searchbox: React.FC<SearchboxProps> = ({
-  treeObj,
   visible,
   setVisible,
   move,
-  setSelectedPositions,
+  setSearchedPositions,
+  presentRoot,
 }) => {
   const [value, setValue] = useState('');
   const [resultItems, setResultItems] = useState<
     SearchResultItem<FamilyNode>[]
   >([]);
+  const { treeObj } = useContext(TreeContext);
+  const { width, height } = useContext(DimensionsContext);
+
   /**
    *  info screen으로 이동할 때 modal안 보이게 하기 위해 변형함
    * @param text
@@ -43,13 +45,13 @@ const Searchbox: React.FC<SearchboxProps> = ({
 
   useEffect(() => {
     if (value.length !== 0) {
-      const { results } = treeObj.searchKeyword(value);
+      const { results } = treeObj.searchKeyword(value, presentRoot);
       const positions = results.map(({ position }) => position);
       setResultItems(results);
-      setSelectedPositions(positions);
+      setSearchedPositions(positions);
     } else {
       setResultItems([]);
-      setSelectedPositions([]);
+      setSearchedPositions([]);
     }
   }, [value]);
 
@@ -61,70 +63,79 @@ const Searchbox: React.FC<SearchboxProps> = ({
       onRequestClose={() => {
         setVisible(false);
       }}>
-      <View style={styles.screen}>
-        <View style={styles.contentContainer}>
-          <View style={styles.searchContainer}>
-            <TouchableHighlight
-              onPress={() => {
-                setVisible(false);
-              }}
-              style={styles.backwardButton}>
-              <Ionicons name="ios-arrow-back" size={40} color="grey" />
-            </TouchableHighlight>
-            <TextInput
-              onChangeText={(text) => {
-                setValue(text);
-              }}
-              value={value}
-              style={styles.input}
-              placeholder="검색..."
-            />
-            {value.length === 0 ? null : (
-              <TouchableHighlight
-                onPress={() => {
-                  setValue('');
-                  setResultItems([]);
-                  setSelectedPositions([]);
-                }}
-                style={styles.cancelButton}>
-                <Ionicons name="ios-close" size={40} color="grey" />
-              </TouchableHighlight>
-            )}
-          </View>
-          <ScrollView
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setVisible(false);
+        }}>
+        <View style={[styles.screen, { width, height }]}>
+          <View
             style={[
-              styles.resultContainer,
-              { borderTopWidth: resultItems.length === 0 ? 0 : 1 },
+              styles.contentContainer,
+              { width: width - 75, height: height - 100 },
             ]}>
-            {resultItems.map(({ properties, position }, index) => (
-              <SearchResult
-                key={index}
-                position={position}
-                properties={properties}
-                move={modifiedMove}
-                keyword={value}
-                lastName={treeObj.lastName}
+            <View style={styles.searchContainer}>
+              <TouchableNativeFeedback
+                onPress={() => {
+                  setVisible(false);
+                }}
+                background={TouchableNativeFeedback.Ripple('#000', true)}>
+                <View style={styles.backwardButton}>
+                  <Ionicons name="ios-arrow-back" size={40} color="grey" />
+                </View>
+              </TouchableNativeFeedback>
+              <TextInput
+                onChangeText={(text) => {
+                  setValue(text);
+                }}
+                value={value}
+                style={styles.input}
+                placeholder="검색..."
               />
-            ))}
-          </ScrollView>
+              {value.length === 0 ? null : (
+                <TouchableNativeFeedback
+                  onPress={() => {
+                    setValue('');
+                    setResultItems([]);
+                    setSearchedPositions([]);
+                  }}
+                  background={TouchableNativeFeedback.Ripple('#000', true)}>
+                  <View style={styles.cancelButton}>
+                    <Ionicons name="ios-close" size={40} color="grey" />
+                  </View>
+                </TouchableNativeFeedback>
+              )}
+            </View>
+            <ScrollView
+              style={[
+                styles.resultContainer,
+                { borderTopWidth: resultItems.length === 0 ? 0 : 1 },
+              ]}>
+              {resultItems.map(({ properties, position }, index) => (
+                <SearchResult
+                  key={index}
+                  position={position}
+                  properties={properties}
+                  move={modifiedMove}
+                  keyword={value}
+                  lastName={treeObj.lastName}
+                />
+              ))}
+            </ScrollView>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
-    width,
-    height,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   contentContainer: {
     backgroundColor: 'transparent',
-    width: width - 75,
-    height: height - 100,
   },
   searchContainer: {
     backgroundColor: '#fff',
