@@ -12,7 +12,10 @@ import { Svg } from 'react-native-svg';
 import _ from 'lodash';
 
 import { TreeViewProps } from '../type';
-import { LoadingContext, TreeContext, DimensionsContext } from '../context';
+import { LoadingContext, DimensionsContext } from '../context';
+import { treeSetting } from '../setting';
+
+const VELOCITY = 0.004;
 
 const getDiagonalLength = (touches: NativeTouchEvent[]): number => {
   const [touch1, touch2] = touches;
@@ -44,8 +47,8 @@ const TreeView: React.FC<TreeViewProps> = ({
   generationNodes,
   generationDottedLines,
 }) => {
+  const { padding } = treeSetting;
   const { setIsLoading } = useContext(LoadingContext);
-  const { padding } = useContext(TreeContext);
   const { width, height } = useContext(DimensionsContext);
   const [isInit, setIsInit] = useState(true);
   const [scale, setScale] = useState(2);
@@ -101,19 +104,17 @@ const TreeView: React.FC<TreeViewProps> = ({
               scale: initialScale,
             } = initialTouchStateRef.current;
             const currentLength = getDiagonalLength(touches);
-            const velocity = 0.002;
             const newScale =
-              initialScale + (currentLength - initialLength) * velocity;
+              initialScale + (currentLength - initialLength) * VELOCITY;
             const scaleChange = scaleRef.current - newScale;
             setScale(newScale);
-            // FIXME: 좀더 세밀하게
             setPosition({
               x:
-                positionRef.current.x +
-                scaleChange * (initialX - positionRef.current.x),
+                (positionRef.current.x * newScale) / scaleRef.current +
+                initialX * scaleChange,
               y:
-                positionRef.current.y +
-                scaleChange * (initialY - positionRef.current.y),
+                (positionRef.current.y * newScale) / scaleRef.current +
+                initialY * scaleChange,
             });
           }
         } else if (
@@ -179,7 +180,7 @@ const TreeView: React.FC<TreeViewProps> = ({
         </>
       ) : (
         <ActivityIndicator
-          size={72}
+          size={60}
           color="#008ff8"
           style={{ elevation: 15 }}
         />

@@ -1,9 +1,9 @@
 import React, { useMemo, useContext } from 'react';
-import { TouchableNativeFeedback } from 'react-native';
 import { G, Text, Rect } from 'react-native-svg';
 
-import { PopupContext, TreeContext, PressedContext } from '../context';
+import { PopupContext, PressedContext } from '../context';
 import { NodeProps } from '../type';
+import { treeSetting } from '../setting';
 
 const Node: React.FC<NodeProps> = ({
   position,
@@ -15,8 +15,9 @@ const Node: React.FC<NodeProps> = ({
   isBlur,
 }) => {
   const { setInfo } = useContext(PopupContext);
-  const { nodeWidth, nodeHeight } = useContext(TreeContext);
   const { setPressedPosition } = useContext(PressedContext);
+  const { nodeWidth, nodeHeight } = treeSetting;
+
   const text = useMemo(() => {
     const { element } = position;
     if (element !== null) {

@@ -9,7 +9,6 @@ import {
   ScrollView,
   StyleSheet,
   TouchableNativeFeedback,
-  Animated,
   ToastAndroid,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -83,7 +82,6 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
   },
 }) => {
   const [isFavorties, setIsFavorites] = useState(false);
-  const scale = new Animated.Value(1);
   const { treeObj } = useContext(TreeContext);
   const { isIDIncluded, storeID, deleteID } = useContext(StoreContext);
   const { name, id, infos } = useMemo(() => {
@@ -127,7 +125,6 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
 
   const handleStarPress = () => {
     setIsFavorites((value) => !value);
-    Animated.timing(scale, { toValue: 1.5, duration: 250 }).start();
     if (isFavorties) {
       ToastAndroid.showWithGravity(
         '즐겨찾기에 제거되었습니다',
@@ -159,13 +156,11 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
         <TouchableNativeFeedback
           onPress={handleStarPress}
           background={TouchableNativeFeedback.Ripple('#000', true)}>
-          <Animated.View style={{ transform: [{ scale }] }}>
-            {isFavorties ? (
-              <Ionicons name="ios-star" size={30} color="#F8CC02" />
-            ) : (
-              <Ionicons name="ios-star" size={30} color="#fff" />
-            )}
-          </Animated.View>
+          {isFavorties ? (
+            <Ionicons name="ios-star" size={30} color="#F8CC02" />
+          ) : (
+            <Ionicons name="ios-star" size={30} color="#fff" />
+          )}
         </TouchableNativeFeedback>
       ),
       headerRightContainerStyle: { marginRight: 15 },

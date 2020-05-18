@@ -18,7 +18,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 //import AsyncStorage from '@react-native-community/async-storage';
 
-import { lastName, treeSetting } from './src/setting';
+import { lastName } from './src/setting';
 import { createTree } from './src/util';
 import { HomeScreen, InfoScreen } from './src/screen';
 import { Drawer } from './src/component';
@@ -46,23 +46,29 @@ const getActiveRouteIndex = (state: NavigationState): number => state.index;
 const STORAGE_KEY = "JANG'S_FAMILY_TREE_FAVORITES";
 
 const App: React.FC = () => {
+  const [isDrawerClosed, setIsDrawerClosed] = useState(true);
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
   const [favoritesIDs, setFavoritesIDs] = useState<ID[]>([]);
   const isExitRef = useRef(false);
-  const isDrawerClosedRef = useRef(true);
+  const isDrawerClosedRef = useRef(isDrawerClosed);
   const timeOutIdRef = useRef(0);
   const routeIndexRef: MutableRefObject<number> = useRef(0);
   const navigationRef: MutableRefObject<NavigationContainerRef | null> = useRef(
     null
   );
   const drawerRef: MutableRefObject<DrawerLayoutAndroid | null> = useRef(null);
+  isDrawerClosedRef.current = isDrawerClosed;
 
   const handleBackButton = () => {
     if (!isDrawerClosedRef.current) {
       drawerRef.current!.closeDrawer();
     } else if (routeIndexRef.current === 0) {
       if (!isExitRef.current) {
-        ToastAndroid.show('한번 더 누르시면 종료됩니다.', ToastAndroid.SHORT);
+        ToastAndroid.showWithGravity(
+          '한번 더 누르시면 종료됩니다.',
+          ToastAndroid.SHORT,
+          ToastAndroid.BOTTOM
+        );
         isExitRef.current = true;
         const id = setTimeout(() => {
           isExitRef.current = false;
@@ -168,7 +174,6 @@ const App: React.FC = () => {
   useEffect(() => {
     (async () => {
       const IDs = await getIDs();
-      console.log(IDs);
       if (IDs != null) {
         setFavoritesIDs(IDs);
       }
@@ -183,27 +188,36 @@ const App: React.FC = () => {
         onStateChange={(state) => {
           routeIndexRef.current = getActiveRouteIndex(state!);
         }}>
-        <TreeContext.Provider value={{ treeObj, ...treeSetting }}>
+        <TreeContext.Provider value={{ treeObj }}>
           <DimensionsContext.Provider value={dimensions}>
             <StoreContext.Provider
               value={{ getIDs, isIDIncluded, storeID, deleteID }}>
               <DrawerLayoutAndroid
                 ref={drawerRef}
                 drawerWidth={200}
+                onDrawerOpen={() => {
+                  setIsDrawerClosed(false);
+                }}
+                onDrawerClose={() => {
+                  setIsDrawerClosed(true);
+                }}
                 drawerPosition={'right'}
+                drawerLockMode={isDrawerClosed ? 'locked-closed' : 'unlocked'}
                 renderNavigationView={() => (
                   <Drawer
-                    navigationRef={navigationRef.current}
-                    drawerRef={drawerRef.current}
+                    move={
+                      navigationRef.current
+                        ? navigationRef.current.navigate
+                        : () => {}
+                    }
+                    closeDrawer={() => {
+                      if (drawerRef.current) {
+                        drawerRef.current.closeDrawer();
+                      }
+                    }}
                     positions={findIDMatchedPositions()}
                   />
                 )}
-                onDrawerOpen={() => {
-                  isDrawerClosedRef.current = false;
-                }}
-                onDrawerClose={() => {
-                  isDrawerClosedRef.current = true;
-                }}
                 drawerBackgroundColor="transparent">
                 <Stack.Navigator
                   initialRouteName="Home"

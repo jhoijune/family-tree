@@ -6,15 +6,16 @@ import {
   Text,
   Animated,
   TouchableWithoutFeedback,
-  TouchableOpacity,
+  TouchableNativeFeedback,
 } from 'react-native';
 
 import { DimensionsContext } from '../context';
 import { PopupProps } from '../type';
 
-const X_MARGIN: number = 10;
-const BOX_WIDTH: number = 60; // 팝업 메시지 길이 최대로 맞춰야함
-const BOX_HEIGHT: number = 20; // 팝업 메시지 개수에 따라 변경해야 함
+const X_MARGIN: number = 50;
+const Y_MARGIN: number = 50;
+const BOX_WIDTH: number = 75; // 팝업 메시지 길이 최대로 맞춰야함
+const BOX_HEIGHT: number = 30; // 팝업 메시지 개수에 따라 변경해야 함
 const DURATION: number = 250;
 
 const Popup: React.FC<PopupProps> = ({
@@ -25,17 +26,20 @@ const Popup: React.FC<PopupProps> = ({
   items,
   cleanup,
 }) => {
-  // FIXME: 처음 열 때 2번 열리고 스타일 깔끔하게
   const { width, height } = useContext(DimensionsContext);
-  const scale = new Animated.Value(0);
+  const scale = new Animated.Value(0.01);
   const { top, left } = useMemo(() => {
     const boxHeight: number = BOX_HEIGHT * items.length;
-    let top: number = y + boxHeight / 2 + 40;
-    let left: number = x + X_MARGIN + BOX_WIDTH;
-    if (left > width) {
-      left = x - X_MARGIN - BOX_WIDTH;
+    let left: number = 0;
+    let top: number = 0;
+    if (x + X_MARGIN + BOX_WIDTH <= width) {
+      left = x + X_MARGIN;
+    } else {
+      left = x - X_MARGIN;
     }
-    if (top > height) {
+    if (y + boxHeight / 2 <= height) {
+      top = y + boxHeight / 2;
+    } else {
       top = y - boxHeight;
     }
     return { top, left };
@@ -81,15 +85,20 @@ const Popup: React.FC<PopupProps> = ({
               { top, left, transform: [{ scale: scale }] },
             ]}>
             {items.map(({ text, action }, index) => (
-              <TouchableOpacity
+              <TouchableNativeFeedback
                 key={index}
                 onPress={() => {
                   action();
-                }}>
-                <View style={[{ width: BOX_WIDTH, height: BOX_HEIGHT }]}>
+                }}
+                background={TouchableNativeFeedback.Ripple('#000', true)}>
+                <View
+                  style={[
+                    styles.item,
+                    { width: BOX_WIDTH, height: BOX_HEIGHT },
+                  ]}>
                   <Text style={styles.text}>{text}</Text>
                 </View>
-              </TouchableOpacity>
+              </TouchableNativeFeedback>
             ))}
           </Animated.View>
         </View>
@@ -102,12 +111,15 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     borderRadius: 2,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     elevation: 15,
   },
   text: {
-    textAlign: 'center',
     fontSize: 15,
+  },
+  item: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

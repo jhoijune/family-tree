@@ -1,32 +1,40 @@
 {
   "name": "서홍",
   "genealogical name": "익호",
-  "birth": "xxxx-xx-xx",
-  "mother": "임의",
+  "birth": "미상",
+  "deathday": "1718-02-08",
+  "mother": "미상",
+  "spouse": "광산노씨",
   "generation": 26,
   "isCenter": true,
   "children": [
     {
       "name": "종백",
       "genealogical name": "종옥",
-      "birth": "xxxx-xx-xx",
-      "mother": "임의",
+      "birth": "병자년 (1696)",
+      "deathday": "1758-03-13",
+      "mother": "광산노씨",
+      "spouse": "나주나씨 성산이씨",
       "generation": 27,
       "isCenter": true,
       "children": [
         {
           "name": "례중",
           "genealogical name": "한성",
-          "birth": "xxxx-xx-xx",
-          "mother": "임의",
+          "birth": "경자년 (1720)",
+          "deathday": "1791-04-19",
+          "mother": "나주나씨",
+          "spouse": "광산김씨",
           "generation": 28,
           "isCenter": true,
           "children": [
             {
               "name": "훈방",
               "genealogical name": "이묵",
-              "birth": "xxxx-xx-xx",
-              "mother": "임의",
+              "birth": "병신년 (1776)",
+              "deathday": "1849-04-20",
+              "mother": "광산김씨",
+              "spouse": "광산김씨",
               "generation": 29,
               "isCenter": true,
               "children": [
@@ -441,40 +449,48 @@
                 {
                   "name": "량언",
                   "genealogical name": "이채",
-                  "birth": "xxxx-xx-xx",
-                  "mother": "임의",
+                  "birth": "신사년 (1821)",
+                  "deathday": "1895-02-01",
+                  "mother": "광산김씨",
+                  "spouse": "해주최씨",
                   "generation": 30,
                   "isCenter": true,
                   "children": [
                     {
                       "name": "경도",
                       "genealogical name": "병욱",
-                      "birth": "xxxx-xx-xx",
-                      "mother": "임의",
+                      "birth": "정사년 (1857)",
+                      "deathday": "1895-02-01",
+                      "mother": "해주최씨",
+                      "spouse": "광산노씨",
                       "generation": 31,
                       "isCenter": true,
                       "children": [
                         {
                           "name": "내선",
                           "genealogical name": "성회",
-                          "birth": "xxxx-xx-xx",
-                          "mother": "임의",
+                          "birth": "1885-10-14",
+                          "deathday": "1952-09-22",
+                          "mother": "광산노씨",
+                          "spouse": ["하동정씨 옥선", "정옥선"],
                           "generation": 32,
                           "isCenter": true,
                           "children": [
                             {
                               "name": "정만",
                               "genealogical name": "주득",
-                              "birth": "xxxx-xx-xx",
-                              "mother": "임의",
+                              "birth": "1907-11-21",
+                              "deathday": "1993-09-12",
+                              "mother": ["하동정씨 옥선", "정옥선"],
+                              "spouse": ["한양조씨 야물", "조야물"],
                               "generation": 33,
                               "isCenter": true,
                               "children": [
                                 {
                                   "name": "홍기",
                                   "genealogical name": "홍기",
-                                  "birth": "xxxx-xx-xx",
-                                  "deathday": "2010-10-26",
+                                  "birth": "1931-12-01",
+                                  "deathday": "2010-10-27",
                                   "mother": ["한양조씨 야물", "조야물"],
                                   "spouse": ["파주염씨 덕현", "염덕현"],
                                   "generation": 34,
@@ -504,7 +520,7 @@
                                           "genealogical name": "국효",
                                           "birth": "1986-10-28",
                                           "mother": ["밀양손씨 윤희", "손윤희"],
-                                          "spouse": ["이정석"],
+                                          "spouse": ["전주이씨 정석", "이정석"],
                                           "generation": 36,
                                           "isCenter": true,
                                           "children": [
@@ -512,7 +528,10 @@
                                               "name": "희우",
                                               "genealogical name": "희우",
                                               "birth": "2019-09-24",
-                                              "mother": ["이정석"],
+                                              "mother": [
+                                                "전주이씨 정석",
+                                                "이정석"
+                                              ],
                                               "generation": 37,
                                               "isCenter": true,
                                               "children": []
@@ -535,6 +554,7 @@
                                       "genealogical name": "미숙",
                                       "birth": "1961-03-30",
                                       "mother": ["파주염씨 덕현", "염덕현"],
+                                      "spouse": ["김해김씨 창국", "김창국"],
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": ["김민수", "김은수"]
@@ -571,8 +591,9 @@
                                     {
                                       "name": "수정",
                                       "genealogical name": "수정",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1968-03-16",
+                                      "mother": ["파주염씨 덕현", "염덕현"],
+                                      "spouse": ["김해김씨 진호", "김진호"],
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": ["김영민", "김지우"]
@@ -582,24 +603,26 @@
                                 {
                                   "name": "용기",
                                   "genealogical name": "용기",
-                                  "birth": "xxxx-xx-xx",
+                                  "birth": "1936-04-09 (음력)",
                                   "mother": ["한양조씨 야물", "조야물"],
+                                  "spouse": ["충주박씨 영자", "박영자"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
                                     {
                                       "name": "욱진",
                                       "genealogical name": "우상",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1968-07-05",
+                                      "mother": ["충주박씨 영자", "박영자"],
+                                      "spouse": ["평강채씨 경애", "채경애"],
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": [
                                         {
                                           "name": "수현",
                                           "genealogical name": "수현",
-                                          "birth": "xxxx-xx-xx",
-                                          "mother": "임의",
+                                          "birth": "1997-06-18",
+                                          "mother": ["평강채씨 경애", "채경애"],
                                           "generation": 36,
                                           "isCenter": false,
                                           "children": []
@@ -607,8 +630,8 @@
                                         {
                                           "name": "현주",
                                           "genealogical name": "현주",
-                                          "birth": "xxxx-xx-xx",
-                                          "mother": "임의",
+                                          "birth": "1999-05-11",
+                                          "mother": ["평강채씨 경애", "채경애"],
                                           "generation": 36,
                                           "isCenter": false,
                                           "children": []
@@ -618,16 +641,17 @@
                                     {
                                       "name": "중진",
                                       "genealogical name": "우보",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1969-12-16",
+                                      "mother": ["충주박씨 영자", "박영자"],
+                                      "spouse": ["금광왕씨 문근", "왕문근"],
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": [
                                         {
                                           "name": "근효",
                                           "genealogical name": "근효",
-                                          "birth": "xxxx-xx-xx",
-                                          "mother": "임의",
+                                          "birth": "2000-08-23",
+                                          "mother": ["금광왕씨 문근", "왕문근"],
                                           "generation": 36,
                                           "isCenter": false,
                                           "children": []
@@ -635,8 +659,8 @@
                                         {
                                           "name": "효정",
                                           "genealogical name": "효정",
-                                          "birth": "xxxx-xx-xx",
-                                          "mother": "임의",
+                                          "birth": "1998-07-14",
+                                          "mother": ["금광왕씨 문근", "왕문근"],
                                           "generation": 36,
                                           "isCenter": false,
                                           "children": []
@@ -835,8 +859,10 @@
                             {
                               "name": "석태",
                               "genealogical name": "주상",
-                              "birth": "xxxx-xx-xx",
-                              "mother": "임의",
+                              "birth": "1913-02-20",
+                              "deathday": "1999-10-23",
+                              "mother": ["하동정씨 옥선", "정옥선"],
+                              "spouse": ["개성이씨 순임", "이순임"],
                               "generation": 33,
                               "isCenter": false,
                               "children": [
@@ -844,7 +870,7 @@
                                   "name": "웅기",
                                   "genealogical name": "웅기",
                                   "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "mother": ["개성이씨 순임", "이순임"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
@@ -908,16 +934,17 @@
                                 {
                                   "name": "흥기",
                                   "genealogical name": "흥기",
-                                  "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "birth": "1946-01-22",
+                                  "mother": ["개성이씨 순임", "이순임"],
+                                  "spouse": ["김해 재씨", "재심"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
                                     {
                                       "name": "선영",
                                       "genealogical name": "선영",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1975-07-26",
+                                      "mother": "재심",
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": []
@@ -925,20 +952,33 @@
                                     {
                                       "name": "미애",
                                       "genealogical name": "미애",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1979-01-28",
+                                      "mother": "재심",
+                                      "spouse": ["영성정씨 용", "정용"],
                                       "generation": 35,
                                       "isCenter": false,
-                                      "children": []
+                                      "children": ["백호", "예서", "시호"]
                                     },
                                     {
                                       "name": "우진",
                                       "genealogical name": "우진",
-                                      "birth": "xxxx-xx-xx",
+                                      "birth": "1982-04-07",
                                       "mother": "임의",
+                                      "spouse": ["영광정씨 태진", "정태진"],
                                       "generation": 35,
                                       "isCenter": false,
-                                      "children": []
+                                      "children": [
+                                        {
+                                          "name": "인우",
+                                          "genealogical name": "인우",
+                                          "birth": "1982-04-07",
+                                          "mother": "임의",
+                                          "spouse": ["영광정씨 태진", "정태진"],
+                                          "generation": 35,
+                                          "isCenter": false,
+                                          "children": []
+                                        }
+                                      ]
                                     },
                                     {
                                       "name": "우중",
@@ -954,16 +994,18 @@
                                 {
                                   "name": "영언",
                                   "genealogical name": "정기",
-                                  "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "birth": "1955-06-15",
+                                  "mother": ["개성이씨 순임", "이순임"],
+                                  "spouse": ["김해김씨 정화", "김정화"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
                                     {
                                       "name": "우열",
                                       "genealogical name": "우열",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1986-03-10",
+                                      "mother": ["김해김씨 정화", "김정화"],
+                                      "spouse": ["경주정씨 현경", "정현경"],
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": [
@@ -971,7 +1013,7 @@
                                           "name": "윤우",
                                           "genealogical name": "윤우",
                                           "birth": "2018-02-24",
-                                          "mother": "임의",
+                                          "mother": ["경주정씨 현경", "정현경"],
                                           "generation": 36,
                                           "isCenter": false,
                                           "children": []
@@ -981,8 +1023,8 @@
                                     {
                                       "name": "우출",
                                       "genealogical name": "우출",
-                                      "birth": "xxxx-xx-xx",
-                                      "mother": "임의",
+                                      "birth": "1989-06-24",
+                                      "mother": ["김해김씨 정화", "김정화"],
                                       "generation": 35,
                                       "isCenter": false,
                                       "children": []
@@ -994,8 +1036,10 @@
                             {
                               "name": "석주",
                               "genealogical name": "주영",
-                              "birth": "xxxx-xx-xx",
-                              "mother": "임의",
+                              "birth": "1916-09-07",
+                              "deathday": "1996-03-29",
+                              "mother": ["하동정씨 옥선", "정옥선"],
+                              "spouse": ["이천서씨 금순", "서금순"],
                               "generation": 33,
                               "isCenter": false,
                               "children": [
@@ -1003,7 +1047,7 @@
                                   "name": "정순",
                                   "genealogical name": "정순",
                                   "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "mother": ["이천서씨 금순", "서금순"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": []
@@ -1012,7 +1056,7 @@
                                   "name": "익성",
                                   "genealogical name": "대기",
                                   "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "mother": ["이천서씨 금순", "서금순"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
@@ -1068,7 +1112,7 @@
                                   "name": "정필",
                                   "genealogical name": "장기",
                                   "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "mother": ["이천서씨 금순", "서금순"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
@@ -1124,7 +1168,7 @@
                                   "name": "덕원",
                                   "genealogical name": "중기",
                                   "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "mother": ["이천서씨 금순", "서금순"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
@@ -1180,7 +1224,7 @@
                                   "name": "영철",
                                   "genealogical name": "문기",
                                   "birth": "xxxx-xx-xx",
-                                  "mother": "임의",
+                                  "mother": ["이천서씨 금순", "서금순"],
                                   "generation": 34,
                                   "isCenter": false,
                                   "children": [
@@ -1210,7 +1254,7 @@
                               "name": "석표",
                               "genealogical name": "주양",
                               "birth": "xxxx-xx-xx",
-                              "mother": "임의",
+                              "mother": ["하동정씨 옥선", "정옥선"],
                               "generation": 33,
                               "isCenter": false,
                               "children": [
@@ -1301,8 +1345,9 @@
                             {
                               "name": "석준",
                               "genealogical name": "주홍",
-                              "birth": "xxxx-xx-xx",
-                              "mother": "임의",
+                              "birth": "1927-09-01",
+                              "deathday": "1951-09-16",
+                              "mother": ["하동정씨 옥선", "정옥선"],
                               "generation": 33,
                               "isCenter": false,
                               "children": [

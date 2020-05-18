@@ -5,6 +5,7 @@ import SubtreeComponent from './SubtreeComponent';
 import Node from './Node';
 import { TreeContext, PressedContext } from '../context';
 import { TreeComponentProps, Position, FamilyNode } from '../type';
+import { treeSetting } from '../setting';
 
 const TreeComponent: React.FC<TreeComponentProps> = ({
   setTreeElement,
@@ -16,7 +17,8 @@ const TreeComponent: React.FC<TreeComponentProps> = ({
   const [pressedPosition, setPressedPosition] = useState<Position<
     FamilyNode
   > | null>(null);
-  const { treeObj, padding, colors } = useContext(TreeContext);
+  const { treeObj } = useContext(TreeContext);
+  const { padding, colors } = treeSetting;
   const depth = treeObj.depth(presentRoot);
   const colorInd = depth % colors.length;
 

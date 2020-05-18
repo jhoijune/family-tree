@@ -18,20 +18,11 @@ import { StoreContext } from '../context';
 
 type Args = Parameters<InfoScreenNavigationProp['push']>;
 
-const Drawer: React.FC<DrawerProps> = ({
-  navigationRef,
-  drawerRef,
-  positions,
-}) => {
+const Drawer: React.FC<DrawerProps> = ({ move, closeDrawer, positions }) => {
   const { deleteID } = useContext(StoreContext);
-  const handleMove = () => {
-    if (navigationRef && drawerRef) {
-      return (...args: Args) => {
-        navigationRef.navigate(...args);
-        drawerRef.closeDrawer();
-      };
-    }
-    return () => {};
+  const handleMove = (...args: Args) => {
+    move(...args);
+    closeDrawer();
   };
 
   return (
@@ -44,14 +35,14 @@ const Drawer: React.FC<DrawerProps> = ({
           <MoveableView
             key={index}
             position={position}
-            move={handleMove()}
+            move={handleMove}
             style={[
               styles.item,
               { borderBottomWidth: positions.length - 1 === index ? 1 : 0 },
             ]}>
             <TouchableNativeFeedback
               onPress={() => {
-                Alert.alert('삭제', '즐겨찾기에서 지우시겠습니끼?', [
+                Alert.alert('삭제', '즐겨찾기에서 삭제하시겠습니끼?', [
                   {
                     text: '예',
                     onPress: () => {

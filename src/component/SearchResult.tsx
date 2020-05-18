@@ -20,7 +20,6 @@ const SearchResult: React.FC<SearchResultProps> = ({
     const value = element[property];
     if (typeof value === 'string' || typeof value === 'number') {
       if (property === 'name') {
-        //FIXME: 성 부분 하드코딩하지 말아야함
         return [value.toString(), `${lastName}${value}`];
       }
       return value;

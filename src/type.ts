@@ -238,7 +238,7 @@ export type PopupInfo = {
 };
 
 export type DrawerProps = {
-  navigationRef: NavigationContainerRef | null;
-  drawerRef: DrawerLayoutAndroid | null;
+  move: NavigationContainerRef['navigate'];
+  closeDrawer: () => void;
   positions: Position<FamilyNode>[];
 };

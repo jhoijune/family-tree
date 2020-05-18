@@ -1,9 +1,10 @@
-import React, { useMemo, useContext, useRef } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { G } from 'react-native-svg';
 
 import Node from './Node';
 import Branch from './Branch';
 import { Position, SubtreeComponentProps, FamilyNode } from '../type';
+import { treeSetting } from '../setting';
 import { TreeContext } from '../context';
 
 const Subtree: React.FC<SubtreeComponentProps> = ({
@@ -15,13 +16,13 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
   pressedPosition,
 }) => {
   const {
-    treeObj,
     nodeWidth,
     nodeHeight,
     verticalInterval,
     horizontalInterval,
     colors,
-  } = useContext(TreeContext);
+  } = treeSetting;
+  const { treeObj } = useContext(TreeContext);
   const {
     childrenLen,
     branchX,

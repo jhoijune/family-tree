@@ -15,9 +15,6 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    },
     "packagerOpts": {
       "sourceExts": ["ts", "tsx", "js"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"

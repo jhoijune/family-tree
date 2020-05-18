@@ -7,6 +7,7 @@ import TreeView from './TreeView';
 import GenerationNode from './GenerationNode';
 import { TreeContext } from '../context';
 import { TreeContainerProps } from '../type';
+import { treeSetting } from '../setting';
 
 const TreeContainer: React.FC<TreeContainerProps> = ({
   navigation,
@@ -14,14 +15,14 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
   presentRoot,
 }) => {
   const [treeElement, setTreeElement] = useState<JSX.Element | null>(null);
+  const { treeObj } = useContext(TreeContext);
   const {
-    treeObj,
     nodeWidth,
     nodeHeight,
     horizontalInterval,
     verticalInterval,
     padding,
-  } = useContext(TreeContext);
+  } = treeSetting;
   const { rootX, generationNodes, generationDottedLines } = useMemo(() => {
     const rootX = treeObj.calculateRootX(
       presentRoot,
