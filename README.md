@@ -14,21 +14,21 @@ Jang's family tree and informations made available on android.
   <tr>
     <td align="center">
     <h3>1. Overview</h3>
-    <img src="./assets/Overview.gif" height="430">
+    <img src="./assets/Overview.gif" width="100%">
      </td>
     <td align="center">
     <h3>2. Scroll & Zoom </h3>
-    <img src="./assets/Scroll_and_zoom.gif" height="430">
+    <img src="./assets/Scroll_and_zoom.gif" width="100%">
     </td>
   </tr>
   <tr>
     <td align="center">
     <h3>3. Search & Highlight</h3>
-    <img src="./assets/Search_and_highlight.gif" height="430">
+    <img src="./assets/Search_and_highlight.gif" width="100%">
     </td>
     <td align="center">
     <h3>4. Favorties</h3>
-    <img src="./assets/Favorites.gif" height="430">
+    <img src="./assets/Favorites.gif" width="100%">
     </td>
   </tr>
 </table>
