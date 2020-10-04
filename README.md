@@ -1,14 +1,19 @@
-#  Jang's family tree
+# Jang's family tree
 
 <img src="./assets/icon.png" width="150" height="150" style="display:block;margin:0 auto">
 
+![typescript-version](https://img.shields.io/github/package-json/dependency-version/jhoijune/family-tree/dev/typescript)
+![react-version](https://img.shields.io/github/package-json/dependency-version/jhoijune/family-tree/react)
+![react-native-version](https://img.shields.io/github/package-json/dependency-version/jhoijune/family-tree/react-native)
+![expo-version](https://img.shields.io/github/package-json/dependency-version/jhoijune/family-tree/expo)
+
 Jang's family tree and informations made available on android.
 
-## Installation file
+## Download
 
 [Google drive](https://drive.google.com/file/d/1AbYrcs6SSL6Nyo69ceNZcrrsKgTFGq5h/view?usp=sharing)
 
-## Usage
+## Example
 
 <table align="center" width="100%">
   <tr>
