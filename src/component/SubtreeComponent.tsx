@@ -4,7 +4,7 @@ import { G } from 'react-native-svg';
 import Node from './Node';
 import Branch from './Branch';
 import { Position, SubtreeComponentProps, FamilyNode } from '../type';
-import { treeSetting } from '../setting';
+import { TREE_SETTING } from '../setting';
 import { TreeContext } from '../context';
 
 const Subtree: React.FC<SubtreeComponentProps> = ({
@@ -21,7 +21,7 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
     verticalInterval,
     horizontalInterval,
     colors,
-  } = treeSetting;
+  } = TREE_SETTING;
   const { treeObj } = useContext(TreeContext);
   const {
     childrenLen,

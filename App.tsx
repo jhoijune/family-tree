@@ -20,7 +20,7 @@ import {
 } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
-import { lastName } from './src/setting';
+import { LAST_NAME, START_GENERATION } from './src/setting';
 import { createTree } from './src/util';
 import { HomeScreen, InfoScreen } from './src/screen';
 import { Drawer } from './src/component';
@@ -29,7 +29,11 @@ import { StackParamList, FamilyNode, ID, Position } from './src/type';
 import { TreeContext, DimensionsContext, StoreContext } from './src/context';
 import data from './data.json';
 
-const treeObj: FamilyTree<FamilyNode> = createTree(data, lastName);
+const treeObj: FamilyTree<FamilyNode> = createTree(
+  data,
+  LAST_NAME,
+  START_GENERATION
+);
 
 const Stack = createStackNavigator<StackParamList>();
 

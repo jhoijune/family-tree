@@ -1,4 +1,4 @@
-import { featureProps } from '../setting';
+import { FEATURE_PROPS } from '../setting';
 import { InfoNode, FamilyNode, Properties } from '../type';
 
 /**
@@ -11,7 +11,7 @@ const removeProp = (
   additionalDeleteProps?: Properties[]
 ): InfoNode => {
   const copied = { ...obj };
-  for (const props of featureProps) {
+  for (const props of FEATURE_PROPS) {
     delete copied[props];
   }
   if (typeof additionalDeleteProps !== 'undefined') {

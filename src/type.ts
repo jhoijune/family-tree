@@ -1,7 +1,7 @@
 import { RouteProp, NavigationContainerRef } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FamilyTree } from './DataStructure';
-import { propsMappedName } from './setting';
+import { PROPS_MAPPED_NAME } from './setting';
 import { Dispatch, SetStateAction, MutableRefObject } from 'react';
 import { DrawerLayoutAndroid } from 'react-native';
 
@@ -9,26 +9,27 @@ export interface Position<T> {
   element: T | null;
 }
 
-export type EssentialObj = {
-  name: string;
-  mother: string | string[];
-  birth: string;
-  generation: number;
-};
-
 // data.json의 형태
-export type BasisObj = EssentialObj & {
+export type BasisObj = {
+  name: string;
+  mother?: string | string[];
+  birth?: string;
   children?: BasisObj[] | string[];
   isCenter?: boolean;
   [key: string]: unknown;
 };
 
-export type Properties = keyof typeof propsMappedName;
+export type Properties = keyof typeof PROPS_MAPPED_NAME;
+
+export type EssentialObj = { name: string; generation: number };
 
 export type OptionalProp = Exclude<Properties, keyof EssentialObj>;
+
 // 노드에서 갖는 기술적 정보
 export type InfoNode = EssentialObj &
-  { [key in OptionalProp]?: string | string[] | number };
+  {
+    [key in OptionalProp]?: string | string[] | number;
+  };
 
 export type ID = string & { readonly brand: unique symbol };
 

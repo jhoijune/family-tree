@@ -2,10 +2,10 @@ import React from 'react';
 import { G, Rect, Text } from 'react-native-svg';
 
 import { GenerationNodeProps } from '../type';
-import { treeSetting } from '../setting';
+import { TREE_SETTING } from '../setting';
 
 const GenerationNode: React.FC<GenerationNodeProps> = ({ children, y }) => {
-  const { nodeWidth, nodeHeight } = treeSetting;
+  const { nodeWidth, nodeHeight } = TREE_SETTING;
   return (
     <G>
       <Rect y={y} width={nodeWidth} height={nodeHeight} fill={'#F6F6BA'} />
@@ -15,7 +15,8 @@ const GenerationNode: React.FC<GenerationNodeProps> = ({ children, y }) => {
         fill={'#000'}
         fontSize={6}
         fontWeight="bold"
-        textAnchor="start">
+        textAnchor="start"
+      >
         {children}
       </Text>
     </G>

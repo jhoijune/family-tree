@@ -1,7 +1,7 @@
 import Position from './Position';
 import GeneralTree, { Node } from './GeneralTree';
 import { SearchResult, SearchResultItem, NodeFeature } from '../type';
-import { featureProps } from '../setting';
+import { FEATURE_PROPS } from '../setting';
 
 class FamilyTree<T extends { [key: string]: unknown }> extends GeneralTree<T> {
   public lastName: string;
@@ -23,7 +23,7 @@ class FamilyTree<T extends { [key: string]: unknown }> extends GeneralTree<T> {
       const { element: object } = position;
       const props: string[] = Object.keys(object!);
       const deletedProps = props.filter(
-        (prop) => !featureProps.includes(prop as any)
+        (prop) => !FEATURE_PROPS.includes(prop as any)
       ) as NodeInfo[];
       const filteredProps: NodeInfo[] = [];
       deletedProps.forEach((prop) => {

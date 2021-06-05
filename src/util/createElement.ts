@@ -1,17 +1,17 @@
 import { ID, BasisObj, FamilyNode } from '../type';
-import { essentialProps } from '../setting';
 import Crypto from 'crypto-js';
 
 /**
  * 노드의 정의된 element를 생성하는 함수
  * @param obj
  */
-const createElement = (obj: BasisObj): FamilyNode => {
+const createElement = (obj: BasisObj, generation: number): FamilyNode => {
   const { children, isCenter, ...rest } = obj;
-  const essentialValues = essentialProps.map((prop) => rest[prop]);
-  const id: ID = Crypto.MD5(essentialValues.join()).toString() as ID;
+  const key = [rest.name, generation];
+  const id: ID = Crypto.MD5(key.join()).toString() as ID;
   const result: FamilyNode = {
     id,
+    generation,
     ...rest,
     isCenter: typeof isCenter !== 'undefined' ? isCenter : false,
   };

@@ -155,7 +155,8 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
       headerRight: () => (
         <TouchableNativeFeedback
           onPress={handleStarPress}
-          background={TouchableNativeFeedback.Ripple('#000', true)}>
+          background={TouchableNativeFeedback.Ripple('#000', true)}
+        >
           {isFavorties ? (
             <Ionicons name="ios-star" size={30} color="#F8CC02" />
           ) : (

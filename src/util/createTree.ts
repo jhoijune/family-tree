@@ -10,10 +10,11 @@ import createElement from './createElement';
 
 const createTree = (
   obj: BasisObj,
-  lastName: string
+  lastName: string,
+  startGeneration: number
 ): FamilyTree<FamilyNode> => {
   const tree: FamilyTree<FamilyNode> = new FamilyTree(lastName);
-  const element: FamilyNode = createElement(obj);
+  const element: FamilyNode = createElement(obj, startGeneration);
   const root: Position<FamilyNode> = tree.addRoot(element);
   /**
    *  트리에서 넘겨주는 position에 children을 재귀적으로 초기화 함
@@ -22,21 +23,22 @@ const createTree = (
    */
   const initTree = (
     parentPosition: Position<FamilyNode>,
-    children: BasisObj[] | string[] | undefined
+    children: BasisObj[] | string[] | undefined,
+    generation: number
   ) => {
     if (children && children.length && typeof children[0] !== 'string') {
       const modifiedChild = children as BasisObj[];
       modifiedChild.forEach((obj) => {
-        const element: FamilyNode = createElement(obj);
+        const element: FamilyNode = createElement(obj, generation);
         const position: Position<FamilyNode> = tree.addChildren(
           parentPosition,
           element
         );
-        initTree(position, obj.children);
+        initTree(position, obj.children, generation + 1);
       });
     }
   };
-  initTree(root, obj.children);
+  initTree(root, obj.children, startGeneration + 1);
   return tree;
 };
 

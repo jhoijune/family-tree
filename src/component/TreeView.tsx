@@ -13,7 +13,7 @@ import _ from 'lodash';
 
 import { TreeViewProps } from '../type';
 import { LoadingContext, DimensionsContext } from '../context';
-import { treeSetting } from '../setting';
+import { TREE_SETTING } from '../setting';
 
 const VELOCITY = 0.004;
 
@@ -47,7 +47,7 @@ const TreeView: React.FC<TreeViewProps> = ({
   generationNodes,
   generationDottedLines,
 }) => {
-  const { padding } = treeSetting;
+  const { padding } = TREE_SETTING;
   const { setIsLoading } = useContext(LoadingContext);
   const { width, height } = useContext(DimensionsContext);
   const [isInit, setIsInit] = useState(true);
@@ -60,12 +60,13 @@ const TreeView: React.FC<TreeViewProps> = ({
     x: -(rootX - 75) * scale,
     y: 30,
   });
-  const [initialTouchState, setInitialTouchState] = useState<null | {
-    x: number;
-    y: number;
-    length: number;
-    scale: number;
-  }>(null);
+  const [initialTouchState, setInitialTouchState] =
+    useState<null | {
+      x: number;
+      y: number;
+      length: number;
+      scale: number;
+    }>(null);
 
   const oPositionRef = useRef(oPosition);
   const positionRef = useRef(position);
@@ -157,7 +158,8 @@ const TreeView: React.FC<TreeViewProps> = ({
                     translateY: position.y,
                     scale: scale,
                   }
-            }>
+            }
+          >
             {generationNodes}
             {generationDottedLines(30)}
           </Svg>
@@ -173,7 +175,8 @@ const TreeView: React.FC<TreeViewProps> = ({
                     scale: scale,
                   }
             }
-            {...panResponder.panHandlers}>
+            {...panResponder.panHandlers}
+          >
             {treeElement}
             {generationDottedLines()}
           </Svg>

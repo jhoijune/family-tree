@@ -3,7 +3,7 @@ import { G, Text, Rect } from 'react-native-svg';
 
 import { PopupContext, PressedContext } from '../context';
 import { NodeProps } from '../type';
-import { treeSetting } from '../setting';
+import { TREE_SETTING } from '../setting';
 
 const Node: React.FC<NodeProps> = ({
   position,
@@ -16,7 +16,7 @@ const Node: React.FC<NodeProps> = ({
 }) => {
   const { setInfo } = useContext(PopupContext);
   const { setPressedPosition } = useContext(PressedContext);
-  const { nodeWidth, nodeHeight } = treeSetting;
+  const { nodeWidth, nodeHeight } = TREE_SETTING;
 
   const text = useMemo(() => {
     const { element } = position;
@@ -83,7 +83,8 @@ const Node: React.FC<NodeProps> = ({
         fill={isHighlight ? '#fff' : '#000'}
         fontSize={6}
         fontWeight="bold"
-        textAnchor="start">
+        textAnchor="start"
+      >
         {text.padStart(8)}
       </Text>
     </G>
