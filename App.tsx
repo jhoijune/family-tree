@@ -5,18 +5,20 @@ import {
   Dimensions,
   ScaledSize,
   DrawerLayoutAndroid,
-  AsyncStorage,
   TouchableNativeFeedback,
   StatusBar,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   NavigationContainer,
   NavigationState,
   NavigationContainerRef,
 } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
-//import AsyncStorage from '@react-native-community/async-storage';
 
 import { lastName } from './src/setting';
 import { createTree } from './src/util';
@@ -31,7 +33,7 @@ const treeObj: FamilyTree<FamilyNode> = createTree(data, lastName);
 
 const Stack = createStackNavigator<StackParamList>();
 
-const screenOptions = {
+const screenOptions: StackNavigationOptions = {
   headerStyle: {
     backgroundColor: '#008ff8',
   },
@@ -51,11 +53,10 @@ const App: React.FC = () => {
   const [favoritesIDs, setFavoritesIDs] = useState<ID[]>([]);
   const isExitRef = useRef(false);
   const isDrawerClosedRef = useRef(isDrawerClosed);
-  const timeOutIdRef = useRef(0);
+  const timeOutIdRef = useRef<null | NodeJS.Timeout>(null);
   const routeIndexRef: MutableRefObject<number> = useRef(0);
-  const navigationRef: MutableRefObject<NavigationContainerRef | null> = useRef(
-    null
-  );
+  const navigationRef: MutableRefObject<NavigationContainerRef | null> =
+    useRef(null);
   const drawerRef: MutableRefObject<DrawerLayoutAndroid | null> = useRef(null);
   isDrawerClosedRef.current = isDrawerClosed;
 
@@ -75,7 +76,9 @@ const App: React.FC = () => {
         }, 2000);
         timeOutIdRef.current = id;
       } else {
-        clearTimeout(timeOutIdRef.current);
+        if (timeOutIdRef.current !== null) {
+          clearTimeout(timeOutIdRef.current);
+        }
         isExitRef.current = false;
         BackHandler.exitApp();
       }
@@ -187,11 +190,13 @@ const App: React.FC = () => {
         ref={navigationRef}
         onStateChange={(state) => {
           routeIndexRef.current = getActiveRouteIndex(state!);
-        }}>
+        }}
+      >
         <TreeContext.Provider value={{ treeObj }}>
           <DimensionsContext.Provider value={dimensions}>
             <StoreContext.Provider
-              value={{ getIDs, isIDIncluded, storeID, deleteID }}>
+              value={{ getIDs, isIDIncluded, storeID, deleteID }}
+            >
               <DrawerLayoutAndroid
                 ref={drawerRef}
                 drawerWidth={200}
@@ -218,10 +223,12 @@ const App: React.FC = () => {
                     positions={findIDMatchedPositions()}
                   />
                 )}
-                drawerBackgroundColor="transparent">
+                drawerBackgroundColor="transparent"
+              >
                 <Stack.Navigator
                   initialRouteName="Home"
-                  screenOptions={screenOptions}>
+                  screenOptions={screenOptions}
+                >
                   <Stack.Screen
                     name="Home"
                     component={HomeScreen}
@@ -238,7 +245,8 @@ const App: React.FC = () => {
                           background={TouchableNativeFeedback.Ripple(
                             '#888',
                             true
-                          )}>
+                          )}
+                        >
                           <Ionicons name="ios-menu" size={40} color="#fff" />
                         </TouchableNativeFeedback>
                       ),

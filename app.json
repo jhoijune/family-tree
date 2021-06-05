@@ -20,12 +20,13 @@
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
     },
     "android": {
-      "package": "com.jang.familytree",
-      "versionCode": 1,
+      "package": "com.jhoijune.familytree",
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-fg.png",
         "backgroundColor": "#008ff8"
-      }
+      },
+      "permissions": []
     }
   }
 }

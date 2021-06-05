@@ -11,7 +11,7 @@ Jang's family tree and informations made available on android.
 
 ## Download
 
-[Google drive](https://drive.google.com/file/d/1AbYrcs6SSL6Nyo69ceNZcrrsKgTFGq5h/view?usp=sharing)
+[Play Store](https://play.google.com/store/apps/details?id=com.jhoijune.familytree)
 
 ## Example
 

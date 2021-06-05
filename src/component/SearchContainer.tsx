@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, TouchableNativeFeedback } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { SearchContainerProps } from '../type';
-import { DimensionsContext } from '../context';
 import Searchbox from './Searchbox';
 
 const SearchContainer: React.FC<SearchContainerProps> = ({
@@ -13,8 +12,6 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
   presentRoot,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { width, height } = useContext(DimensionsContext);
-  const bottom = width > height ? 100 : 75;
   return (
     <>
       <Searchbox
@@ -29,8 +26,9 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
           onPress={() => {
             setModalVisible(true);
           }}
-          background={TouchableNativeFeedback.Ripple('#000', true)}>
-          <View style={[styles.magnify, { bottom }]}>
+          background={TouchableNativeFeedback.Ripple('#000', true)}
+        >
+          <View style={[styles.magnify, { bottom: 100 }]}>
             <Ionicons name="ios-search" size={50} color="#919191" />
           </View>
         </TouchableNativeFeedback>
