@@ -13,6 +13,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
   navigation,
   searchedPositions,
   presentRoot,
+  keyword,
 }) => {
   const [treeElement, setTreeElement] = useState<JSX.Element | null>(null);
   const { treeObj } = useContext(TreeContext);
@@ -93,6 +94,7 @@ const TreeContainer: React.FC<TreeContainerProps> = ({
       <TreeComponent
         setTreeElement={setTreeElement}
         searchedPositions={searchedPositions}
+        keyword={keyword}
         presentRoot={presentRoot}
         rootX={rootX}
         navigation={navigation}

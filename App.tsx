@@ -26,7 +26,14 @@ import { HomeScreen, InfoScreen } from './src/screen';
 import { Drawer } from './src/component';
 import { FamilyTree } from './src/DataStructure';
 import { StackParamList, FamilyNode, ID, Position } from './src/type';
-import { TreeContext, DimensionsContext, StoreContext } from './src/context';
+import {
+  TreeContext,
+  DimensionsContext,
+  StoreContext,
+  ModalContext,
+  ExModalContext,
+  UtilContext,
+} from './src/context';
 import data from './data.json';
 
 const treeObj: FamilyTree<FamilyNode> = createTree(
@@ -53,6 +60,7 @@ const STORAGE_KEY = "JANG'S_FAMILY_TREE_FAVORITES";
 
 const App: React.FC = () => {
   const [isDrawerClosed, setIsDrawerClosed] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
   const [favoritesIDs, setFavoritesIDs] = useState<ID[]>([]);
   const isExitRef = useRef(false);
@@ -63,6 +71,7 @@ const App: React.FC = () => {
     useRef(null);
   const drawerRef: MutableRefObject<DrawerLayoutAndroid | null> = useRef(null);
   isDrawerClosedRef.current = isDrawerClosed;
+  const exModalVisibleRef = useRef(false);
 
   const handleBackButton = () => {
     if (!isDrawerClosedRef.current) {
@@ -88,6 +97,10 @@ const App: React.FC = () => {
       }
     } else {
       navigationRef.current!.goBack();
+      if (navigationRef.current!.getCurrentRoute()?.name === 'Home') {
+        setModalVisible(exModalVisibleRef.current);
+        exModalVisibleRef.current = false;
+      }
     }
     return true;
   };
@@ -201,66 +214,80 @@ const App: React.FC = () => {
             <StoreContext.Provider
               value={{ getIDs, isIDIncluded, storeID, deleteID }}
             >
-              <DrawerLayoutAndroid
-                ref={drawerRef}
-                drawerWidth={200}
-                onDrawerOpen={() => {
-                  setIsDrawerClosed(false);
-                }}
-                onDrawerClose={() => {
-                  setIsDrawerClosed(true);
-                }}
-                drawerPosition={'right'}
-                drawerLockMode={isDrawerClosed ? 'locked-closed' : 'unlocked'}
-                renderNavigationView={() => (
-                  <Drawer
-                    move={
-                      navigationRef.current
-                        ? navigationRef.current.navigate
-                        : () => {}
-                    }
-                    closeDrawer={() => {
-                      if (drawerRef.current) {
-                        drawerRef.current.closeDrawer();
-                      }
-                    }}
-                    positions={findIDMatchedPositions()}
-                  />
-                )}
-                drawerBackgroundColor="transparent"
+              <ModalContext.Provider
+                value={{ visible: modalVisible, setVisible: setModalVisible }}
               >
-                <Stack.Navigator
-                  initialRouteName="Home"
-                  screenOptions={screenOptions}
-                >
-                  <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{
-                      headerTitle: '가계도',
-                      headerTitleAlign: 'center',
-                      headerRight: () => (
-                        <TouchableNativeFeedback
-                          onPress={() => {
+                <ExModalContext.Provider value={exModalVisibleRef}>
+                  <UtilContext.Provider value={{ handleBackButton }}>
+                    <DrawerLayoutAndroid
+                      ref={drawerRef}
+                      drawerWidth={200}
+                      onDrawerOpen={() => {
+                        setIsDrawerClosed(false);
+                      }}
+                      onDrawerClose={() => {
+                        setIsDrawerClosed(true);
+                      }}
+                      drawerPosition={'right'}
+                      drawerLockMode={
+                        isDrawerClosed ? 'locked-closed' : 'unlocked'
+                      }
+                      renderNavigationView={() => (
+                        <Drawer
+                          move={
+                            navigationRef.current
+                              ? navigationRef.current.navigate
+                              : () => {}
+                          }
+                          closeDrawer={() => {
                             if (drawerRef.current) {
-                              drawerRef.current.openDrawer();
+                              drawerRef.current.closeDrawer();
                             }
                           }}
-                          background={TouchableNativeFeedback.Ripple(
-                            '#888',
-                            true
-                          )}
-                        >
-                          <Ionicons name="ios-menu" size={40} color="#fff" />
-                        </TouchableNativeFeedback>
-                      ),
-                      headerRightContainerStyle: { marginRight: 15 },
-                    }}
-                    initialParams={{ presentRoot: treeObj.root()! }}
-                  />
-                  <Stack.Screen name="Info" component={InfoScreen} />
-                </Stack.Navigator>
-              </DrawerLayoutAndroid>
+                          positions={findIDMatchedPositions()}
+                        />
+                      )}
+                      drawerBackgroundColor="transparent"
+                    >
+                      <Stack.Navigator
+                        initialRouteName="Home"
+                        screenOptions={screenOptions}
+                      >
+                        <Stack.Screen
+                          name="Home"
+                          component={HomeScreen}
+                          options={{
+                            headerTitle: '가계도',
+                            headerTitleAlign: 'center',
+                            headerRight: () => (
+                              <TouchableNativeFeedback
+                                onPress={() => {
+                                  if (drawerRef.current) {
+                                    drawerRef.current.openDrawer();
+                                  }
+                                }}
+                                background={TouchableNativeFeedback.Ripple(
+                                  '#888',
+                                  true
+                                )}
+                              >
+                                <Ionicons
+                                  name="ios-menu"
+                                  size={40}
+                                  color="#fff"
+                                />
+                              </TouchableNativeFeedback>
+                            ),
+                            headerRightContainerStyle: { marginRight: 15 },
+                          }}
+                          initialParams={{ presentRoot: treeObj.root()! }}
+                        />
+                        <Stack.Screen name="Info" component={InfoScreen} />
+                      </Stack.Navigator>
+                    </DrawerLayoutAndroid>
+                  </UtilContext.Provider>
+                </ExModalContext.Provider>
+              </ModalContext.Provider>
             </StoreContext.Provider>
           </DimensionsContext.Provider>
         </TreeContext.Provider>

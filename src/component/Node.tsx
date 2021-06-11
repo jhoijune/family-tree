@@ -13,6 +13,7 @@ const Node: React.FC<NodeProps> = ({
   searchedPositions,
   navigation: { navigate, push },
   isBlur,
+  keyword,
 }) => {
   const { setInfo } = useContext(PopupContext);
   const { setPressedPosition } = useContext(PressedContext);
@@ -48,6 +49,7 @@ const Node: React.FC<NodeProps> = ({
         onPress={() => {
           navigate('Info', {
             position,
+            keyword: keyword.length !== 0 ? keyword : undefined,
           });
         }}
         onLongPress={(evt) => {

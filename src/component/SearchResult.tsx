@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 import MoveableView from './MoveableView';
 import HighlightableText from './HighlightableText';
 import { SearchResultProps, FamilyNode, Properties } from '../type';
 import { mapPropName } from '../util';
+import { LAST_NAME } from '../setting';
 
 const SearchResult: React.FC<SearchResultProps> = ({
   position,
   properties,
   move,
   keyword,
-  lastName,
 }) => {
   const filter = (element: FamilyNode | null, property: Properties) => {
     if (element === null) {
@@ -20,7 +20,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
     const value = element[property];
     if (typeof value === 'string' || typeof value === 'number') {
       if (property === 'name') {
-        return [value.toString(), `${lastName}${value}`];
+        return [value.toString(), `${LAST_NAME}${value}`];
       }
       return value;
     } else if (value instanceof Array) {
@@ -35,9 +35,10 @@ const SearchResult: React.FC<SearchResultProps> = ({
       position={position}
       move={move}
       keyword={keyword}
-      style={styles.container}>
+      style={styles.container}
+    >
       {properties.map((property, index) => {
-        if (property !== 'children') {
+        if (property !== 'children' && property !== 'childrenName') {
           return (
             <View
               key={index.toString()}
@@ -46,18 +47,23 @@ const SearchResult: React.FC<SearchResultProps> = ({
                 {
                   borderBottomWidth: properties.length - 1 !== index ? 1 : 0,
                 },
-              ]}>
+              ]}
+            >
               <Text style={styles.propertyText}>{mapPropName(property)}</Text>
               <HighlightableText
                 text={filter(position.element, property)}
                 keyword={keyword}
                 style={styles.resultText}
               />
+              {property !== 'name' ? (
+                <Text style={styles.nameText}>({position.element!.name})</Text>
+              ) : null}
             </View>
           );
         }
         const childrens = position.element![property] as string[];
-        return childrens.map((children, nestedIndex) => (
+        const filtered = childrens.filter((value) => value.includes(keyword));
+        return filtered.map((children, nestedIndex) => (
           <View
             key={`${index} ${nestedIndex}`}
             style={[
@@ -70,13 +76,15 @@ const SearchResult: React.FC<SearchResultProps> = ({
                     ? 1
                     : 0,
               },
-            ]}>
+            ]}
+          >
             <Text style={styles.propertyText}>{mapPropName(property)}</Text>
             <HighlightableText
               text={children}
               keyword={keyword}
               style={styles.resultText}
             />
+            <Text style={styles.nameText}>({position.element!.name})</Text>
           </View>
         ));
       })}
@@ -93,6 +101,7 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     borderColor: '#DADADA',
   },
@@ -102,6 +111,11 @@ const styles = StyleSheet.create({
   },
   resultText: {
     fontSize: 20,
+  },
+  nameText: {
+    fontSize: 20,
+    marginLeft: 10,
+    textAlign: 'right',
   },
 });
 

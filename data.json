@@ -1,9 +1,7 @@
 {
   "name": "서홍",
   "genealogical name": "익호",
-  "birth": "미상",
   "deathday": "1718-02-08",
-  "mother": "미상",
   "spouse": "광산노씨",
   "isCenter": true,
   "children": [
@@ -12,7 +10,6 @@
       "genealogical name": "종옥",
       "birth": "병자년 (1696)",
       "deathday": "1758-03-13",
-      "mother": "광산노씨",
       "spouse": "나주나씨 성산이씨",
       "isCenter": true,
       "children": [
@@ -30,7 +27,6 @@
               "genealogical name": "이묵",
               "birth": "병신년 (1776)",
               "deathday": "1849-04-20",
-              "mother": "광산김씨",
               "spouse": "광산김씨",
               "isCenter": true,
               "children": [
@@ -52,65 +48,51 @@
                               "children": [
                                 {
                                   "name": "후기",
-                                  "genealogical name": "후기",
                                   "children": [
                                     {
-                                      "name": "남령",
-                                      "genealogical name": "남령"
+                                      "name": "남령"
                                     },
                                     {
-                                      "name": "순령",
-                                      "genealogical name": "순령"
+                                      "name": "순령"
                                     },
                                     {
-                                      "name": "온령",
-                                      "genealogical name": "온령"
+                                      "name": "온령"
                                     },
                                     {
-                                      "name": "화영",
-                                      "genealogical name": "화영"
+                                      "name": "화영"
                                     }
                                   ]
                                 },
                                 {
                                   "name": "형기",
-                                  "genealogical name": "형기",
                                   "children": [
                                     {
-                                      "name": "건우",
-                                      "genealogical name": "건우"
+                                      "name": "건우"
                                     },
                                     {
-                                      "name": "민우",
-                                      "genealogical name": "민우"
+                                      "name": "민우"
                                     },
                                     {
-                                      "name": "소영",
-                                      "genealogical name": "소영"
+                                      "name": "소영"
                                     }
                                   ]
                                 },
                                 {
                                   "name": "환기",
-                                  "genealogical name": "환기",
                                   "children": [
                                     {
-                                      "name": "연철",
-                                      "genealogical name": "연철"
+                                      "name": "연철"
                                     },
                                     {
-                                      "name": "진영",
-                                      "genealogical name": "진영"
+                                      "name": "진영"
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "현미",
-                                  "genealogical name": "현미"
+                                  "name": "현미"
                                 },
                                 {
-                                  "name": "후순",
-                                  "genealogical name": "후순"
+                                  "name": "후순"
                                 }
                               ]
                             },
@@ -119,42 +101,33 @@
                               "genealogical name": "주필",
                               "children": [
                                 {
-                                  "name": "유기",
-                                  "genealogical name": "유기"
+                                  "name": "유기"
                                 },
                                 {
-                                  "name": "성기",
-                                  "genealogical name": "성기"
+                                  "name": "성기"
                                 },
                                 {
-                                  "name": "공기",
-                                  "genealogical name": "공기"
+                                  "name": "공기"
                                 },
                                 {
                                   "name": "효기",
-                                  "genealogical name": "효기",
                                   "children": [
                                     {
-                                      "name": "영",
-                                      "genealogical name": "영"
+                                      "name": "영"
                                     },
                                     {
-                                      "name": "우석",
-                                      "genealogical name": "우석"
+                                      "name": "우석"
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "유순",
-                                  "genealogical name": "유순"
+                                  "name": "유순"
                                 },
                                 {
-                                  "name": "금자",
-                                  "genealogical name": "금자"
+                                  "name": "금자"
                                 },
                                 {
-                                  "name": "애순",
-                                  "genealogical name": "애순"
+                                  "name": "애순"
                                 }
                               ]
                             },
@@ -163,16 +136,13 @@
                               "genealogical name": "주영",
                               "children": [
                                 {
-                                  "name": "종기",
-                                  "genealogical name": "종기"
+                                  "name": "종기"
                                 },
                                 {
-                                  "name": "정기",
-                                  "genealogical name": "정기"
+                                  "name": "정기"
                                 },
                                 {
-                                  "name": "정기",
-                                  "genealogical name": "정기"
+                                  "name": "정기"
                                 }
                               ]
                             },
@@ -187,54 +157,41 @@
                                   "children": [
                                     {
                                       "name": "영경",
-                                      "genealogical name": "영경",
                                       "birth": "1977-05-16",
-                                      "deathday": "2017-09-20",
-                                      "mother": ["제주양씨 여희", "양여희"]
+                                      "deathday": "2017-09-20"
                                     },
                                     {
                                       "name": "우경",
-                                      "genealogical name": "우경",
                                       "birth": "1978-10-15",
-                                      "mother": ["제주양씨 여희", "양여희"],
                                       "spouse": ["함양박씨 계진", "박계진"],
                                       "children": [
                                         {
                                           "name": "준호",
-                                          "genealogical name": "준호",
-                                          "birth": "2016-06-09",
-                                          "mother": ["함양박씨 계진", "박계진"]
+                                          "birth": "2016-06-09"
                                         }
                                       ]
                                     },
                                     {
                                       "name": "원경",
-                                      "genealogical name": "원경",
                                       "birth": "1982-06-25",
-                                      "mother": ["제주양씨 여희", "양여희"],
                                       "spouse": ["여흥민씨 미선", "민미선"],
                                       "children": [
                                         {
                                           "name": "세진",
-                                          "genealogical name": "세진",
-                                          "birth": "2017-08-16",
-                                          "mother": ["여흥민씨 미선", "민미선"]
+                                          "birth": "2017-08-16"
                                         }
                                       ]
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "인숙",
-                                  "genealogical name": "인숙"
+                                  "name": "인숙"
                                 },
                                 {
-                                  "name": "안숙",
-                                  "genealogical name": "안숙"
+                                  "name": "안숙"
                                 },
                                 {
-                                  "name": "향숙",
-                                  "genealogical name": "향숙"
+                                  "name": "향숙"
                                 },
                                 {
                                   "name": "찬기",
@@ -243,20 +200,17 @@
                               ]
                             },
                             {
-                              "name": "종순",
-                              "genealogical name": "종순"
+                              "name": "종순"
                             }
                           ]
                         },
                         {
-                          "name": "성회",
-                          "genealogical name": "성회"
+                          "name": "성회"
                         }
                       ]
                     },
                     {
-                      "name": "병욱",
-                      "genealogical name": "병욱"
+                      "name": "병욱"
                     }
                   ]
                 },
@@ -265,7 +219,6 @@
                   "genealogical name": "이채",
                   "birth": "신사년 (1821)",
                   "deathday": "1895-02-01",
-                  "mother": "광산김씨",
                   "spouse": "해주최씨",
                   "isCenter": true,
                   "children": [
@@ -274,7 +227,6 @@
                       "genealogical name": "병욱",
                       "birth": "정사년 (1857)",
                       "deathday": "1895-02-01",
-                      "mother": "해주최씨",
                       "spouse": "광산노씨",
                       "isCenter": true,
                       "children": [
@@ -283,7 +235,6 @@
                           "genealogical name": "성회",
                           "birth": "1885-10-14",
                           "deathday": "1952-09-22",
-                          "mother": "광산노씨",
                           "spouse": ["하동정씨 옥선", "정옥선"],
                           "isCenter": true,
                           "children": [
@@ -292,16 +243,13 @@
                               "genealogical name": "주득",
                               "birth": "1907-11-21",
                               "deathday": "1993-09-12",
-                              "mother": ["하동정씨 옥선", "정옥선"],
                               "spouse": ["한양조씨 야물", "조야물"],
                               "isCenter": true,
                               "children": [
                                 {
                                   "name": "홍기",
-                                  "genealogical name": "홍기",
                                   "birth": "1931-12-01",
                                   "deathday": "2010-10-27",
-                                  "mother": ["한양조씨 야물", "조야물"],
                                   "spouse": ["파주염씨 덕현", "염덕현"],
                                   "isCenter": true,
                                   "children": [
@@ -309,15 +257,12 @@
                                       "name": "동균",
                                       "genealogical name": "우형",
                                       "birth": "1958-05-01",
-                                      "mother": ["파주염씨 덕현", "염덕현"],
                                       "spouse": ["밀양손씨 윤희", "손윤희"],
                                       "isCenter": true,
                                       "children": [
                                         {
                                           "name": "신영",
-                                          "genealogical name": "신영",
                                           "birth": "1984-07-09",
-                                          "mother": ["밀양손씨 윤희", "손윤희"],
                                           "spouse": ["경주최씨 진", "최진"],
                                           "children": ["최정원"]
                                         },
@@ -325,18 +270,12 @@
                                           "name": "한승",
                                           "genealogical name": "국효",
                                           "birth": "1986-10-28",
-                                          "mother": ["밀양손씨 윤희", "손윤희"],
                                           "spouse": ["전주이씨 정석", "이정석"],
                                           "isCenter": true,
                                           "children": [
                                             {
                                               "name": "희우",
-                                              "genealogical name": "희우",
                                               "birth": "2019-09-24",
-                                              "mother": [
-                                                "전주이씨 정석",
-                                                "이정석"
-                                              ],
                                               "isCenter": true
                                             }
                                           ]
@@ -344,16 +283,13 @@
                                         {
                                           "name": "회준",
                                           "genealogical name": "인효",
-                                          "birth": "1994-10-23",
-                                          "mother": ["밀양손씨 윤희", "손윤희"]
+                                          "birth": "1994-10-23"
                                         }
                                       ]
                                     },
                                     {
                                       "name": "미숙",
-                                      "genealogical name": "미숙",
                                       "birth": "1961-03-30",
-                                      "mother": ["파주염씨 덕현", "염덕현"],
                                       "spouse": ["김해김씨 창국", "김창국"],
                                       "children": ["김민수", "김은수"]
                                     },
@@ -361,24 +297,22 @@
                                       "name": "태근",
                                       "genealogical name": "우만",
                                       "birth": "1964-05-01",
-                                      "mother": ["파주염씨 덕현", "염덕현"],
+                                      "spouse": ["창영창씨 유정", "창유정"],
                                       "children": [
                                         {
                                           "name": "의윤",
-                                          "genealogical name": "의윤"
+                                          "birth": "1994-01-03"
                                         },
                                         {
                                           "name": "용화",
                                           "genealogical name": "종효",
-                                          "birth": "1998-10-24"
+                                          "birth": "1997-10-24"
                                         }
                                       ]
                                     },
                                     {
                                       "name": "수정",
-                                      "genealogical name": "수정",
                                       "birth": "1968-03-16",
-                                      "mother": ["파주염씨 덕현", "염덕현"],
                                       "spouse": ["김해김씨 진호", "김진호"],
                                       "children": ["김영민", "김지우"]
                                     }
@@ -386,29 +320,22 @@
                                 },
                                 {
                                   "name": "용기",
-                                  "genealogical name": "용기",
                                   "birth": "1936-04-09 (음력)",
-                                  "mother": ["한양조씨 야물", "조야물"],
                                   "spouse": ["충주박씨 영자", "박영자"],
                                   "children": [
                                     {
                                       "name": "욱진",
                                       "genealogical name": "우상",
                                       "birth": "1968-07-05",
-                                      "mother": ["충주박씨 영자", "박영자"],
                                       "spouse": ["평강채씨 경애", "채경애"],
                                       "children": [
                                         {
                                           "name": "수현",
-                                          "genealogical name": "수현",
-                                          "birth": "1997-06-18",
-                                          "mother": ["평강채씨 경애", "채경애"]
+                                          "birth": "1997-06-18"
                                         },
                                         {
                                           "name": "현주",
-                                          "genealogical name": "현주",
-                                          "birth": "1999-05-11",
-                                          "mother": ["평강채씨 경애", "채경애"]
+                                          "birth": "1999-05-11"
                                         }
                                       ]
                                     },
@@ -416,130 +343,101 @@
                                       "name": "중진",
                                       "genealogical name": "우보",
                                       "birth": "1969-12-16",
-                                      "mother": ["충주박씨 영자", "박영자"],
                                       "spouse": ["금광왕씨 문근", "왕문근"],
                                       "children": [
                                         {
                                           "name": "효정",
-                                          "genealogical name": "효정",
-                                          "birth": "1998-07-14",
-                                          "mother": ["금광왕씨 문근", "왕문근"]
+                                          "birth": "1998-07-14"
                                         },
                                         {
                                           "name": "근효",
-                                          "genealogical name": "근효",
-                                          "birth": "2000-08-23",
-                                          "mother": ["금광왕씨 문근", "왕문근"]
+                                          "birth": "2000-08-23"
                                         }
                                       ]
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "복임",
-                                  "genealogical name": "복임",
-                                  "mother": ["한양조씨 야물", "조야물"]
+                                  "name": "복임"
                                 },
                                 {
                                   "name": "영기",
-                                  "genealogical name": "영기",
                                   "birth": "1941-08-05",
-                                  "mother": ["한양조씨 야물", "조야물"],
                                   "spouse": ["밀양손씨 연례", "손연례"],
                                   "children": [
                                     {
                                       "name": "재현",
                                       "genealogical name": "우권",
                                       "birth": "1977-03-10",
-                                      "mother": ["밀양손씨 연례", "손연례"],
                                       "spouse": ["밀양박씨 현욱", "박현욱"],
                                       "children": [
                                         {
                                           "name": "동연",
                                           "genealogical name": "동효",
-                                          "birth": "2003-12-28",
-                                          "mother": ["밀양박씨 현욱", "박현욱"]
+                                          "birth": "2003-12-28"
                                         },
                                         {
                                           "name": "영윤",
-                                          "genealogical name": "영윤",
-                                          "birth": "2004-11-8",
-                                          "mother": ["밀양박씨 현욱", "박현욱"]
+                                          "birth": "2004-11-08"
                                         }
                                       ]
                                     },
                                     {
                                       "name": "백진",
                                       "genealogical name": "우광",
-                                      "birth": "1979-02-01",
-                                      "mother": ["밀양손씨 연례", "손연례"]
+                                      "birth": "1979-02-01"
                                     },
                                     {
                                       "name": "명진",
                                       "genealogical name": "우명",
                                       "birth": "1979-12-24",
-                                      "mother": ["밀양손씨 연례", "손연례"],
                                       "spouse": ["김해김씨 인옥", "김인옥"],
                                       "children": [
                                         {
                                           "name": "지원",
-                                          "genealogical name": "지원",
-                                          "birth": "2014-08-01",
-                                          "mother": ["김해김씨 인옥", "김인옥"]
+                                          "birth": "2014-08-01"
                                         }
                                       ]
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "창숙",
-                                  "genealogical name": "창숙",
-                                  "mother": ["한양조씨 야물", "조야물"]
+                                  "name": "창숙"
                                 },
                                 {
-                                  "name": "복숙",
-                                  "genealogical name": "복숙",
-                                  "mother": ["한양조씨 야물", "조야물"]
+                                  "name": "복숙"
                                 },
                                 {
                                   "name": "남기",
-                                  "genealogical name": "남기",
-                                  "mother": ["한양조씨 야물", "조야물"],
                                   "children": [
                                     {
                                       "name": "효성",
                                       "genealogical name": "우동"
                                     },
                                     {
-                                      "name": "문정",
-                                      "genealogical name": "문정"
+                                      "name": "문정"
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "경국",
-                                  "genealogical name": "경국",
-                                  "mother": ["한양조씨 야물", "조야물"]
+                                  "name": "경국"
                                 },
                                 {
                                   "name": "영진",
                                   "genealogical name": "진기",
-                                  "mother": ["한양조씨 야물", "조야물"],
                                   "children": [
                                     {
                                       "name": "기수",
                                       "genealogical name": "우용"
                                     },
                                     {
-                                      "name": "지효",
-                                      "genealogical name": "지효"
+                                      "name": "지효"
                                     }
                                   ]
                                 },
                                 {
                                   "name": "영덕",
                                   "genealogical name": "덕기",
-                                  "mother": ["한양조씨 야물", "조야물"],
                                   "children": [
                                     {
                                       "name": "수안",
@@ -562,63 +460,46 @@
                               "genealogical name": "주상",
                               "birth": "1913-02-20",
                               "deathday": "1999-10-23",
-                              "mother": ["하동정씨 옥선", "정옥선"],
                               "spouse": ["개성이씨 순임", "이순임"],
                               "children": [
                                 {
                                   "name": "웅기",
-                                  "genealogical name": "웅기",
-                                  "mother": ["개성이씨 순임", "이순임"],
                                   "spouse": ["이천서씨 복임", "서복임"],
                                   "children": [
                                     {
                                       "name": "미선",
-                                      "genealogical name": "미선",
                                       "birth": "1967-12-02",
-                                      "mother": ["이천서씨 복임", "서복임"],
                                       "spouse": ["김해김씨 향봉", "김향봉"],
                                       "children": ["김상우", "김유현"]
                                     },
                                     {
                                       "name": "미란",
-                                      "genealogical name": "미란",
                                       "birth": "1969-05-28",
-                                      "mother": ["이천서씨 복임", "서복임"],
                                       "spouse": ["해주최씨 승옥", "최승옥"],
                                       "children": ["최형진"]
                                     },
                                     {
                                       "name": "우정",
-                                      "genealogical name": "우정",
                                       "birth": "1970-10-17",
-                                      "mother": ["이천서씨 복임", "서복임"],
                                       "spouse": ["광주이씨 해영", "이해영"],
                                       "children": [
                                         {
                                           "name": "준효",
-                                          "genealogical name": "준효",
-                                          "birth": "2002-08-06",
-                                          "mother": ["광주이씨 해영", "이해영"]
+                                          "birth": "2002-08-06"
                                         },
                                         {
                                           "name": "우인",
-                                          "genealogical name": "우인",
-                                          "birth": "2004-08-11",
-                                          "mother": ["광주이씨 해영", "이해영"]
+                                          "birth": "2004-08-11"
                                         },
                                         {
                                           "name": "아인",
-                                          "genealogical name": "아인",
-                                          "birth": "2015-10-30",
-                                          "mother": ["광주이씨 해영", "이해영"]
+                                          "birth": "2015-10-30"
                                         }
                                       ]
                                     },
                                     {
                                       "name": "미진",
-                                      "genealogical name": "미진",
                                       "birth": "1973-04-09",
-                                      "mother": ["이천서씨 복임", "서복임"],
                                       "spouse": "브라스 피티",
                                       "children": [
                                         "글레멘스 피티",
@@ -630,42 +511,33 @@
                                 },
                                 {
                                   "name": "흥기",
-                                  "genealogical name": "흥기",
                                   "birth": "1946-01-22",
-                                  "mother": ["개성이씨 순임", "이순임"],
                                   "spouse": ["김해 재씨", "재심"],
                                   "children": [
                                     {
                                       "name": "선영",
-                                      "genealogical name": "선영",
-                                      "birth": "1975-07-26",
-                                      "mother": "재심"
+                                      "birth": "1975-07-26"
                                     },
                                     {
                                       "name": "미애",
-                                      "genealogical name": "미애",
                                       "birth": "1979-01-28",
-                                      "mother": "재심",
                                       "spouse": ["영성정씨 용", "정용"],
                                       "children": ["백호", "예서", "시호"]
                                     },
                                     {
                                       "name": "우진",
-                                      "genealogical name": "우진",
                                       "birth": "1982-04-07",
                                       "spouse": ["영광정씨 태진", "정태진"],
                                       "children": [
                                         {
                                           "name": "인우",
-                                          "genealogical name": "인우",
                                           "birth": "1982-04-07",
                                           "spouse": ["영광정씨 태진", "정태진"]
                                         }
                                       ]
                                     },
                                     {
-                                      "name": "우중",
-                                      "genealogical name": "우중"
+                                      "name": "우중"
                                     }
                                   ]
                                 },
@@ -673,29 +545,22 @@
                                   "name": "영언",
                                   "genealogical name": "정기",
                                   "birth": "1955-06-15",
-                                  "mother": ["개성이씨 순임", "이순임"],
                                   "spouse": ["김해김씨 정화", "김정화"],
                                   "children": [
                                     {
                                       "name": "우열",
-                                      "genealogical name": "우열",
                                       "birth": "1986-03-10",
-                                      "mother": ["김해김씨 정화", "김정화"],
                                       "spouse": ["경주정씨 현경", "정현경"],
                                       "children": [
                                         {
                                           "name": "윤우",
-                                          "genealogical name": "윤우",
-                                          "birth": "2018-02-24",
-                                          "mother": ["경주정씨 현경", "정현경"]
+                                          "birth": "2018-02-24"
                                         }
                                       ]
                                     },
                                     {
                                       "name": "우출",
-                                      "genealogical name": "우출",
                                       "birth": "1989-06-24",
-                                      "mother": ["김해김씨 정화", "김정화"],
                                       "spouse": ["평택임씨 현주", "임현주"]
                                     }
                                   ]
@@ -707,31 +572,23 @@
                               "genealogical name": "주영",
                               "birth": "1916-09-07",
                               "deathday": "1996-03-29",
-                              "mother": ["하동정씨 옥선", "정옥선"],
                               "spouse": ["이천서씨 금순", "서금순"],
                               "children": [
                                 {
-                                  "name": "정순",
-                                  "genealogical name": "정순",
-                                  "mother": ["이천서씨 금순", "서금순"]
+                                  "name": "정순"
                                 },
                                 {
                                   "name": "익성",
                                   "genealogical name": "대기",
-                                  "mother": ["이천서씨 금순", "서금순"],
                                   "children": [
                                     {
                                       "name": "우영",
-                                      "genealogical name": "우영",
-
                                       "children": [
                                         {
-                                          "name": "지선",
-                                          "genealogical name": "지선"
+                                          "name": "지선"
                                         },
                                         {
-                                          "name": "소원",
-                                          "genealogical name": "소원"
+                                          "name": "소원"
                                         }
                                       ]
                                     },
@@ -740,8 +597,7 @@
                                       "genealogical name": "우길"
                                     },
                                     {
-                                      "name": "혜경",
-                                      "genealogical name": "혜경"
+                                      "name": "혜경"
                                     }
                                   ]
                                 },
@@ -750,22 +606,17 @@
                                   "genealogical name": "장기",
                                   "birth": "1950-02-06",
                                   "deathday": "2000-08-24",
-                                  "mother": ["이천서씨 금순", "서금순"],
                                   "spouse": ["밀양손씨 성단", "손성단"],
                                   "children": [
                                     {
                                       "name": "주연",
-                                      "genealogical name": "주연",
                                       "birth": "1969-05-11",
-                                      "mother": ["밀양손씨 성단", "손성단"],
                                       "spouse": ["여흥민씨 대홍", "민대홍"],
                                       "children": ["손현조"]
                                     },
                                     {
                                       "name": "미연",
-                                      "genealogical name": "미연",
                                       "birth": "1970-12-11",
-                                      "mother": ["밀양손씨 성단", "손성단"],
                                       "spouse": ["진주강씨 성구", "강성구"],
                                       "children": ["강건우", "강민지"]
                                     },
@@ -773,20 +624,16 @@
                                       "name": "태호",
                                       "genealogical name": "우종",
                                       "birth": "1976-01-02",
-                                      "mother": ["밀양손씨 성단", "손성단"],
                                       "spouse": ["전주이씨 정화", "이정화"],
                                       "children": [
                                         {
                                           "name": "정민",
                                           "genealogical name": "정효",
-                                          "birth": "2006-03-24",
-                                          "mother": ["전주이씨 정화", "이정화"]
+                                          "birth": "2006-03-24"
                                         },
                                         {
                                           "name": "경빈",
-                                          "genealogical name": "경빈",
-                                          "birth": "2008-02-26",
-                                          "mother": ["전주이씨 정화", "이정화"]
+                                          "birth": "2008-02-26"
                                         }
                                       ]
                                     }
@@ -795,7 +642,6 @@
                                 {
                                   "name": "덕원",
                                   "genealogical name": "중기",
-                                  "mother": ["이천서씨 금순", "서금순"],
                                   "children": [
                                     {
                                       "name": "영우",
@@ -806,33 +652,28 @@
                                       "genealogical name": "우교",
                                       "children": [
                                         {
-                                          "name": "시은",
-                                          "genealogical name": "시은"
+                                          "name": "시은"
                                         }
                                       ]
                                     },
                                     {
-                                      "name": "은진",
-                                      "genealogical name": "은진"
+                                      "name": "은진"
                                     },
                                     {
-                                      "name": "은경",
-                                      "genealogical name": "은경"
+                                      "name": "은경"
                                     }
                                   ]
                                 },
                                 {
                                   "name": "영철",
                                   "genealogical name": "문기",
-                                  "mother": ["이천서씨 금순", "서금순"],
                                   "children": [
                                     {
                                       "name": "성열",
                                       "genealogical name": "우민"
                                     },
                                     {
-                                      "name": "은별",
-                                      "genealogical name": "은별"
+                                      "name": "은별"
                                     }
                                   ]
                                 }
@@ -841,35 +682,28 @@
                             {
                               "name": "석표",
                               "genealogical name": "주양",
-                              "mother": ["하동정씨 옥선", "정옥선"],
                               "children": [
                                 {
-                                  "name": "은혜",
-                                  "genealogical name": "은혜"
+                                  "name": "은혜"
                                 },
                                 {
-                                  "name": "수자",
-                                  "genealogical name": "수자"
+                                  "name": "수자"
                                 },
                                 {
-                                  "name": "옥자",
-                                  "genealogical name": "옥자"
+                                  "name": "옥자"
                                 },
                                 {
-                                  "name": "덕님",
-                                  "genealogical name": "덕님"
+                                  "name": "덕님"
                                 },
                                 {
                                   "name": "수철",
                                   "genealogical name": "옥기",
                                   "children": [
                                     {
-                                      "name": "우창",
-                                      "genealogical name": "우창"
+                                      "name": "우창"
                                     },
                                     {
-                                      "name": "가림",
-                                      "genealogical name": "가림"
+                                      "name": "가림"
                                     }
                                   ]
                                 },
@@ -878,8 +712,7 @@
                                   "genealogical name": "석기"
                                 },
                                 {
-                                  "name": "희숙",
-                                  "genealogical name": "희숙"
+                                  "name": "희숙"
                                 }
                               ]
                             },
@@ -888,23 +721,19 @@
                               "genealogical name": "주홍",
                               "birth": "1927-09-01",
                               "deathday": "1951-09-16",
-                              "mother": ["하동정씨 옥선", "정옥선"],
                               "children": [
                                 {
-                                  "name": "춘자",
-                                  "genealogical name": "춘자"
+                                  "name": "춘자"
                                 },
                                 {
                                   "name": "남기",
-                                  "genealogical name": "남기",
                                   "children": [
                                     {
                                       "name": "효성",
                                       "genealogical name": "우동"
                                     },
                                     {
-                                      "name": "문정",
-                                      "genealogical name": "문정"
+                                      "name": "문정"
                                     }
                                   ]
                                 }
@@ -943,12 +772,10 @@
                                   "genealogical name": "복기",
                                   "children": [
                                     {
-                                      "name": "수택",
-                                      "genealogical name": "수택"
+                                      "name": "수택"
                                     },
                                     {
-                                      "name": "수빈",
-                                      "genealogical name": "수빈"
+                                      "name": "수빈"
                                     }
                                   ]
                                 },
@@ -958,39 +785,31 @@
                                   "children": [
                                     {
                                       "name": "우선",
-                                      "genealogical name": "우선",
                                       "children": [
                                         {
-                                          "name": "정곤",
-                                          "genealogical name": "정곤"
+                                          "name": "정곤"
                                         },
                                         {
-                                          "name": "형근",
-                                          "genealogical name": "형근"
+                                          "name": "형근"
                                         }
                                       ]
                                     },
                                     {
-                                      "name": "우혁",
-                                      "genealogical name": "우혁"
+                                      "name": "우혁"
                                     }
                                   ]
                                 },
                                 {
-                                  "name": "종순",
-                                  "genealogical name": "종순"
+                                  "name": "종순"
                                 },
                                 {
-                                  "name": "종임",
-                                  "genealogical name": "종임"
+                                  "name": "종임"
                                 },
                                 {
-                                  "name": "점숙",
-                                  "genealogical name": "점숙"
+                                  "name": "점숙"
                                 },
                                 {
-                                  "name": "정숙",
-                                  "genealogical name": "정숙"
+                                  "name": "정숙"
                                 }
                               ]
                             }

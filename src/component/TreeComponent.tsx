@@ -13,6 +13,7 @@ const TreeComponent: React.FC<TreeComponentProps> = ({
   presentRoot,
   rootX,
   navigation,
+  keyword,
 }) => {
   const [pressedPosition, setPressedPosition] =
     useState<Position<FamilyNode> | null>(null);
@@ -33,6 +34,7 @@ const TreeComponent: React.FC<TreeComponentProps> = ({
             navigation={navigation}
             searchedPositions={searchedPositions}
             isBlur={!!pressedPosition && pressedPosition !== presentRoot}
+            keyword={keyword}
           />
           <SubtreeComponent
             position={presentRoot}
@@ -45,6 +47,7 @@ const TreeComponent: React.FC<TreeComponentProps> = ({
                 ? null
                 : pressedPosition
             }
+            keyword={keyword}
           />
         </G>
       </PressedContext.Provider>

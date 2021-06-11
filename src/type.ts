@@ -1,9 +1,7 @@
 import { RouteProp, NavigationContainerRef } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { FamilyTree } from './DataStructure';
+import React from 'react';
 import { PROPS_MAPPED_NAME } from './setting';
-import { Dispatch, SetStateAction, MutableRefObject } from 'react';
-import { DrawerLayoutAndroid } from 'react-native';
 
 export interface Position<T> {
   element: T | null;
@@ -13,6 +11,7 @@ export interface Position<T> {
 export type BasisObj = {
   name: string;
   mother?: string | string[];
+  spouse?: string | string[];
   birth?: string;
   children?: BasisObj[] | string[];
   isCenter?: boolean;
@@ -134,16 +133,18 @@ export type SearchContainerProps = {
     React.SetStateAction<Position<FamilyNode>[]>
   >;
   presentRoot: Position<FamilyNode>;
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type SearchboxProps = {
-  visible: boolean;
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   move: HomeScreenNavigationProp['navigate'];
   setSearchedPositions: React.Dispatch<
     React.SetStateAction<Position<FamilyNode>[]>
   >;
   presentRoot: Position<FamilyNode>;
+  keyword: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type SearchResultProps = {
@@ -151,7 +152,6 @@ export type SearchResultProps = {
   properties: Properties[];
   move: HomeScreenNavigationProp['navigate'];
   keyword: string;
-  lastName: string;
 };
 
 export type TreeContainerProps = {
@@ -161,6 +161,7 @@ export type TreeContainerProps = {
   };
   searchedPositions: Position<FamilyNode>[];
   presentRoot: Position<FamilyNode>;
+  keyword: string;
 };
 
 export type TreeViewProps = {
@@ -179,6 +180,7 @@ export type TreeComponentProps = {
     navigate: HomeScreenNavigationProp['navigate'];
     push: HomeScreenNavigationProp['push'];
   };
+  keyword: string;
 };
 
 export type SubtreeComponentProps = {
@@ -191,6 +193,7 @@ export type SubtreeComponentProps = {
   y: number;
   searchedPositions: Position<FamilyNode>[];
   pressedPosition: Position<FamilyNode> | null;
+  keyword: string;
 };
 
 export type NodeProps = {
@@ -204,6 +207,7 @@ export type NodeProps = {
   };
   searchedPositions: Position<FamilyNode>[];
   isBlur: boolean;
+  keyword: string;
 };
 
 export type BranchProps = {

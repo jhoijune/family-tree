@@ -14,6 +14,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [searchedPositions, setSearchedPositions] = useState<
     Position<FamilyNode>[]
   >([]);
+  const [keyword, setKeyword] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [popupInfo, setPopupInfo] = useState<PopupInfo>({
     visible: false,
@@ -29,11 +30,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <PopupContext.Provider
         value={{
           setInfo: setPopupInfo,
-        }}>
+        }}
+      >
         <View style={[styles.container, { width, height }]}>
           <TreeContainer
             navigation={{ navigate, push }}
             searchedPositions={searchedPositions}
+            keyword={keyword}
             presentRoot={presentRoot}
           />
           <SearchContainer
@@ -41,6 +44,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             move={navigate}
             setSearchedPositions={setSearchedPositions}
             presentRoot={presentRoot}
+            keyword={keyword}
+            setKeyword={setKeyword}
           />
         </View>
         <Popup

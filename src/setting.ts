@@ -1,6 +1,6 @@
 import { NodeFeature } from './type';
 
-export const FEATURE_PROPS: (keyof NodeFeature)[] = ['isCenter'];
+export const FEATURE_PROPS: (keyof NodeFeature)[] = ['isCenter', 'id'];
 
 export const PROPS_MAPPED_NAME = {
   name: '이름',
@@ -10,6 +10,7 @@ export const PROPS_MAPPED_NAME = {
   birth: '생년월일',
   generation: '항렬',
   children: '자녀',
+  childrenName: '자녀',
   spouse: '배우자',
   deathday: '기일',
 };

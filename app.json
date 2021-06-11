@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "인동장씨무안파통덕랑익호(서홍)제가계도",
+    "name": "인동장씨무안파통덕랑익호(서홍)계가계도",
     "slug": "family-tree",
     "icon": "./assets/icon.png",
     "platforms": ["android"],
@@ -21,7 +21,7 @@
     },
     "android": {
       "package": "com.jhoijune.familytree",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-fg.png",
         "backgroundColor": "#008ff8"

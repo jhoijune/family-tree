@@ -4,6 +4,9 @@ import PopupContext from './PopupContext';
 import PressedContext from './PressedContext';
 import StoreContext from './StoreContext';
 import TreeContext from './TreeContext';
+import ModalContext from './ModalContext';
+import ExModalContext from './ExModalContext';
+import UtilContext from './UtilContext';
 
 const bind = {
   DimensionsContext,
@@ -12,6 +15,9 @@ const bind = {
   PressedContext,
   StoreContext,
   TreeContext,
+  ModalContext,
+  ExModalContext,
+  UtilContext,
 };
 
 export default bind;
@@ -22,4 +28,7 @@ export {
   PressedContext,
   StoreContext,
   TreeContext,
+  ModalContext,
+  ExModalContext,
+  UtilContext,
 };

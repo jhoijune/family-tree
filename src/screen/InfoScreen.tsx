@@ -14,7 +14,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 import { removeProp, mapPropName, convertName } from '../util';
-import { TreeContext, StoreContext } from '../context';
+import { TreeContext, StoreContext, UtilContext } from '../context';
 import { InfoList, HighlightableText } from '../component';
 import {
   Position,
@@ -26,6 +26,7 @@ import {
   Info,
   Properties,
   ID,
+  InfoScreenNavigationProp,
 } from '../type';
 import { FamilyTree } from '../DataStructure';
 
@@ -75,6 +76,18 @@ const returnChildrenNamePosition = (
   return arr;
 };
 
+const PROP_ORDERS: Properties[] = [
+  'birth',
+  'deathday',
+  'father',
+  'mother',
+  'spouse',
+  'generation',
+  'children',
+];
+
+type foo = keyof InfoScreenNavigationProp;
+
 const InfoScreen: React.FC<InfoScreenProps> = ({
   navigation: { push, setOptions },
   route: {
@@ -83,6 +96,7 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
 }) => {
   const [isFavorties, setIsFavorites] = useState(false);
   const { treeObj } = useContext(TreeContext);
+  const { handleBackButton } = useContext(UtilContext);
   const { isIDIncluded, storeID, deleteID } = useContext(StoreContext);
   const { name, id, infos } = useMemo(() => {
     const { element } = position;
@@ -107,16 +121,8 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
       father,
       children,
     };
-    const propOrder: Properties[] = [
-      'birth',
-      'deathday',
-      'father',
-      'mother',
-      'spouse',
-      'generation',
-      'children',
-    ];
-    for (const prop of propOrder) {
+
+    for (const prop of PROP_ORDERS) {
       const mappedName = mapPropName(prop);
       infos.push({ header: mappedName, value: combined[prop] });
     }
@@ -144,6 +150,15 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
 
   useLayoutEffect(() => {
     setOptions({
+      headerLeft: () => (
+        <TouchableNativeFeedback
+          onPress={handleBackButton}
+          background={TouchableNativeFeedback.Ripple('#000', true)}
+        >
+          <Ionicons name="arrow-back" size={30} color="#fff" />
+        </TouchableNativeFeedback>
+      ),
+      headerLeftContainerStyle: { marginLeft: 15 },
       headerTitle: () => (
         <HighlightableText
           text={name}

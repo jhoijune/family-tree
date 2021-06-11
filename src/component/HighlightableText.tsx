@@ -7,6 +7,7 @@ const HighlightableText: React.FC<HighlightableTextProps> = ({
   text,
   keyword,
   style,
+  children,
 }) => {
   const createHighlightText = (text: string, keyword: string): JSX.Element => {
     let modified: string = text;

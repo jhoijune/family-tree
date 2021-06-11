@@ -26,7 +26,8 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
           return modified.map((childrenName, index) => (
             <View
               key={index}
-              style={{ marginBottom: modified.length - 1 !== index ? 10 : 0 }}>
+              style={{ marginBottom: modified.length - 1 !== index ? 10 : 0 }}
+            >
               <HighlightalbeText
                 text={childrenName}
                 keyword={keyword}
@@ -51,7 +52,9 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
           key={index}
           position={children.position}
           move={push}
-          style={{ marginBottom: modified.length - 1 !== index ? 10 : 0 }}>
+          keyword={keyword}
+          style={{ marginBottom: modified.length - 1 !== index ? 10 : 0 }}
+        >
           <HighlightalbeText
             text={children.name}
             keyword={keyword}
@@ -61,7 +64,7 @@ const InfoList: React.FC<InfoListProps> = ({ infos, keyword, push }) => {
       ));
     }
     return (
-      <MoveableView position={value.position} move={push}>
+      <MoveableView position={value.position} keyword={keyword} move={push}>
         <HighlightalbeText
           text={value.name}
           keyword={keyword}

@@ -14,6 +14,7 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
   y,
   searchedPositions,
   pressedPosition,
+  keyword,
 }) => {
   const {
     nodeWidth,
@@ -102,6 +103,7 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
                 navigation={navigation}
                 searchedPositions={searchedPositions}
                 isBlur={!!pressedPosition && pressedPosition !== position}
+                keyword={keyword}
               />
               <Subtree
                 position={position}
@@ -114,6 +116,7 @@ const Subtree: React.FC<SubtreeComponentProps> = ({
                     ? null
                     : pressedPosition
                 }
+                keyword={keyword}
               />
             </G>
           ))}

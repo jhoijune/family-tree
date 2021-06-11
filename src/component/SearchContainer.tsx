@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, TouchableNativeFeedback } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { SearchContainerProps } from '../type';
 import Searchbox from './Searchbox';
+import { ModalContext } from '../context';
 
 const SearchContainer: React.FC<SearchContainerProps> = ({
   isLoading,
   move,
   setSearchedPositions,
   presentRoot,
+  keyword,
+  setKeyword,
 }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const { setVisible } = useContext(ModalContext);
+
   return (
     <>
       <Searchbox
-        visible={modalVisible}
-        setVisible={setModalVisible}
         move={move}
         setSearchedPositions={setSearchedPositions}
         presentRoot={presentRoot}
+        keyword={keyword}
+        setKeyword={setKeyword}
       />
       {isLoading ? null : (
         <TouchableNativeFeedback
           onPress={() => {
-            setModalVisible(true);
+            setVisible(true);
           }}
           background={TouchableNativeFeedback.Ripple('#000', true)}
         >
