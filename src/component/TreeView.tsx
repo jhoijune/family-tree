@@ -8,14 +8,18 @@ import {
   View,
   ActivityIndicator,
 } from 'react-native';
-import { Svg } from 'react-native-svg';
-import _ from 'lodash';
+import { G, Svg } from 'react-native-svg';
+import _ from 'lodash-es';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 import { TreeViewProps } from '../type';
 import { LoadingContext, DimensionsContext } from '../context';
 import { TREE_SETTING } from '../setting';
 
 const VELOCITY = 0.004;
+const MIN_SCALE = 0.6;
+const MAX_SCALE = 5;
+const GENERATION_NODES_WIDTH = 30;
 
 const getDiagonalLength = (touches: NativeTouchEvent[]): number => {
   const [touch1, touch2] = touches;
@@ -41,41 +45,40 @@ const getCenterCoordinates = (
   };
 };
 
+const clamp = (val: number, min: number, max: number) => {
+  return Math.min(Math.max(val, min), max);
+};
+
 const TreeView: React.FC<TreeViewProps> = ({
   treeElement,
   rootX,
   generationNodes,
   generationDottedLines,
+  svgWidth,
+  svgHeight,
 }) => {
-  const { padding } = TREE_SETTING;
-  const { setIsLoading } = useContext(LoadingContext);
+  const { padding, nodeWidth } = TREE_SETTING;
+  const { setIsLoading, isLoading } = useContext(LoadingContext);
   const { width, height } = useContext(DimensionsContext);
   const [isInit, setIsInit] = useState(true);
-  const [scale, setScale] = useState(2);
-  const [oPosition, setOPosition] = useState({
-    x: -(rootX - 75) * scale,
-    y: 30,
-  });
-  const [position, setPosition] = useState({
-    x: -(rootX - 75) * scale,
-    y: 30,
-  });
-  const [initialTouchState, setInitialTouchState] =
-    useState<null | {
-      x: number;
-      y: number;
-      length: number;
-      scale: number;
-    }>(null);
+  const isPortrait = useMemo(() => {
+    return height > width;
+  }, [width, height]);
 
-  const oPositionRef = useRef(oPosition);
+  const [scale, setScale] = useState(isPortrait ? 2 : 1);
+  const [position, setPosition] = useState({
+    x: -scale * rootX + (width - GENERATION_NODES_WIDTH) / 2 - nodeWidth,
+    y: isPortrait ? 30 : -40,
+  });
+  const oPositionRef = useRef({
+    ...position,
+  });
   const positionRef = useRef(position);
-  const initialTouchStateRef = useRef(initialTouchState);
+  const initialTouchStateRef = useRef<null | { length: number }>(null);
   const scaleRef = useRef(scale);
-  oPositionRef.current = oPosition;
   positionRef.current = position;
-  initialTouchStateRef.current = initialTouchState;
   scaleRef.current = scale;
+  const headerHeight = useHeaderHeight();
 
   const panResponder = useMemo(() => {
     return PanResponder.create({
@@ -90,33 +93,43 @@ const TreeView: React.FC<TreeViewProps> = ({
         if (touches.length >= 2) {
           if (initialTouchStateRef.current === null) {
             const initialLength = getDiagonalLength(touches);
-            const { x, y } = getCenterCoordinates(touches);
-            setInitialTouchState({
-              x,
-              y,
-              length: initialLength,
-              scale: scaleRef.current,
-            });
+            initialTouchStateRef.current = { length: initialLength };
           } else {
-            const {
-              x: initialX,
-              y: initialY,
-              length: initialLength,
-              scale: initialScale,
-            } = initialTouchStateRef.current;
+            const { length: initialLength } = initialTouchStateRef.current;
             const currentLength = getDiagonalLength(touches);
-            const newScale =
-              initialScale + (currentLength - initialLength) * VELOCITY;
-            const scaleChange = scaleRef.current - newScale;
+            const { x: centerX, y: centerY } = getCenterCoordinates(touches);
+            const { x, y } = positionRef.current;
+            const delta = currentLength - initialLength;
+            const newScale = clamp(
+              scaleRef.current + delta * VELOCITY,
+              MIN_SCALE,
+              MAX_SCALE
+            );
+            const biasX =
+              ((centerX - x) * newScale) / scaleRef.current - (centerX - x);
+            const biasY =
+              ((centerY - y) * newScale) / scaleRef.current - (centerY - y);
+            const newX = x - biasX;
+            const newY = y - biasY;
             setScale(newScale);
             setPosition({
-              x:
-                (positionRef.current.x * newScale) / scaleRef.current +
-                initialX * scaleChange,
-              y:
-                (positionRef.current.y * newScale) / scaleRef.current +
-                initialY * scaleChange,
+              x: clamp(
+                newX,
+                -svgWidth * scaleRef.current - GENERATION_NODES_WIDTH,
+                width - GENERATION_NODES_WIDTH
+              ),
+              y: clamp(
+                newY,
+                -scaleRef.current * svgHeight,
+                Math.max(
+                  scaleRef.current * (svgHeight + padding),
+                  height - headerHeight - padding
+                )
+              ),
             });
+            initialTouchStateRef.current = {
+              length: currentLength,
+            };
           }
         } else if (
           initialTouchStateRef.current === null &&
@@ -125,14 +138,25 @@ const TreeView: React.FC<TreeViewProps> = ({
           const xdiff = gestureState.x0 - gestureState.moveX;
           const ydiff = gestureState.y0 - gestureState.moveY;
           setPosition({
-            x: oPositionRef.current.x - xdiff,
-            y: oPositionRef.current.y - ydiff,
+            x: clamp(
+              oPositionRef.current.x - xdiff,
+              -svgWidth * scaleRef.current - GENERATION_NODES_WIDTH,
+              width - GENERATION_NODES_WIDTH
+            ),
+            y: clamp(
+              oPositionRef.current.y - ydiff,
+              -scaleRef.current * svgHeight,
+              Math.max(
+                scaleRef.current * (svgHeight + padding),
+                height - headerHeight - padding
+              )
+            ),
           });
         }
       },
       onPanResponderRelease: () => {
-        setInitialTouchState(null);
-        setOPosition(positionRef.current);
+        initialTouchStateRef.current = null;
+        oPositionRef.current = positionRef.current;
       },
     });
   }, []);
@@ -146,11 +170,11 @@ const TreeView: React.FC<TreeViewProps> = ({
 
   return (
     <View style={styles.container}>
-      {treeElement ? (
+      {treeElement && !isLoading ? (
         <>
           <Svg
-            width={30}
-            height={height}
+            width={GENERATION_NODES_WIDTH}
+            height={height - headerHeight}
             transform={
               isInit
                 ? undefined
@@ -165,7 +189,7 @@ const TreeView: React.FC<TreeViewProps> = ({
           </Svg>
           <Svg
             width={width - 30}
-            height={height}
+            height={height - headerHeight}
             transform={
               isInit
                 ? undefined

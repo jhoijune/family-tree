@@ -95,7 +95,7 @@ const Searchbox: React.FC<SearchboxProps> = ({
                 background={TouchableNativeFeedback.Ripple('#000', true)}
               >
                 <View style={styles.backwardButton}>
-                  <Ionicons name="ios-arrow-back" size={40} color="grey" />
+                  <Ionicons name="arrow-back" size={30} color="grey" />
                 </View>
               </TouchableNativeFeedback>
               <TextInput
@@ -116,7 +116,7 @@ const Searchbox: React.FC<SearchboxProps> = ({
                   background={TouchableNativeFeedback.Ripple('#000', true)}
                 >
                   <View style={styles.cancelButton}>
-                    <Ionicons name="ios-close" size={40} color="grey" />
+                    <Ionicons name="close" size={40} color="grey" />
                   </View>
                 </TouchableNativeFeedback>
               )}

@@ -25,10 +25,9 @@ export type EssentialObj = { name: string; generation: number };
 export type OptionalProp = Exclude<Properties, keyof EssentialObj>;
 
 // 노드에서 갖는 기술적 정보
-export type InfoNode = EssentialObj &
-  {
-    [key in OptionalProp]?: string | string[] | number;
-  };
+export type InfoNode = EssentialObj & {
+  [key in OptionalProp]?: string | string[] | number;
+};
 
 export type ID = string & { readonly brand: unique symbol };
 
@@ -122,6 +121,7 @@ export type MoveableViewProps = {
   move: InfoScreenNavigationProp['push'];
   keyword?: string;
   style?: {};
+  isTouchFeedbackBorderless?: boolean;
 };
 
 type foo = Parameters<HomeScreenNavigationProp['navigate']>;
@@ -162,6 +162,7 @@ export type TreeContainerProps = {
   searchedPositions: Position<FamilyNode>[];
   presentRoot: Position<FamilyNode>;
   keyword: string;
+  isLoading: boolean;
 };
 
 export type TreeViewProps = {
@@ -169,6 +170,8 @@ export type TreeViewProps = {
   rootX: number;
   generationNodes: JSX.Element;
   generationDottedLines: (width?: number) => JSX.Element;
+  svgWidth: number;
+  svgHeight: number;
 };
 
 export type TreeComponentProps = {
@@ -246,4 +249,8 @@ export type DrawerProps = {
   move: NavigationContainerRef['navigate'];
   closeDrawer: () => void;
   positions: Position<FamilyNode>[];
+};
+
+export type ResetButtonProps = {
+  isLoading: boolean;
 };

@@ -32,8 +32,8 @@ const SearchContainer: React.FC<SearchContainerProps> = ({
           }}
           background={TouchableNativeFeedback.Ripple('#000', true)}
         >
-          <View style={[styles.magnify, { bottom: 100 }]}>
-            <Ionicons name="ios-search" size={50} color="#919191" />
+          <View style={[styles.magnify]}>
+            <Ionicons name="search" size={50} color="#919191" />
           </View>
         </TouchableNativeFeedback>
       )}
@@ -48,9 +48,10 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 35,
+    bottom: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#919191',
   },
 });

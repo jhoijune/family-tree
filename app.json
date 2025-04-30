@@ -4,7 +4,7 @@
     "slug": "family-tree",
     "icon": "./assets/icon.png",
     "platforms": ["android"],
-    "version": "1.0.0",
+    "version": "1.1.2",
     "orientation": "default",
     "splash": {
       "image": "./assets/splash.png",
@@ -16,17 +16,21 @@
     },
     "assetBundlePatterns": ["**/*"],
     "packagerOpts": {
-      "sourceExts": ["ts", "tsx", "js"],
-      "transformer": "node_modules/react-native-typescript-transformer/index.js"
+      "sourceExts": ["ts", "tsx", "js"]
     },
     "android": {
       "package": "com.jhoijune.familytree",
-      "versionCode": 4,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon-fg.png",
         "backgroundColor": "#008ff8"
       },
       "permissions": []
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d983c20e-4517-4abe-b911-30a7aa45ca4a"
+      }
     }
   }
 }

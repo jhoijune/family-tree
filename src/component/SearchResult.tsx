@@ -36,6 +36,7 @@ const SearchResult: React.FC<SearchResultProps> = ({
       move={move}
       keyword={keyword}
       style={styles.container}
+      isTouchFeedbackBorderless={false}
     >
       {properties.map((property, index) => {
         if (property !== 'children' && property !== 'childrenName') {

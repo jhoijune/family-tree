@@ -1,9 +1,16 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet, DrawerLayoutAndroid } from 'react-native';
+import { View, StyleSheet, DrawerLayoutAndroid, Text } from 'react-native';
 
 import { HomeScreenProps, FamilyNode, Position, PopupInfo } from '../type';
-import { SearchContainer, TreeContainer, Popup, Drawer } from '../component';
+import {
+  SearchContainer,
+  TreeContainer,
+  Popup,
+  Drawer,
+  ResetButton,
+} from '../component';
 import { LoadingContext, PopupContext, DimensionsContext } from '../context';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 const HomeScreen: React.FC<HomeScreenProps> = ({
   navigation: { navigate, push, setOptions },
@@ -24,21 +31,26 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     cleanup: () => {},
   });
   const { width, height } = useContext(DimensionsContext);
+  const headerHeight = useHeaderHeight();
 
   return (
-    <LoadingContext.Provider value={{ setIsLoading }}>
+    <LoadingContext.Provider value={{ setIsLoading, isLoading }}>
       <PopupContext.Provider
         value={{
           setInfo: setPopupInfo,
         }}
       >
-        <View style={[styles.container, { width, height }]}>
+        <View
+          style={[styles.container, { width, height: height - headerHeight }]}
+        >
           <TreeContainer
             navigation={{ navigate, push }}
             searchedPositions={searchedPositions}
             keyword={keyword}
             presentRoot={presentRoot}
+            isLoading={isLoading}
           />
+          <ResetButton isLoading={isLoading} />
           <SearchContainer
             isLoading={isLoading}
             move={navigate}

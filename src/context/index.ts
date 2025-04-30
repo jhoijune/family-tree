@@ -1,34 +1,9 @@
-import DimensionsContext from './DimensionsContext';
-import LoadingContext from './LoadingContext';
-import PopupContext from './PopupContext';
-import PressedContext from './PressedContext';
-import StoreContext from './StoreContext';
-import TreeContext from './TreeContext';
-import ModalContext from './ModalContext';
-import ExModalContext from './ExModalContext';
-import UtilContext from './UtilContext';
-
-const bind = {
-  DimensionsContext,
-  LoadingContext,
-  PopupContext,
-  PressedContext,
-  StoreContext,
-  TreeContext,
-  ModalContext,
-  ExModalContext,
-  UtilContext,
-};
-
-export default bind;
-export {
-  DimensionsContext,
-  LoadingContext,
-  PopupContext,
-  PressedContext,
-  StoreContext,
-  TreeContext,
-  ModalContext,
-  ExModalContext,
-  UtilContext,
-};
+export { default as DimensionsContext } from './DimensionsContext';
+export { default as LoadingContext } from './LoadingContext';
+export { default as PopupContext } from './PopupContext';
+export { default as PressedContext } from './PressedContext';
+export { default as StoreContext } from './StoreContext';
+export { default as TreeContext } from './TreeContext';
+export { default as ModalContext } from './ModalContext';
+export { default as ExModalContext } from './ExModalContext';
+export { default as UtilContext } from './UtilContext';

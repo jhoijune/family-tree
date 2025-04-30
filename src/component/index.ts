@@ -1,52 +1,16 @@
-import Branch from './Branch';
-import Drawer from './Drawer';
-import GenerationNode from './GenerationNode';
-import HighlightableText from './HighlightableText';
-import InfoList from './InfoList';
-import MoveableView from './MoveableView';
-import Node from './Node';
-import Popup from './Popup';
-import Searchbox from './Searchbox';
-import SearchContainer from './SearchContainer';
-import SearchResult from './SearchResult';
-import SubtreeComponent from './SubtreeComponent';
-import TreeComponent from './TreeComponent';
-import TreeContainer from './TreeContainer';
-import TreeView from './TreeView';
-
-const bind = {
-  Branch,
-  Drawer,
-  GenerationNode,
-  HighlightableText,
-  InfoList,
-  MoveableView,
-  Node,
-  Popup,
-  Searchbox,
-  SearchContainer,
-  SearchResult,
-  SubtreeComponent,
-  TreeComponent,
-  TreeContainer,
-  TreeView,
-};
-
-export default bind;
-export {
-  Branch,
-  Drawer,
-  GenerationNode,
-  HighlightableText,
-  InfoList,
-  MoveableView,
-  Node,
-  Popup,
-  Searchbox,
-  SearchContainer,
-  SearchResult,
-  SubtreeComponent,
-  TreeComponent,
-  TreeContainer,
-  TreeView,
-};
+export { default as Branch } from './Branch';
+export { default as Drawer } from './Drawer';
+export { default as GenerationNode } from './GenerationNode';
+export { default as HighlightableText } from './HighlightableText';
+export { default as InfoList } from './InfoList';
+export { default as MoveableView } from './MoveableView';
+export { default as Node } from './Node';
+export { default as Popup } from './Popup';
+export { default as Searchbox } from './Searchbox';
+export { default as SearchContainer } from './SearchContainer';
+export { default as SearchResult } from './SearchResult';
+export { default as SubtreeComponent } from './SubtreeComponent';
+export { default as TreeComponent } from './TreeComponent';
+export { default as TreeContainer } from './TreeContainer';
+export { default as TreeView } from './TreeView';
+export { default as ResetButton } from './ResetButton';

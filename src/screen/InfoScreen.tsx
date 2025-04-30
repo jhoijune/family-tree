@@ -173,9 +173,9 @@ const InfoScreen: React.FC<InfoScreenProps> = ({
           background={TouchableNativeFeedback.Ripple('#000', true)}
         >
           {isFavorties ? (
-            <Ionicons name="ios-star" size={30} color="#F8CC02" />
+            <Ionicons name="star" size={30} color="#F8CC02" />
           ) : (
-            <Ionicons name="ios-star" size={30} color="#fff" />
+            <Ionicons name="star" size={30} color="#fff" />
           )}
         </TouchableNativeFeedback>
       ),

@@ -409,10 +409,20 @@
                                 },
                                 {
                                   "name": "남기",
+                                  "birth": "1951-03-14 (음력)",
+                                  "spouse": ["김해김씨 화실", "김화실"],
                                   "children": [
                                     {
                                       "name": "효성",
-                                      "genealogical name": "우동"
+                                      "birth": "1981-03-01",
+                                      "genealogical name": "우동",
+                                      "spouse": ["공주이씨 선경", "이선경"],
+                                      "children": [
+                                        {
+                                          "name": "지훈",
+                                          "birth": "2020-07-22"
+                                        }
+                                      ]
                                     },
                                     {
                                       "name": "문정"
@@ -726,16 +736,7 @@
                                   "name": "춘자"
                                 },
                                 {
-                                  "name": "남기",
-                                  "children": [
-                                    {
-                                      "name": "효성",
-                                      "genealogical name": "우동"
-                                    },
-                                    {
-                                      "name": "문정"
-                                    }
-                                  ]
+                                  "name": "남기"
                                 }
                               ]
                             }

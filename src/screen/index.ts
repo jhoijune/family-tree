@@ -1,10 +1,2 @@
-import HomeScreen from './HomeScreen';
-import InfoScreen from './InfoScreen';
-
-const bind = {
-  HomeScreen,
-  InfoScreen,
-};
-
-export default bind;
-export { HomeScreen, InfoScreen };
+export { default as HomeScreen } from './HomeScreen';
+export { default as InfoScreen } from './InfoScreen';

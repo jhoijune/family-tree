@@ -39,7 +39,8 @@ const Drawer: React.FC<DrawerProps> = ({ move, closeDrawer, positions }) => {
             style={[
               styles.item,
               { borderBottomWidth: positions.length - 1 === index ? 1 : 0 },
-            ]}>
+            ]}
+          >
             <TouchableNativeFeedback
               onPress={() => {
                 Alert.alert('삭제', '즐겨찾기에서 삭제하시겠습니끼?', [
@@ -60,8 +61,9 @@ const Drawer: React.FC<DrawerProps> = ({ move, closeDrawer, positions }) => {
                   },
                 ]);
               }}
-              background={TouchableNativeFeedback.Ripple('#000', true)}>
-              <Ionicons name="ios-star" size={30} color="#F8CC02" />
+              background={TouchableNativeFeedback.Ripple('#000', true)}
+            >
+              <Ionicons name="star" size={30} color="#F8CC02" />
             </TouchableNativeFeedback>
             <Text style={[styles.defaultFont, { marginLeft: 15 }]}>
               {convertName(position.element!)}

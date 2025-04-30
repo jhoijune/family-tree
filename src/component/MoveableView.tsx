@@ -9,6 +9,7 @@ const MoveableView: React.FC<MoveableViewProps> = ({
   move,
   keyword,
   style,
+  isTouchFeedbackBorderless = true,
 }) => (
   <TouchableNativeFeedback
     onPress={() => {
@@ -17,7 +18,11 @@ const MoveableView: React.FC<MoveableViewProps> = ({
         keyword: keyword,
       });
     }}
-    background={TouchableNativeFeedback.Ripple('#000', true)}>
+    background={TouchableNativeFeedback.Ripple(
+      '#000',
+      isTouchFeedbackBorderless
+    )}
+  >
     <View style={style}>{children}</View>
   </TouchableNativeFeedback>
 );

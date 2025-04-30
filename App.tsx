@@ -271,11 +271,7 @@ const App: React.FC = () => {
                                   true
                                 )}
                               >
-                                <Ionicons
-                                  name="ios-menu"
-                                  size={40}
-                                  color="#fff"
-                                />
+                                <Ionicons name="menu" size={40} color="#fff" />
                               </TouchableNativeFeedback>
                             ),
                             headerRightContainerStyle: { marginRight: 15 },
